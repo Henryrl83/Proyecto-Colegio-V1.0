@@ -1,0 +1,4606 @@
+@charset 'UTF-8';
+
+/* Color Pallet 
+
+Main Color = Blue
+
+    Dark            #005899
+    Regular         #0072C6
+    Light           #4DA8E8
+    
+Error Color = Red
+
+    Dark            #971519 
+    Regular         #B72025
+    
+Warning Color = Yellow
+
+    Dark            #E2961C
+    Regular         #F4A11E
+    
+Highlight Color = Yellow
+
+    Regular         #F4A11E
+    
+Grayscale 
+
+    Darkest (Black) #181818
+                    #5C5C5C
+                    #8E8A87
+                    #BABABA
+                    #D9D9D9
+                    #E6E6E6
+                    #F3F3F3
+    Lightest (White)#FFFFFF
+    
+*/
+
+
+/* Webfont: LatoLatinLight-Regular */@font-face {
+    font-family: 'Lato';
+    src: url('Fonts/LatoLatinLight-Regular.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/LatoLatinLight-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/LatoLatinLight-Regular.woff') format('woff'), /* Modern Browsers */
+    url('Fonts/LatoLatinLight-Regular.ttf') format('truetype'); 
+    font-style: normal;
+    font-weight: 300;
+    /* text-rendering: optimizeLegibility; */
+}
+
+/* Webfont: LatoLatin-Regular */@font-face {
+    font-family: 'Lato';
+    src: url('Fonts/LatoLatin-Regular.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/LatoLatin-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/LatoLatin-Regular.woff') format('woff'), /* Modern Browsers */
+    url('Fonts/LatoLatin-Regular.ttf') format('truetype'); 
+    font-style: normal;
+    font-weight: 400;
+    /* text-rendering: optimizeLegibility; */
+}
+
+/* Webfont: LatoLatin-Bold */@font-face {
+    font-family: 'Lato';
+    src: url('Fonts/LatoLatin-Bold.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/LatoLatin-Bold.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/LatoLatin-Bold.woff') format('woff'), /* Modern Browsers */
+    url('Fonts/LatoLatin-Bold.ttf') format('truetype'); 
+    font-style: normal;
+    font-weight: 700;
+    /* text-rendering: optimizeLegibility; */
+}
+
+/* Webfont: LatoLatinBlack-Regular */@font-face {
+    font-family: 'Lato';
+    src: url('Fonts/LatoLatinBlack-Regular.eot'); /* IE9 Compat Modes */
+    src: url('Fonts/LatoLatinBlack-Regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('Fonts/LatoLatinBlack-Regular.woff') format('woff'), /* Modern Browsers */
+    url('Fonts/LatoLatinBlack-Regular.ttf') format('truetype'); 
+    font-style: normal;
+    font-weight: 900;
+    /* text-rendering: optimizeLegibility; */
+}
+
+
+
+
+
+
+
+
+/* - - - - - - Generic style - - - - - - */
+
+/*
+    The following style is used by the JavaScript framework to determine wether the theme is properly 
+    loaded. Please do not remove this style!
+*/
+#df_load_test{
+    height: 10px;
+}
+
+body, .WebApp {
+    font: normal normal 400 16px/150% Lato, Arial, Helvetica, sans-serif;  /* CSS Shorthand Syntax *//* font: font-style font-variant font-weight font-size/line-height, font-family;*/ 
+    color: #181818;
+}
+body.df-mobile{
+    font: normal normal 400 16px/150% Lato, Arial, Helvetica, sans-serif;
+}
+
+/*  TODO: Find out why we did this and if we really need this?
+    .WebApp *:focus, .WebView *:focus{  
+    outline: none;
+} */ 
+
+/*jvh disable selection effects for all other elements than input */
+::selection{ 
+    color: inherit;
+    background: inherit;
+}
+
+/* text selection */
+input::selection, textarea::selection{ 
+    color: #FFFFFF;
+    background: #0072C6;
+}
+
+
+a:link {color:#0072C6;}      /* unvisited link */
+a:visited {color:#005899;}  /* visited link */
+a:hover {color:#F4A11E;}  /* mouse over link */
+a:active {color:#005899;}  /* selected link */ 
+
+
+/* - - - - - - WebApp - - - - - - */
+.WebApp .WebApp {
+    margin: 0px 0px 15px 0px;
+}
+/* Whitespace around a view that is only available on larger devices */
+.WebInlineView > div.WebContainer{
+    padding: 20px 20px;
+}
+.df-ModeDesktop .WebInlineView > div > div.WebCon_Sizer > div > div > .WebCon_Content{
+    padding: 10px 32px;
+}
+.df-ModeTablet .WebInlineView > div > div.WebCon_Sizer > div > div > .WebCon_Content{
+    padding: 0px 0px;
+}
+.df-ModeDesktop .WebInlineView > div.WebContainer{
+    padding: 20px 10px;
+}
+.df-ModeTablet .WebInlineView > div.WebContainer{
+    padding: 0px 0px;
+}
+
+.WebApp.WebContainer {
+    background: #FFFFFF;
+}
+
+
+/* - - - - - - WebPanel - - - - - - */
+
+.WebPanel > .WebPanel_DividerVertical {
+    background:#0072C6;
+    width: 7px;
+    height: 80px;
+    margin: auto auto;
+}
+.WebPanel > .WebPanel_DividerVertical:hover{
+    background: #005899;
+}
+.WebPanel > .WebPanel_DividerVertical:active{
+    background: #005899;
+}
+
+.WebPanel_divider_ghost {
+    background-color: transparent;
+    border-right: 1px dotted #D9D9D9;
+    width:1px;
+}
+
+.WebPanel > .WebPanel_DividerHorizontal {
+    background:#0072C6;
+    width:80px;
+    height: 7px;
+    margin: auto auto;
+    border-right: 2px solid #FFFFFF;
+    border-left: 2px solid #FFFFFF;
+}
+
+.WebPanel_DividerVertical_Ghost{
+    border-left: 1px dotted #D9D9D9;
+}
+.WebPanel_DividerHorizontal_Ghost{
+    border-top: 1px dotted #D9D9D9;
+}
+
+/* Panel directly under webapp */
+.WebApp > .WebCon_Sizer >.WebCon_Main > .WebContainer{
+    margin-right: 15px;
+}
+
+/* - - - - - - WebContainer - - - - - -  */
+/* Margins inside the container */
+.WebContainer .WebCon_Content{
+    padding: 10px 8px;
+}
+
+/* - - - - - - WebView - - - - - -  */ 
+
+.WebInlineView label.WebWin_title{
+    padding: 10px 0px 10px 5px;
+    margin: 0px 0px 0px 0px;
+    color: #181818;
+    display: block;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+
+/*
+    This sets the background color for views & panels
+*/
+.WebContainer, .WebTabContainer .WebTbc_Body .WebContainer,
+.WebInlineView > div > div > div > .WebCon_ContentWrp{
+    background-color: inherit;
+}
+.WebInlineView > .WebContainer{
+    background-color: #FFFFFF;
+}
+
+
+/* - - - - - - WebControl - - - - - - */
+.WebControl > .WebCon_Inner{
+    margin: 5px 5px; 
+    min-height: 42px;
+}
+
+.MobileList.WebList > .WebCon_Inner{
+    margin: 0; 
+}
+.WebWindow .WebControl  > .WebCon_Inner{
+    /* margin: 5px 15px;  */
+}
+
+.WebControl .WebCon_Inner.WebCon_LeftLabel{
+    grid-template-columns: 128px minmax(0, 1fr);
+}
+.WebControl .WebCon_Inner.WebCon_RightLabel {
+    grid-template-columns: minmax(0, 1fr) 128px;
+}
+/*
+    The label is displayed as block with a fixed width or height. It can be located on the left, right 
+    or at the top of the control. When a control has a label the inner div will get the WebCon_HasLabel
+    class and if left right or top is set explicitly it will also get WebCon_LeftLabel, 
+    WebCon_RightLabel or WebCon_TopLabel. If no position class is set the theme CSS determines where it 
+    is shown.
+*/
+.WebControl > div > label{
+    padding: 9px 2px 0px 2px;
+    -moz-user-select: none;
+    line-height: 18px;
+}
+
+.WebControl > div.WebCon_TopLabel > label{
+    padding-bottom: 1px;
+    min-height: 28px;
+}
+
+/* Small theme specific tweaks for floating labels */
+
+div.WebCon_TopLabel.WebCon_FloatEnabled > label.WebCon_Float {
+    font-size: 16px;
+}
+
+.WebControl > div.WebCon_Inner > div{
+    
+}
+
+/* This defines the border used around the WebForm, WebCombo & WebEdit */
+.WebControl .WebFrm_Wrapper, .WebTreeView .WebTree_Body{
+    padding: 4px;  
+    background-color: #FFFFFF;
+    border: 1px solid #BABABA;
+}
+
+.WebControl.WebCon_Focus > div > div > .WebFrm_Wrapper, .WebTreeView.WebCon_Focus .WebTree_Body{
+    /* border: 1px solid #005899; */
+    
+    transition: border 0.5s, box-shadow 0.5s;
+    box-shadow: 0px 0px 2px #4DA8E8;
+    border: 1px solid #4DA8E8;
+}
+.WebControl.WebError div > div > div.WebFrm_Wrapper{
+    border: 1px solid #B72025;
+}
+.WebControl.WebError.WebCon_Focus div > div > div.WebFrm_Wrapper{
+    border: 1px solid #B72025;
+}
+
+.WebControl.Web_Disabled > div > div > .WebFrm_Wrapper{
+    border: 1px solid #E6E6E6;
+    background-color: #F3F3F3;
+}
+
+.WebControl.Web_Disabled > div > div > .WebFrm_Wrapper, .WebControl.Web_Disabled input,
+.WebControl.Web_Disabled textarea, .WebControl.Web_Disabled select {
+    color: #8E8A87;
+    opacity: 1;                 /* The opacity must be set to 1*/
+}
+
+/* - - - - - - WebForm - - - - - - */
+.WebForm input{
+    background-color: transparent;
+    height: 30px;
+    padding: 0px 5px;
+}
+
+.WebForm .WebFrm_Prompt{
+    width: 24px;
+    height: 26px;
+}
+.WebForm.Web_Disabled .WebFrm_Prompt{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+.WebForm .WebFrm_Wrapper{
+    padding: 4px 5px;
+}
+.WebForm .WebFrm_PromptSpacer{
+    
+}
+.WebForm .WebFrm_HasPrompt .WebFrm_PromptSpacer{
+    margin-right: 30px;
+}
+
+.WebForm.Web_ReadOnly input, .WebEdit.Web_ReadOnly textarea{
+    color: #8E8A87;
+}
+
+
+
+
+
+
+/* - - - - - - WebButton - - - - - - */
+.WebButton > div.WebCon_Inner{
+    /* margin: 7px 7px; */
+}
+
+.WebButton button,
+.WebGrid .WebList_Body .WebList_Row button, 
+.WebList .WebList_Body .WebList_Row button{
+    background-color: #0072C6;
+    border: 1px solid transparent;
+    color:#FFFFFF;
+    font-family: 'Lato';
+    display:inline-block;
+    font-size: 18px;       /*jvh-fontsize 13px; */
+    padding: 4px 4px 4px;
+    text-decoration:none;
+    transition: background-color 0.5s, color 0.5s;
+}
+.WebGrid .WebList_Body .WebList_Row button, 
+.WebList .WebList_Body .WebList_Row button{
+    margin: 0px 2px 0px 0px;
+}
+.WebButton button {
+    min-height: 40px;
+}
+.LoginView .WebButton button {
+    min-height: 50px;
+}
+.WebButton.Web_Enabled button:hover, 
+.WebButton.Web_Enabled button:focus,
+.WebGrid .WebList_Body .WebList_Row button:hover,
+.WebList .WebList_Body .WebList_Row button:hover{
+    outline: none;
+    background-color: #005899;
+    border: 1px solid transparent;
+    color:#FFFFFF;
+}
+
+.WebButton.Web_Enabled button:active,
+.WebGrid .WebList_Body .WebList_Row button:active,
+.WebList .WebList_Body .WebList_Row button:active{
+    border: 1px solid transparent;
+}
+.WebButton.Web_Disabled button{
+    background-color: #F3F3F3;
+    border: 1px solid #E6E6E6;
+    color: #8E8A87;
+    cursor: default;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+.WebButton.Transparent button{
+    background-color: inherit;
+}
+.WebButton.Transparent.Web_Enabled button:hover, 
+.WebButton.Transparent.Web_Enabled button:focus{
+    background-color: inherit;
+    opacity: 0.8;
+}
+.WebButton.AsAnchor button{
+    color: #0072C6;
+    background-color: transparent;
+}
+
+
+.WebButton.AsAnchor.Web_Enabled button:hover,
+.WebButton.AsAnchor.Web_Enabled.WebCon_Focus button,
+.WebButton.AsAnchor.Web_Enabled:hover button,
+.WebButton.AsAnchor.Web_Enabled button:focus{
+    color: #4DA8E8;
+    background-color: transparent;
+}
+
+/* - - - - - - WebLabel - - - - - - */
+.WebLabel .WebLabel_content{
+    line-height: 24px;  /* This line height needs to be fixed because of rounding issues with panels */
+    padding: 9px 3px 3px;
+}
+.df-mobile .WebLabel .WebLabel_content{
+    padding: 0px 0px 10px 0px;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+/* - - - - - - WebCombo - - - - - - */
+.WebCombo select{
+    display: inline;
+    border: none;
+}
+/* .WebCombo.Web_Disabled select{
+    background-color: #F3F3F3;
+} */
+.WebCombo .WebFrm_Wrapper{
+    height: 30px;
+    padding-left: 4px;
+}
+
+
+/* - - - - - - WebRadio - - - - - - */
+.WebRadio input{
+    margin: 13px 2px 0px;
+    height: 14px;
+}
+.WebRadio .WebRadio_Caption{
+    padding: 9px 2px 0px 0px;
+    margin-left: 20px;
+}
+
+
+
+
+
+/* - - - - - - WebCheckbox - - - - - - */
+.WebCheckbox input,
+.WebRadio input{
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(1px,1px,1px,1px);
+    border: 0;
+    outline: 0;
+    opacity: 0;
+}
+
+.WebCheckbox .WebCheckbox_Caption,
+.WebRadio .WebRadio_Caption {
+    padding: 6px 2px 0px 0px;
+    display: block;
+    margin-left: 40px;
+    height: auto;
+}
+.WebCheckbox .WebCB_Fake{
+    display: block;
+    float: left;
+    position: relative;
+}
+
+/* Standard style for styled checkbox */
+.WebCheckbox .WebCB_Fake{
+    width: 30px;
+    height: 30px;
+}
+.WebCheckbox .WebCB_Fake:before{
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 6px;
+    width: 15px;
+    height: 15px;
+    border: 1px solid #BABABA;
+    border-radius: 3px;
+    display: block;
+    transition: border 0.5s, box-shadow 0.5s;
+}
+
+
+
+.WebCheckbox.Web_Enabled.WebCon_Focus .WebCB_Fake:before{
+    box-shadow: 0px 0px 2px 0px #4DA8E8;
+    border: 1px solid #4DA8E8;
+}
+.WebCheckbox input:checked + .WebCB_Fake:before {
+    background: #0072C6;
+    border: 1px solid #0072C6;
+}
+
+.WebCheckbox.Web_Disabled input:checked + .WebCB_Fake:before,
+.WebCheckbox.Web_Disabled .WebCB_Fake:before{
+    background: #F3F3F3;
+    border-color: #BABABA;
+    border: 1px solid #BABABA;
+}
+.WebCheckbox .WebCB_Fake:after,
+.WebRadio .WebR_Fake:after{
+    font-family: "dataflex-mobile" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;  
+    display: inline-block;
+}
+.WebCheckbox input:checked + .WebCB_Fake:after{
+    content: '&';
+    font-size: 22px;
+    position: absolute;
+    top: 2px;
+    left: 7px;
+}
+.WebCheckbox input:checked + .WebCB_Fake:after,
+.WebCheckbox input:checked + .WebCB_Fake:after{
+    top: 12px;
+    left: 12px;
+    content: '';
+    display: block;
+    width: 4px;
+    height: 8px;
+    border: solid #FFFFFF;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.WebCheckbox.Web_Disabled input:checked + .WebCB_Fake:after{
+    border: solid #BABABA;
+    border-width: 0 2px 2px 0;
+}
+
+
+/* FlipSwitch style for styled checkbox */
+.WebCheckbox.FlipSwitch .WebCheckbox_Caption {
+    margin-left: 100px;
+}
+.WebCheckbox.FlipSwitch .WebCB_Fake {
+    padding: 2px;
+    width: 74px;
+    height: 36px;
+    background-color: #BABABA;
+    border-radius: 40px;
+    transition: background 0.4s;
+    position: relative;
+    border: none;
+}
+.WebCheckbox.FlipSwitch.WebCon_Focus.Web_Enabled .WebCB_Fake{
+    background-color: #0072C6;
+}
+.WebCheckbox.FlipSwitch.WebCon_Focus input:checked + .WebCB_Fake,
+.WebCheckbox.FlipSwitch.WebCon_Focus.Web_Enabled .WebCB_Fake{
+    box-shadow: 0px 0px 2px 0px #4DA8E8;
+    background-color: #4DA8E8;
+}
+.WebCheckbox.FlipSwitch.WebCon_Focus.Web_Enabled .WebCB_Fake:before{
+    box-shadow: none;
+    border: none;
+}
+
+.WebCheckbox.FlipSwitch .WebCB_Fake:before,
+.WebCheckbox.FlipSwitch .WebCB_Fake:after {
+    display: block;
+    position: absolute;
+    content: "";
+}
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake:before{
+    content: "";
+    margin: 0px 0px 0px 0px;
+}
+.WebCheckbox.FlipSwitch .WebCB_Fake:before {
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 1px;
+    width: auto;
+    height: auto;
+    background-color: #FFFFFF;
+    border-radius: 40px;
+    border: none;
+    transition: background 200ms;
+}
+
+
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake:after,
+.WebCheckbox.FlipSwitch .WebCB_Fake:after {
+    top: 3px;
+    left: 3px;
+    bottom: 3px;
+    width: 34px;
+    height: auto;
+    
+    background-color: #BABABA;
+    border-radius: 32px;
+    transition: margin 200ms, background 200ms;
+}
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake{
+    background-color: #0072C6;
+}
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake:before {
+    background: #FFFFFF;
+    border: none;
+}
+.WebCheckbox.FlipSwitch.Web_Disabled input:checked + .WebCB_Fake:before,
+.WebCheckbox.FlipSwitch.Web_Disabled .WebCB_Fake:before{
+    background-color: #F3F3F3;
+}
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake:after {
+    margin-left: 38px;
+}
+.WebCheckbox.FlipSwitch input:checked + .WebCB_Fake:after{
+    background-color: #0072C6;
+    transform: none;
+    border: none;
+    
+}
+
+
+/* - - - - - - WebColumnCheckbox - - - - - - */
+.WebControl.WebCheckboxColumn > .WebCon_Inner > div{
+    height: 18px;
+}
+.WebCheckboxColumn .WebCB_Fake{
+    margin-top: -10px;
+    height: 30px;
+    vertical-align: middle;
+    display: inline-flex;
+    float: none;
+}
+.WebCheckboxColumn.FlipSwitch .WebCB_Fake{
+    margin-top: -11px;
+}
+.WebList .WebList_Body .WebList_Row td.WebColCheckbox.FlipSwitch,
+.WebGrid .WebList_Body .WebList_Row td.WebColCheckbox.FlipSwitch{
+    height: 40px;   
+}
+
+.WebColCheckbox .WebCheckbox input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: initial;
+    float: left;
+}
+.df-ie .WebCheckboxColumn > .WebCon_Inner > div > input{
+    margin: 0px 2px 0;
+}
+.WebGrid_EditCell .WebCheckboxColumn{
+}
+
+
+
+/* - - - - - - - WebRadio - - - - - - */
+.WebRadio .WebR_Fake{
+    display: inline-block;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+}
+
+.WebRadio .WebR_Fake:before{
+    content: '';
+    position: absolute;
+    top: 9px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+    border: 1px solid #BABABA;
+    border-radius: 100%;
+    display: block;
+    transition: border 0.5s, box-shadow 0.5s;
+}
+
+.WebRadio input:checked + .WebR_Fake:before{
+  background-color: #0072C6;
+  border: 1px solid #0072C6;
+}
+.WebRadio.Web_Enabled.WebCon_Focus .WebR_Fake:before{
+    box-shadow: 0px 0px 2px 0px #4DA8E8;
+    border: 1px solid #F3F3F3;
+}
+
+.WebRadio.Web_Disabled .WebR_Fake:before{
+    background-color: #F3F3F3;
+}
+
+.WebRadio .WebR_Fake:after{
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 18px;
+    height: 18px;
+    border-radius: 100%;
+    display: block;
+    transition: background-color 200ms;
+    background-color: transparent;
+}
+
+
+.WebRadio input:checked + .WebR_Fake:after{
+    top: 14px;
+    left: 10px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+.WebRadio.Web_Disabled input:checked + .WebR_Fake:after{
+    background-color: #BABABA;
+}
+.WebRadio.Web_Disabled .WebR_Fake:before,
+.WebRadio.Web_Disabled input:checked + .WebR_Fake:before{
+    background-color: #F3F3F3;
+    border-color: #D9D9D9;
+}
+
+
+/* - - - - - - WebEdit - - - - - - */
+.WebEdit div.WebFrm_Wrapper{
+    background-color: #FFFFFF;
+}
+.WebEdit textarea{
+    background-color: transparent;
+    
+}
+
+
+/* - - - - - - WebGrid & WebList - - - - - - */
+/*
+    The grid & list share their basic styles.
+*/
+
+/*
+    Add some dinstance between the grid and other controls.
+*/
+.WebGrid.WebControl > .WebCon_Inner, .WebList.WebControl > .WebCon_Inner{
+    
+}
+
+.WebControl.WebGrid .WebCon_Inner {
+    padding: 10px 0px 0px 0px;
+}
+
+.WebControl.WebGrid .WebCon_Inner .WebList_BodyWrp .WebCon_Inner{
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
+/* Body */
+.WebGrid .WebList_BodyWrp, .WebList .WebList_BodyWrp{
+    border: 1px solid #E6E6E6;
+    background-color: #FFFFFF;
+}
+.WebGrid .WebList_Body, .WebList .WebList_Body{
+    
+}
+
+.WebGrid .WebList_Body .WebList_Row, .WebList .WebList_Body .WebList_Row{
+    border-bottom: 1px solid #E6E6E6;
+    border-left: 2px solid transparent;
+    border-collapse: separate;
+    background-color: #ffffff;
+}
+.WebGrid .WebList_Body .WebList_RowOdd, .WebList .WebList_Body .WebList_RowOdd{
+    
+}
+
+.WebGrid .WebList_Body .WebList_Row td, .WebList .WebList_Body .WebList_Row td{
+    padding: 2px 6px;
+    height: 38px;
+}
+/* 
+    .WebGrid .WebList_Body .WebList_Row td:first-child, .WebList .WebList_Body .WebList_Row td:first-child{
+    border-left: none;
+} */
+
+.WebGrid .WebList_Body td.Web_Disabled, .WebList .WebList_Body td.Web_Disabled{
+    color: #8E8A87;
+}
+.WebGrid.Web_Disabled .WebList_Head .WebList_ColCap, .WebList.Web_Disabled .WebList_Head .WebList_ColCap{
+    color: #8E8A87;
+}
+
+
+
+/* Header */
+
+.WebList th, .WebGrid th{
+    text-align: left;
+    border-left: 1px solid #E6E6E6;
+}
+.WebList .WebList_HorizScroll th:last-child,
+.WebList .WebList_HorizScroll th:last-child{
+    border-right: 1px solid #E6E6E6;
+}
+.WebList th:first-child, .WebGrid th:first-child{
+    border-left: none;
+}
+
+.WebGrid .WebList_Head, .WebList .WebList_Head {
+    background: #F3F3F3;
+    border: 1px solid #E6E6E6;
+    border-bottom: none;
+}
+
+.WebGrid .WebList_Footer, .WebList .WebList_Footer {
+    background: #F3F3F3;
+    border: 1px solid #E6E6E6;
+    border-top: none;
+}
+
+.WebGrid .WebList_FooterWrp.WebList_BodyWrp, .WebList .WebList_FooterWrp.WebList_BodyWrp {
+    background: #F3F3F3;
+    border: none;
+}
+
+.WebGrid .WebList_Footer.WebList_Body .WebList_Row, .WebList .WebList_Footer.WebList_Body .WebList_Row {
+    background: #F3F3F3;
+    border: none;
+}
+
+.WebGrid.WebControl > .WebCon_Inner, .WebList.WebControl > .WebCon_Inner .WebList .WebList_Head {
+    /*margin: 10px 0px 0px 0px;*/
+}
+
+.WebWindow .WebButton {
+    padding: 0px;
+}
+
+/*
+    Left & Right margin are needed because of the body borders.
+*/
+.WebGrid .WebList_Head .WebList_HeadWrp, .WebList .WebList_Head .WebList_HeadWrp{
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+.WebGrid .WebList_Head th > div, .WebList .WebList_Head th > div{
+    
+}
+
+.WebGrid .WebList_Head .WebList_ColCap, .WebList .WebList_Head .WebList_ColCap{
+    overflow: hidden;
+    white-space: break-spaces;
+    padding: 7px 4px;
+    font-weight:normal;
+    font-family: 'Lato';
+    text-decoration:none;
+    text-shadow:1px 1px 0px #FFFFFF;
+}
+
+/*
+    This is the separator that is shown when resizing columns.
+*/
+.WebGrid .WebList_ColResizer, .WebList .WebList_ColResizer{
+    border-left: 1px dotted #BABABA;
+}
+
+.WebGrid .WebList_Head .WebList_Sorted, 
+.WebGrid .WebList_Head .WebList_SortedReverse, 
+.WebList .WebList_Head .WebList_Sorted, 
+.WebList .WebList_Head .WebList_SortedReverse{
+    font-weight: 600;
+}
+
+.WebGrid .WebList_Head .WebList_Sorted .WebList_ColCap, 
+.WebGrid .WebList_Head .WebList_SortedReverse .WebList_ColCap, 
+.WebList .WebList_Head .WebList_Sorted  .WebList_ColCap, 
+.WebList .WebList_Head .WebList_SortedReverse  .WebList_ColCap{
+    padding-right: 20px;
+}
+
+.WebGrid .WebList_Head .WebList_Sortable, 
+.WebList .WebList_Head .WebList_Sortable{
+    text-decoration: underline;
+}
+
+.WebGrid .WebList_Head .WebList_ColHead, 
+.WebList .WebList_Head .WebList_ColHead{
+    
+}
+
+/* - - - - - - WebList - - - - - - */
+
+/* .WebGrid .WebList_Body.WebList_ShowSelected .WebList_Row:hover,
+    .WebList .WebList_Body.WebList_ShowSelected .WebList_Row:hover{
+    background: #F3F3F3;
+    color: #181818;
+    }
+*/
+.WebGrid > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected,
+.WebList > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected,
+.WebGrid > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected,
+.WebList > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected{
+    border-left: 2px solid #F4A11E;
+    color: #0072C6;
+}
+
+.WebGrid.WebCon_Focus > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected,
+.WebList.WebCon_Focus > div > div > div > div > .WebList_Body.WebList_ShowSelected > div > div > .WebList_Row.WebList_Selected,
+.WebGrid.WebCon_Focus > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected,
+.WebList.WebCon_Focus > div > div > div > div > .WebList_Body.WebList_ShowSelected > .WebList_Row.WebList_Selected{
+    border-left: 2px solid #E2961C;
+    color: #4DA8E8;
+} 
+
+.WebList .WebList_Body .WebList_HorizScroll .WebList_Row{
+    border-right: 1px solid #E6E6E6;
+}
+
+.WebList .WebList_Body .WebList_Row td:first-child{
+    border-left: none;
+}
+.WebList .WebList_Body .WebList_Row td{
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    border-left: 1px solid #E6E6E6;
+}
+
+.WebList .WebList_Body .WebList_Row.WebList_Selected:hover{
+    
+}
+.WebList .WebList_Body .WebList_Row.WebList_Selected:hover td{
+    
+}
+.WebList .WebList_Body .WebList_Row.WebList_Selected td{
+    
+}
+
+/* - - - - - - WebList SwipeButtons - - - - - - */
+
+.WebList_SwipeBtn{
+    background-color: #0072C6;
+    text-align: center;
+    transition: background-color 200ms;
+    color: #ffffff;
+    padding: 0px 10px;
+}
+.WebList_SwipeBtn.Highlight{
+    background-color: #F4A11E;
+}
+.WebList_SwipeBtn.Danger{
+    background-color: #B72025;
+}
+.WebList_SwipeBtn.Highlight.WebCon_Active{
+    background-color: #E2961C;
+}
+.WebList_SwipeBtn.Danger.WebCon_Active{
+    background-color: #971519;
+}
+.WebList_SwipeBtn.WebCon_Active{
+    background-color: #005899;
+}
+
+.WebList_SwipeBtn:before{
+    display: block;
+    height: 21px;
+    width: 100%;
+    font-size: 19px;
+}
+
+
+/* - - - - - - WebGrid - - - - - - */
+
+/* - - - - - - WebColumn (Overrides WebForm) - - - - - - */
+
+.WebGrid .WebControl > div.WebCon_Inner,
+.WebList .WebControl > div.WebCon_Inner{
+    min-height: 0px;
+}
+
+.WebGrid_EditCell .WebForm input{
+    height: 18px;
+    padding-right: 1px;
+}
+.df-ie8 .WebGrid_EditCell .WebForm input{
+    height: 17px;
+}
+
+.WebGrid_EditCell .WebControl > div.WebCon_Inner{
+    
+}
+
+.WebGrid_EditCell .WebControl .WebFrm_Wrapper{
+    padding: 4px 5px 4px 1px;
+    margin: 0px;
+    background-color: #FFFFFF;
+    border: 1px solid #BABABA;
+}
+.WebGrid_EditCell .WebControl .WebFrm_Wrapper:focus{
+    border: 1px solid #BABABA;
+}
+
+.WebGrid .WebList_Body .WebList_Row td.WebCol.WebGrid_EditCell,
+.WebGrid .WebList_Body .WebList_Row td.WebColCombo.WebGrid_EditCell{
+    padding: 0px;
+}
+
+.WebGrid .WebList_Body .WebList_Row td.WebCol.WebGrid_EditCell .WebFrm_Prompt:before,
+.WebGrid .WebList_Body .WebList_Row td.WebColCombo.WebGrid_EditCell .WebFrm_Prompt:before {
+    top: 2px;
+}
+
+.WebColLink.Web_Disabled a{
+    color: #8E8A87;
+}
+
+/* - - - - - - WebList Grouping - - - - -*/
+
+.WebMenuItem.WebMenuGroupingSelector,
+li.WebMenuItem.WebMenuGroupingSelector:hover
+{
+    padding-left: 5px;
+    background-color: #FFFFFF;
+}
+
+.WebGrpSel_Head {
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(163, 163, 163, 0.7);
+}
+
+
+.WebGrpSel_Fields{
+    padding-top: 3px;
+}
+
+
+.WebGrpSel_Group.Web_Drag{
+    background-color: #BABABA;
+    opacity: 40%;
+}
+
+.WebGrpSel_GroupSelect {
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    border-width: 1px;
+    border-color: #BABABA;
+    border-style: solid;
+}
+
+.WebGrpSel_Action {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    height: 1.5rem;
+    border-radius: 0.25rem;
+    margin: 0.2em;
+}
+
+.WebGrpSel_Action :hover {
+    background-color:  #F3F3F3;
+}
+
+.WebGrpSel_Chip {
+    color: #ffffff;
+    font-size: 0.75rem;
+    line-height: 1rem;
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+    border-radius: 0.125rem;
+
+
+    background-color:  #5C5C5C;
+}
+
+.WebGrpSel_Add_Button {
+    display: inline-flex;
+    padding: 0.25rem;
+    border-radius: 0.25rem;
+    background: none;
+    border: none;
+    font: inherit;
+    outline: inherit;
+}
+
+.WebGrpSel_Add_Button:hover {
+    background-color: #F3F3F3;
+}
+
+.WebGrpSel_DropDown{
+    background: #ffffff;
+    border-radius: 0.375rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.WebGrpSel_DropDown > .Web_Item{
+    display: block;
+    padding: 0.25rem 0.5rem;
+    color: #181818;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.WebGrpSel_DropDown > .Web_Item:hover{
+    background-color: #F3F3F3;
+}
+
+.WebList_GroupHeader {
+    padding: 6px;
+    background-color: #e5f0f9;
+    color: #ffffff;
+}
+
+.WebList_GroupHeader.Web_Level0{
+    background-color: #1980cb;
+}
+.WebList_GroupHeader.Web_Level0.Web_First{
+    margin-top: 0px;;
+}
+.WebList_GroupHeader.Web_Level1{
+    background-color: #4da8e8;
+}
+.WebList_GroupHeader.Web_Level2{
+    background-color: #99c6e8;
+}
+.WebList_GroupHeader.Web_Level3{
+    background-color: #cce2f3;
+}
+.WebList_GroupHeader .WebList_GroupHeader_Item{
+    padding-left: 4px;
+}
+.WebList_GroupHeader_ToggleBtn{
+    color: #ffffff;
+    padding-left: 3px;
+    padding-right: 3px;
+    
+}
+.WebList_GroupHeader_ToggleBtn:hover{
+    color: #F4A11E;
+}
+
+
+/* - - - - - - WebMultiSelectList - - - - -*/
+
+.WebMultiSelectList.WebGrid .WebList_Row.WebList_MultiSelected, 
+.WebMultiSelectList.WebList .WebList_Row.WebList_MultiSelected {
+    background-color: #d9ecff;
+}
+
+.WebMultiSelectList.WebGrid.WebCon_Focus .WebList_Row.WebList_MultiSelected, 
+.WebMultiSelectList.WebList.WebCon_Focus .WebList_Row.WebList_MultiSelected {
+    background-color: #4DA8E8;
+}
+
+.WebMultiSelectList.WebGrid .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebList .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebGrid .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebList .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected{
+    color: unset;
+    background-color: #d9ecff;
+}
+
+.WebMultiSelectList.WebGrid.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebList.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebGrid.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected,
+.WebMultiSelectList.WebList.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected.WebList_MultiSelected{
+    color: unset;
+    background-color: #4DA8E8;
+}
+
+.WebMultiSelectList.WebGrid .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebList .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebGrid .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebList .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected{
+    color: unset;
+    background-color: unset;
+}
+
+.WebMultiSelectList.WebGrid.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebList.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebGrid.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected,
+.WebMultiSelectList.WebList.WebCon_Focus .WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected{
+    color: unset;
+    background-color: unset;
+}
+
+.WebCheckbox .WebMultiSelectList_SelectAllBox.WebCB_Fake:before {
+    top: 10px;
+    left: 9px;
+}
+
+.WebMultiSelectList .WebCheckbox .WebMultiSelectList_SelectAllBox.WebCB_Fake:after {
+    top: 12px;
+    left: 15px;
+}
+
+/* - - - - - - WebTabContainer - - - - - - */
+
+
+/*
+    Add some distance between the grid and other controls.
+*/
+.WebTabContainer.WebControl > .WebCon_Inner{
+    margin: 20px 3px 3px 3px;
+}
+
+.WebTabContainer .WebTbc_Head{
+    background: #F3F3F3;
+}
+
+.WebTabContainer .WebTab_Btn{ 
+    border-bottom: 3px solid transparent;
+    padding: 7px 10px 3px 10px;
+}
+.WebTabContainer .WebTab_Btn.Web_Enabled.WebTab_Focus{
+    background-color: #E6E6E6;
+}
+
+.WebTabContainer .WebTab_Btn span label{
+    vertical-align: bottom;
+    text-decoration: none;
+    outline: 0;
+    font-size: 14px;
+    line-height:24px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+/*
+    Focussed tab button
+*/
+.WebTabContainer .WebTab_Btn.Web_Enabled:hover, 
+.WebTabContainer .WebTab_Btn.Web_Enabled.WebTab_Focus{
+    
+}
+
+/*
+    Current tab button
+*/
+.WebTabContainer .WebTab_Btn.WebTab_Current,
+.WebTabContainer .WebTab_Btn.WebTab_Current:hover{
+    border-bottom: 3px solid #F4A11E;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+
+.WebTabContainer .WebTab_Btn.WebTab_Focus span label {
+    /* color: #FFFFFF; */
+}
+
+.WebTabContainer .WebTab_Btn.WebTab_Current.WebTab_Focus span label {
+    /* color: #FFFFFF; */
+}
+
+.WebTabContainer .WebTab_Btn.WebTab_Focus span label:hover{
+}
+
+/*
+    Focussed current tab button
+*/
+.WebTabContainer .WebTab_Btn.WebTab_Focus.WebTab_Current.Web_Enabled{
+    
+}
+
+.WebTabContainer .WebTbc_Body{
+    padding: 0px 0px 0px 0px;
+}
+
+
+
+/* FOCUS STYLES */
+.WebTabContainer.WebCon_Focus .WebTab_Btn.WebTab_Current{
+}
+.WebTabContainer.WebCon_Focus .WebTbc_Head {
+}
+.WebTabContainer.WebCon_Focus .WebTbc_Body {
+    
+    border-top: none;
+}
+
+
+.WebTabContainer .WebTab_Btn.Web_Disabled{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+
+
+/* - - - - - - WebCardContainer - - - - - - */
+
+.WebCardContainer.WebCC_HasBorder .WebCC_Body{
+    margin: 3px;
+    border: 1px solid #BABABA;
+}
+.WebCardContainer.WebCC_HasBorder > div > div > div  > .WebCard > .WebCon_Sizer > .WebCon_Content{
+    padding: 15px;
+}
+.WebCardContainer.WebCC_HasCaption > div > div > div  > .WebCard > .WebCon_Sizer > .WebCon_Content{
+    padding-top: 15px;
+}
+.WebCardContainer.WebCC_HasCaption .WebCC_Body{
+    margin-top: 12px;
+}
+
+.WebCardContainer.WebCC_HasCaption > div > div > .WebCC_Caption{
+    top: -14px;
+    left: 13px;
+    padding: 3px 6px 0px;
+    color: #181818;
+    color: #005899;
+    font-family: 'Lato';
+    font-weight: normal;
+}
+
+.WebC_Swipe{
+    box-shadow: 0px 0px 200px 40px rgba(0,0,0,0.15);
+}
+.WebC_SwipeLeaving{
+    box-shadow: 0px 0px 200px 40px rgba(0,0,0,0);
+}
+
+
+/* --- Special style for showing bullets --- */
+.WithBullets.WebCardContainer{
+    position: relative;
+}
+.WithBullets.WebCardContainer > .WebCon_Inner > div{
+    padding-bottom: 24px;
+}
+.WithBullets.WebCardContainer > div > div > .WebCC_Head{
+    display: block;
+    position: absolute;
+    width: 100%;
+    
+    text-align: center;
+    bottom: 0px;
+}
+
+.WithBullets.WebCardContainer > div  > div > .WebCC_Head > .WebTab_Btn:focus{
+    outline: none;
+}
+.WithBullets.WebCardContainer > div  > div > .WebCC_Head > .WebTab_Btn{
+    
+    margin: 0px 5px;
+    cursor: pointer;
+    
+    display: inline-block;
+    padding: 4px;
+    border: 2px solid #4DA8E8;
+    background-color: #4DA8E8;
+    border-radius: 50%;
+}
+
+.WithBullets.WebCardContainer > div  > div > .WebCC_Head > .WebTab_Btn.WebTab_Current{
+    background-color: #F4A11E;
+    border: 2px solid #F4A11E;
+}
+
+.WithBullets.WebCardContainer > div  > div > .WebCC_Head > .WebTab_Btn > span{
+    display: none;
+}
+
+/* - - - - - - WebMenuBar - - - - - - */
+.WebMenuBar{
+    background: #0072C6;
+    padding: 0px;
+    margin: 0px;
+    
+}
+
+.WebMenuBar ul li a{
+    white-space: nowrap;
+}
+
+/*
+    Level 0
+*/
+.WebMenuBar ul.WebBarRoot > li > div{
+    padding: 0px;
+    font-size: 14px;
+}
+
+.WebMenuBar.Web_Disabled ul.WebBarRoot > li, .WebMenuBar ul.WebBarRoot > li.Web_Disabled{
+    color: #000000;
+}
+.WebMenuBar ul.WebBarRoot > li{
+    color: #FFFFFF;     /* Set the color at the level where it is being set by the JS engine as well */
+}
+.WebMenuBar ul.WebBarRoot > li > div > a{
+    color: inherit;
+    padding: 10px 15px 10px 15px;
+    display: block;
+    
+    
+    
+    -webkit-transition: background-color .5s ease;
+    -moz-transition: background-color-color .5s ease;
+    -o-transition: background-color .5s ease;
+    transition: background-color .5s ease;
+}
+
+/* 'Active' state also defined on WebItm_Expanded which is applied while the submenu is shown */
+.WebMenuBar.Web_Enabled ul.WebBarRoot > li:hover > div, .WebMenuBar ul.WebBarRoot > li.WebItm_Expanded > div{
+    background-color: #005899;
+    
+    -webkit-transition: background-color .5s ease;
+    -moz-transition: background-color-color .5s ease;
+    -o-transition: background-color .5s ease;
+    transition: background-color .5s ease;
+}
+.WebMenuBar ul.WebBarRoot > li:hover, .WebMenuBar ul.WebBarRoot > li.WebItm_Expanded{
+    background-color: none; 
+}
+
+.WebMenuBar ul.WebBarRoot > li:hover > div > a,.WebMenuBar ul.WebBarRoot > li.WebItm_Expanded > div > a{
+    
+}
+
+/* Level 1 (shared with WebToolBar) */
+.WebMenuBar ul li ul li.WebItm_HasSub > div {
+    padding-right: 20px;
+}
+
+.WebToolBar ul li ul,
+.WebMenuBar ul li ul{
+    background-color: #FFFFFF;
+    /*
+        We set the z-index for sub menu's because of the transparency toolbar item issue and to make 
+        them display above dialogs.
+    */
+    border: 1px solid #D9D9D9;
+    margin-top: -30px;
+    margin-left: 10px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    
+    /* display: initial; */
+    
+    opacity: 0;
+    display: block;
+    visibility: hidden;
+    transition: visibility 0s linear 0.3s, opacity 0.3s ease-in-out;
+}
+.WebToolBar ul li.WebItm_Expanded > ul,
+.WebMenuBar ul li.WebItm_Expanded > ul{
+    transition-delay:0s;
+    opacity: 1.0;
+    
+    visibility: visible;
+}
+
+.WebMenuBar ul li ul{
+    min-width: 243px;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.WebToolBar ul li ul li,
+.WebMenuBar ul li ul li{
+    height: 37px;
+    line-height: 14px;
+    Padding-left: 7px;
+    padding-right: 16px;
+    color: #181818;
+    overflow: hidden;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.WebToolBar ul li ul li.WebItm_BgnGroup,
+.WebMenuBar ul li ul li.WebItm_BgnGroup {
+    border-top: 1px solid #D9D9D9;
+}
+
+.WebToolBar  ul li ul li:hover, .WebToolBar  ul li ul li.WebItm_HasSub:hover,
+.WebMenuBar  ul li ul li:hover, .WebMenuBar  ul li ul li.WebItm_HasSub:hover{
+    background-color: #F3F3F3;
+}
+
+.WebToolBar  ul li ul li:focus, .WebToolBar  ul li ul li:focus a, .WebToolBar  ul li ul li:active, .WebToolBar  ul li ul li:active a, .WebToolBar  ul li ul li.WebItm_HasSub:active,
+.WebMenuBar  ul li ul li:focus, .WebMenuBar  ul li ul li:focus a, .WebMenuBar  ul li ul li:active, .WebMenuBar  ul li ul li:active a, .WebMenuBar  ul li ul li.WebItm_HasSub:active{
+}
+
+.WebToolBar  ul  li  ul li > div, .WebToolBar  ul  li  ul li.Web_Disabled:hover >div,
+.WebMenuBar  ul  li  ul li > div, .WebMenuBar  ul  li  ul li.Web_Disabled:hover >div{
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: 4px 4px 4px 4px;
+}
+
+.WebToolBar ul li ul li a,
+.WebMenuBar ul li ul li a{
+    display: block;
+    margin: 8px 0 0 8px;
+}
+
+.WebToolBar .WebTlb_SubItems li span.WebItm_Icon,
+.WebToolBar li ul span.WebItm_Icon,
+.WebMenuBar .WebMenuItem > div > span.WebItm_Icon{
+    display: none;
+}
+
+.WebToolBar > div > span.WebItm_Icon,
+.WebMenuItem > div > span.WebItm_Icon{
+    height: 30px;
+    width: 30px; 
+}
+
+/* Level 2 */
+.WebToolBar ul li ul li ul,
+.WebMenuBar ul li ul li ul{
+    margin: -34px 0px 0px 0px;
+}
+.WebMenuBar ul li.WebItm_HasSub ul li ul{
+    border: 1px solid #D9D9D9;
+}
+
+/* - - - - - - WebMenuItem - - - - - - */
+.WebMenuItem {
+    color: #181818;
+}
+
+.WebMenuItem > div > a:visited, 
+.WebMenuItem > div > a:link, 
+.WebMenuItem > div > a:focus, 
+.WebMenuItem > div > a:active{
+    color: inherit;
+}
+
+li.WebMenuItem.Web_Disabled > div {
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+/* - - - - - - WebToolBar - - - - - - */
+.WebCommandBar .WebCmd_ToolWrap{
+    background: none repeat scroll 0 0 #F3F3F3;
+    margin: 0;
+    text-align: left;
+}
+.WebToolBar.WebTlb_Command{
+    margin: 0px 10px;
+}
+.WebToolBar .WebMenuItem.Web_Enabled:hover span.WebItm_Icon,
+.WebToolBar .WebMenuItem.Web_Enabled:focus span.WebItm_Icon{
+    background-color: #0072C6;
+}
+
+.WebToolBar ul.WebBarRoot > li > div > span.WebItm_Icon {
+    border: 2px solid #0072C6;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    
+    -webkit-transition: background 0.5s,color 0.5s;
+    transition: background 0.5s,color 0.5s;
+}
+.WebToolBar .WebTlb_SubItems span.WebItm_Icon{
+    height: 30px;
+}
+
+.WebToolBar .WebMenuItem.Web_Enabled:hover span.WebItm_Icon:before {
+    color: #FFFFFF;
+}
+
+.WebToolBar:focus{
+    outline: none;
+}
+
+.WebToolBar{
+    margin: 0;
+    padding: 0;
+    height: 46px;
+}
+
+/* Styles for running the toolbar as standalone */
+.WebToolBar.WebTlb_Standalone ul.WebBarRoot > li > div > span.WebItm_Icon {
+    border: none;
+    border-radius: 0;
+}
+.WebToolBar.WebTlb_Standalone ul.WebBarRoot > li{
+    color: #FFFFFF;
+    padding: 7px 0px 0px 0px;
+}
+.WebToolBar.WebTlb_Standalone ul > li.Web_Enabled:active{
+    background-color: transparent;
+}
+.WebToolBar.WebTlb_Standalone ul.WebBarRoot > li > div > a{
+    text-shadow: none;
+    padding: 7px 4px 0px 0px;
+}
+.WebToolBar.WebTlb_Standalone,
+.WebToolBar.WebTlb_Standalone li,
+.WebToolBar.WebTlb_Standalone > div.WebCon_Inner > div{
+    height: 38px;   /*jvh-fontsize 37px; */
+}
+.WebToolBar.WebTlb_Standalone ul > li > div {
+    border: none;
+    padding: 2px 3px;
+}
+
+/*
+    Google chrome formats toolbar labels to low on middle.
+*/
+.df-webkit .WebToolBar ul.WebBarRoot > li > div > a{
+    vertical-align: top;
+}
+.WebToolBar ul > li > div > a{
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.WebCmd_ToolWrap .WebToolBar ul > li > div > a {
+    padding: 7px 0 0;
+    vertical-align: top;
+}
+.WebToolBar ul > li > div > a {
+    display: inline-block;
+}
+
+.WebToolBar ul > li > div{
+    border: 1px solid transparent;
+    padding: 5px 7px;
+}
+
+.WebToolBar ul > li.Web_Enabled:hover{
+
+}
+
+.WebToolBar ul > li.Web_Enabled:active{
+    background-color: #F3F3F3; 
+}
+
+/*
+    The first item in a new 'group'.
+*/
+.WebToolBar ul.WebBarRoot > li.WebItm_BgnGroup:before{
+    content: '';
+    width: 1px;
+    margin-left: -2px;
+    margin-top: 11px;
+    height: 25px;
+    background-color: #0072C6;
+    float: left;
+}
+.WebToolBar ul.WebBarRoot > li.WebItm_BgnGroup{
+    padding-left: 2px;
+}
+
+
+/* - - - - - - WebMenuList - - - - - - */
+
+.WebMenuList.WebControl > .WebCon_Inner{
+    border: 1px solid #D9D9D9;
+    background: #FFFFFF;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+}
+
+.WebMenuList .WebML_Title{
+    height: 45px;
+}
+
+.WebMenuList .WebML_Caption{
+    color: #005899;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 15px;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+.WebMenuList li{
+    /* height: 42px; */
+
+}
+.WebMenuList li:hover, .WebMenuList li:focus, .WebMenuList li:active{
+    background: #F3F3F3;
+}
+.WebMenuList li:first-child{
+}
+
+.WebMenuList li.WebMenuItem > div{
+    padding: 10px;
+}
+.WebMenuList li.WebML_Item.Web_Enabled:hover,
+.WebMenuList li.WebML_Item.WebML_Back:hover{
+    background-color: #F3F3F3;
+}
+.WebMenuList li.WebML_Item.Web_Enabled:hover a,
+.WebMenuList li.WebML_Item.WebML_Back:hover a{
+    color: #181818;
+}
+
+.WebMenuList li a{
+    margin-left: 5px;
+    margin-top: 1px;
+    color: #181818;
+}
+.WebMenuList li.Web_Disabled a{
+    color: #BABABA;
+}
+.WebMenuList li.WebML_Back{
+
+}
+.WebMenuList .WebML_Item.WebML_Back a{
+    padding: 10px 5px;
+    padding-left: 30px;
+    font-weight: 600;
+}
+
+.WebMenuList .WebML_Divider{
+    background-color: unset;
+    height: auto;
+    color: rgba(163, 163, 163, 0.7);
+    font-size: 70%;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(194, 194, 194, 0.5);
+
+    /* Menu specific */
+    padding: 4px;
+}
+
+.WebContextMenu .WebMenuList .WebML_Divider {
+    padding: 0px;
+    padding-left: 4px;
+}
+
+.WebMenuList .WebML_Mnu{
+    overflow: auto;
+}
+.WebMenuList.Web_Enabled .WebML_Mnu{
+    -webkit-transition: all 0.25s ease-out; /* For Safari 3.1 to 6.0 */
+    transition: all 0.25s ease-out;
+}
+/* Dark List Menu Style */
+.WebMenuList.Dark .WebML_Caption,
+.WebMenuList.Dark .WebMenuItem,
+.WebMenuList.Dark li a,
+.WebMenuList.Dark .WebML_Back:before,
+.WebMenuList.Dark li.WebML_Item.WebML_Back:hover a,
+.WebMenuList.Dark li.WebItm_HasSub:before{
+    color: #FFFFFF;
+}
+
+.WebMenuList.Dark .WebML_Title {
+    height: 50px;
+}
+.WebMenuList.Dark.WebMenuList.WebControl > .WebCon_Inner {
+    background: inherit;
+    border: none;
+}
+.WebMenuList.Dark .WebMenuItem:hover, 
+.WebMenuList.Dark .WebMenuItem:focus, 
+.WebMenuList.Dark .WebMenuItem:active{
+    background: #181818;
+    color: #FFFFFF;
+}
+.WebMenuList.Dark li.WebML_Item.WebML_Back:hover{
+    background-color: #181818;
+}
+
+
+/* - - - - - - WebWindow - - - - - - */
+.WebWindow{
+    background-color: transparent;
+}
+
+.WebWindow .WebWin_header{
+    background: #0072C6;
+}
+.WebWindow .WebWin_header_l{
+    padding-left: 3px;
+}
+
+.WebWindow .WebWin_header_r{
+    padding-right: 1px;
+}
+
+.WebWindow .WebWin_header_c{
+    min-height: 40px;
+    background-color: transparent;
+}
+
+.WebView >div > .WebWin_title {
+    /*    font-family: 'roboto_condensedbold'; */
+    font-size: 24px;
+    text-decoration: underline;
+}
+.WebWindow .WebWin_title{
+    padding: 9px 15px 5px 15px;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.WebWindow .WebWin_controls{
+    
+}
+
+.WebWindow .WebWin_main_l{
+    padding-left: 1px;
+    background-color: #0072C6;
+}
+
+.WebWindow .WebWin_main_r{
+    padding-right: 1px;
+    background-color: #0072C6;
+}
+
+.WebWindow .WebWin_main_c{
+    background: #FFFFFF;
+    padding: 0;
+}
+.WebWindow .WebWin_bottom_l{
+    height: 0px;
+    padding-left: 1px;
+    background-color: #0072C6;
+}
+
+.WebWindow .WebWin_bottom_r{
+    height: 1px;
+    padding-right: 1px;
+}
+
+.WebWindow .WebWin_resizer{
+    width: 10px;
+    height: 10px;
+    background-image: url('WebWin-Resize.png');
+}
+
+.WebWindow .WebWin_bottom_c{
+    height: 1px;
+}
+
+.WebWindow .WebWin_top_l{
+    height: 1px;
+    padding-left: 1px;
+}
+
+.WebWindow .WebWin_top_r{
+    height: 1px;
+    padding-right: 1px;
+}
+.WebWindow .WebWin_top_c{
+    height: 1px;
+}
+
+.WebWindow_Mask {
+    background-color: #181818;
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+}
+
+.WebWin_ghost{
+    filter: alpha(opacity=80);
+    opacity: 0.8;
+}
+
+
+/* - - - - - Message Box Dialogs - - - - - - */
+
+.WebWindow.WebMsgBox .WebWin_top_l,
+.WebWindow.WebMsgBox .WebWin_top_r,
+.WebWindow.WebMsgBox .WebWin_header_r,
+.WebWindow.WebMsgBox .WebWin_main_l,
+.WebWindow.WebMsgBox .WebWin_main_r,
+.WebWindow.WebMsgBox .WebWin_bottom_l,
+.WebWindow.WebMsgBox .WebWin_bottom_r {
+    background-color: #FFFFFF;
+}
+
+.WebWindow.WebMsgBox .WebWin_header_c {
+    min-height: 44px;
+    background-color: #FFFFFF;
+}
+
+.WebWindow.WebMsgBox .WebWin_title{
+    color: #181818;
+    font-size: 18px;  /*jvh-fontsize 13px */
+    font-weight: 600;
+    padding: 15px 15px 5px 15px;
+}
+
+.WebWindow.WebMsgBoxInfo .WebWin_title,
+.WebWindow.WebMsgBoxConfirm .WebWin_title,
+.WebWindow.WebMsgBoxError  .WebWin_title, 
+.WebWindow.WebMsgBoxWarning .WebWin_title{
+    padding: 15px 15px 5px 15px;
+}
+
+.WebWindow.WebMsgBox .WebWin_controls .WebWin_close {
+    /* disable the close button */
+    display: none;
+}
+
+.WebWindow.WebWin_Resizable.WebMsgBox .WebWin_resizer {
+    /* hide the resizer */
+    display: none;
+}
+
+/* Message Box Bottom Border Styles */
+.WebWindow.WebMsgBox .WebWin_bottom_c,
+.WebWindow.WebMsgBox .WebWin_bottom_l,
+.WebWindow.WebMsgBox .WebWin_bottom_r {
+    height: 4px;
+    background-color: inherit;
+}
+.WebWindow.WebMsgBox .WebWin_bottom_l {
+    background-color: #0072C6;
+}
+.WebWindow.WebMsgBoxInfo .WebWin_bottom_l,
+.WebWindow.WebMsgBoxConfirm  .WebWin_bottom_l {
+    background-color: #0072C6;
+}
+.WebWindow.WebMsgBoxWarning  .WebWin_bottom_l {
+    background-color: #F4A11E;
+}
+.WebWindow.WebMsgBoxError  .WebWin_bottom_l {
+    background-color: #B72025;
+}
+
+/* Message Box Button Styles */
+
+.WebWindow.WebMsgBox .WebButton > .WebCon_Inner {
+    margin: 0;
+    min-height: 0;
+}
+.WebWindow.WebMsgBox  .WebContainer .WebCon_Content{
+    padding: 0px 10px;
+}
+.WebWindow.WebMsgBoxInfo  .WebContainer .WebCon_Content,
+.WebWindow.WebMsgBoxConfirm  .WebContainer .WebCon_Content,
+.WebWindow.WebMsgBoxError  .WebContainer .WebCon_Content,
+.WebWindow.WebMsgBoxWarning  .WebContainer .WebCon_Content{
+    padding: 0px 5px;
+}
+.WebWindow.WebMsgBoxInfo  .WebContainer.WebMsgBoxTwoButtons .WebCon_Content,
+.WebWindow.WebMsgBoxConfirm  .WebContainer.WebMsgBoxTwoButtons .WebCon_Content,
+.WebWindow.WebMsgBoxError  .WebContainer.WebMsgBoxTwoButtons .WebCon_Content , 
+.WebWindow.WebMsgBoxWarning  .WebContainer.WebMsgBoxTwoButtons .WebCon_Content {
+    padding: 0;
+}
+.WebWindow.WebMsgBoxInfo  .WebContainer.WebMsgBoxButtons .WebCon_Content,
+.WebWindow.WebMsgBoxConfirm  .WebContainer.WebMsgBoxButtons .WebCon_Content,
+.WebWindow.WebMsgBoxError  .WebContainer.WebMsgBoxButtons .WebCon_Content , 
+.WebWindow.WebMsgBoxWarning  .WebContainer.WebMsgBoxButtons .WebCon_Content {
+    padding: 0 15px;
+}
+
+/* Message Box Button Border Styles */
+
+.df-mobile .WebWindow.WebMsgBox .WebButton button {
+    border-top: 1px solid #D9D9D9;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+.df-mobile .WebWindow.WebMsgBox .WebMsgBoxTwoButtons .WebButton:first-child button{
+    border-right: 1px solid #D9D9D9;
+}
+
+.WebWindow.WebMsgBox .WebPanel.WebMsgBoxOneBtn .WebButton button {
+    border-color: transparent;
+    min-height: 0;
+}
+.WebWindow.WebMsgBox .WebPanel.WebMsgBoxOneBtn .WebCon_Content  {
+    padding: 0;
+    margin:0;
+}
+
+/* Message Box Button Color Styles */
+
+.WebWindow.WebMsgBox .WebButton button {
+    background: transparent;
+    color: #0072C6;
+    border: 1px solid transparent;
+    border-bottom: 4px solid transparent;
+}
+.WebWindow.WebMsgBox .WebButton.Web_Enabled button:active {
+    border: 1px solid #D9D9D9;
+}
+.WebWindow.WebMsgBox .WebButton.Web_Enabled button:focus{
+    border-bottom: 4px solid #0072C6;
+}
+.WebWindow.WebMsgBoxWarning .WebButton button  {
+    color: #F4A11E;
+}
+.WebWindow.WebMsgBoxWarning .WebButton.Web_Enabled button:active {
+    background: transparent;
+}
+.WebWindow.WebMsgBoxWarning .WebButton.Web_Enabled button:focus  {
+    border-bottom: 4px solid #F4A11E;
+}
+.WebWindow.WebMsgBoxError .WebButton button  {
+    color: #B72025;
+}
+.WebWindow.WebMsgBoxError .WebButton.Web_Enabled button:active  {
+    background: transparent;
+}
+.WebWindow.WebMsgBoxError .WebButton.Web_Enabled button:focus  {
+    border-bottom: 4px solid #B72025;
+}
+
+
+/* - - - - - - - Date Picker - - - - - - - - */
+
+.WebDP{
+    min-width: 232px;
+}
+
+/* Header */
+
+.WebDatePicker .WebDP_Head {
+    background: #0072C6;
+    color: #FFFFFF;
+    padding: 6px;
+}
+
+.WebDatePicker .WebDP_MonthMnu, .WebDatePicker .WebDP_YearMnu{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 2px solid #0072C6;
+    border-top: none;
+    color: #181818;
+    top: 39px;
+    z-index: 800;
+}
+
+.WebDatePicker .WebDP_MonthMnu{
+    left: 2px;
+}
+.WebDatePicker .WebDP_YearMnu{
+    left: 24px;
+}
+
+.WebDatePicker .WebDP_MonthMnu li, .WebDatePicker .WebDP_YearMnu li {
+    padding: 3px 10px;
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+}
+
+.WebDatePicker.Web_Enabled .WebDP_MonthMnu li:hover, .WebDatePicker.Web_Enabled .WebDP_YearMnu li:hover {
+    background-color: #F3F3F3;
+    color: #181818;
+}
+
+.WebDatePicker.Web_Enabled .WebDP_MonthMnu li:active, .WebDatePicker.Web_Enabled .WebDP_YearMnu li:active {
+    background-color: #F3F3F3;
+    color: #181818;
+}
+
+.WebDatePicker li.WebDP_Current,
+.WebDatePicker.Web_Enabled li.WebDP_Current:hover{
+    background-color:  #F4A11E;
+    color: #FFFFFF;
+}
+
+.WebDatePicker .WebDP_Up, .WebDatePicker .WebDP_Down {
+    height: 14px;
+}
+
+.WebDatePicker .WebDP_MonthMnu li:last-child, .WebDatePicker .WebDP_YearMnu li:last-child {
+    border-bottom: none;
+}
+
+.WebDatePicker .WebDP_MonthMnu li:first-child, .WebDatePicker .WebDP_YearMnu li:first-child {
+    border-top: none;
+}
+
+.WebDatePicker .WebDP_YearMnu .WebDP_Up.WebDP_UpDown,
+.WebDatePicker .WebDP_YearMnu .WebDP_Down.WebDP_DownDown{
+    background: #005899;
+}
+
+/*
+    Body
+*/
+.WebDatePicker .WebDP_Body{
+    background-color: #FFFFFF;
+    font-size: 11px;
+}
+
+.WebDatePicker .WebDP_Body table{
+    background-color: #FFFFFF;
+}
+
+.WebDatePicker .WebDP_Body td{
+    padding: 5px 7px 5px 0px;
+    width: 27px;
+    text-align: right;
+    border: 1px solid #FFFFFF;
+    font-size: 14px;
+}
+
+.WebDatePicker .WebDP_Body th{
+    padding: 10px 5px;
+    font-size: 14px;
+}
+
+.WebDatePicker .WebDP_Body .WebDP_Day{
+    background: #D9D9D9;
+    color: #181818;
+}
+
+
+.WebDatePicker .WebDP_Body .WebDP_BodyHead .WebDP_WeekNr {
+    font-size: 11px;
+    color: #FFFFFF;
+}
+
+.WebDatePicker .WebDP_Body .WebDP_WeekNr{
+    color: #5C5C5C;
+    font-size: 9px;
+    padding: 0 4px 0 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.WebDatePicker .WebDP_Body .WebDP_Weekend{
+    
+}
+.WebDatePicker .WebDP_Body .WebDP_Overflow{
+    color: #D9D9D9;
+    background: none;
+}
+
+.WebDatePicker .WebDP_Body .WebDP_Today {
+    background: #F4A11E;
+    color: #FFFFFF;
+}
+.WebDatePicker .WebDP_Body .WebDP_Selected{
+    background: #0072C6;
+    color: #FFFFFF;
+}
+
+.WebDatePicker .WebDP_Body .WebDP_Selected:before,
+.WebDatePicker .WebDP_Body .WebDP_Day:hover:before{
+    content: '';
+    position: absolute;
+    display: block;
+    height: 23px;
+    margin-left: 0px;
+    margin-top: -7px;
+    width: 25px;
+}
+
+
+.WebDatePicker.Web_Enabled .WebDP_Body .WebDP_Day:hover{
+    background: #4DA8E8;
+    color: #FFFFFF;
+}
+.WebDatePicker.Web_Enabled .WebDP_Body .WebDP_Day:active{
+    background: #005899;
+    color: #FFFFFF;
+}
+
+.WebDatePicker.WebCon_Focus .WebDP_Body .WebDP_Selected{
+    color: #FFFFFF;
+}
+
+/*
+    Next & previous animations.
+    
+    When changing page the WebDP_Old class is set. Then it adds the WebDP_HidePrev or WebDP_HideNext 
+    class so that transformations can be used to animate this process.
+*/
+.WebDatePicker .WebDP_Body > div{
+    width: 100%;
+    margin-left: 0%;
+}
+.WebDatePicker .WebDP_Old{
+    position: absolute;
+    overflow: hidden;
+    
+    
+    -webkit-transition: width .4s ease-in, margin-left .4s ease-in;
+    -moz-transition: width .4s ease-in, margin-left .4s ease-in;
+    -o-transition: width .4s ease-in, margin-left .4s ease-in;
+    transition: width .4s ease-in, margin-left .4s ease-in;
+}
+.WebDatePicker .WebDP_HideNext table{
+    float: right;
+}
+.WebDatePicker .WebDP_Body .WebDP_HidePrev{
+    margin-left: 100%;
+    width: 0%;
+    display: block;
+}
+.WebDatePicker .WebDP_Body .WebDP_HideNext{
+    width: 0%;
+    display: block;
+}
+
+/*
+    Footer
+*/
+.WebDatePicker .WebDP_Footer{
+    background: none repeat scroll 0 0 #0072C6;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.WebDatePicker .WebDP_BtnToday{
+    font-size: 12px;
+    padding: 7px 0;
+    width: 100%;
+}
+.WebDatePicker.Web_Enabled .WebDP_BtnToday:hover{
+    background: #005899;
+    text-decoration: underline;
+}
+
+/* - - - - - - WebDatePicker - - - - - - */
+
+/* - - - - - - WebDateForm - - - - - - */
+
+.WebDateForm_Picker{
+    opacity: 0;
+    -webkit-transition: opacity .6s ease, visibility .6s ease;
+    -moz-transition: opacity .6s ease, visibility .6s ease;
+    -o-transition: opacity .6s ease, visibility .6s ease;
+    transition: opacity .6s ease, visibility .6s ease;
+    border: 2px solid #0072C6;
+    border-top: none;
+}
+.WebDateForm_Picker.WebDF_WrapVisible{
+    opacity: 1;
+}
+
+
+/* - - - - - - WebTreeView - - - - - - - */
+
+.WebTreeView .WebTree_Body{   
+    padding: 5px 0 0;
+}
+
+.WebTreeView .WebTree_Body table, .WebTreeView .WebTree_Body tr, .WebTreeView .WebTree_Body td {
+    
+}
+
+.WebTreeView .WebTree_Loading{
+    background: #FFFFFF url('WebTreeView-LoadingBig.gif') no-repeat 10px 10px;
+}
+
+.WebTreeView .WebTree_Text{
+    margin: 0;
+    padding-bottom: 0px;
+    padding-left: 5px;
+    vertical-align: middle;
+    color: #5C5C5C;
+}
+
+
+.WebTreeView .WebTree_Selected  .WebTree_Text{
+    color: #005899;
+    text-decoration: underline;
+    background: none;
+    font-weight: 600;
+}
+
+.WebTreeView.WebCon_Focus .WebTree_Selected .WebTree_Text{
+    background: none;
+}
+
+/*
+    Expand / collapse animation
+*/
+.WebTreeView .WebTree_SubRow .WebTree_Item {
+    min-height: 18px;
+}
+
+
+.WebTreeView .WebTree_SubRow.WebTree_HiddenSubRow{
+    display: none;
+}
+
+/*
+    Icons
+*/
+.WebTreeView .WebTree_Item{
+    height: 26px;
+    position: relative;
+}
+
+.WebTreeView .WebTree_Item:before{
+    position: absolute;
+}
+
+.WebTreeView .WebTree_HasIcon{
+    background-position: 3px 4px;
+}
+.WebTreeView .WebTree_IconLoading{
+    background-image: url('WebTreeView-LoadingSmall.gif');
+    background-repeat: no-repeat;
+    padding-left: 22px;
+}
+
+
+/* - - - - - - - - - WebImage - - - - - - - - - - */
+.WebImage .WebImg_Box{
+    background-color: #F3F3F3;
+    border: 1px solid #BABABA;
+}
+
+/* - - - - - - - - - WebHtmlBox - - - - - - - - - - */
+.WebHtmlBox .WebHtml_Box{
+    border: 1px solid #BABABA;
+    padding:10px;
+}
+
+/* - - - - - - - - - WebDrawing - - - - - - - - - - */
+.WebDrawing_Box{
+    border: 1px solid #BABABA;
+}
+
+/* - - - - - - - - - WebSpacer - - - - - - - - - - */
+.WebSpacer > div.WebCon_Inner{
+    margin: 0px 0px 0px 0px; 
+}
+
+.WebSpacer .WebSpacer_Spacer {
+    height: 52px;
+}
+
+/* - - - - - - - - - WebHorizontalLine - - - - - - - - - - */
+.WebHorizontalLine > div.WebCon_Inner > div{
+    padding: 19px 0px 0px;
+}
+
+.WebHorizontalLine hr{
+    height: 1px;
+    background: #D9D9D9;
+    border: none;
+    margin: 0px;
+}
+
+
+/* - - - - - - - - - ShowMessageBox - - - - - - - - - */
+.WebMsgBoxConfirm .WebLabel_content, 
+.WebMsgBoxError .WebLabel_content, 
+.WebMsgBoxInfo .WebLabel_content, 
+.WebMsgBoxWarning .WebLabel_content{
+    margin-left: 6px;
+    /* min-height: 70px; */
+    color: #5C5C5C;
+    /* margin-bottom: 20px; */
+}
+
+.WebWindow.WebMsgBoxProgress .WebLabel_content{
+    margin: 30px 50px 0px 70px;
+    min-height: 60px;
+    overflow: visible;
+}
+.WebWindow.WebMsgBoxProgress .WebWin_header_c {
+    height: 0;
+    background-color: #FFFFFF;
+}
+
+
+.WebMsgBoxProgress .WebLabel_content:before {
+    width: 52px;
+    height: 52px;
+    display: block;
+    background: transparent url('LoadingBig.gif') no-repeat center center;
+    position: absolute;
+    margin: -15px 0px 0 -60px;
+    content: '';
+}
+.WebWindow.WebMsgBoxProgress  .WebContainer .WebCon_Content{
+    padding: 0px;
+}
+
+.Warning .WebLabel_content {
+    background: transparent;
+    color: #B72025;
+    line-height: 17px;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+}
+.Warning > .WebCon_Inner{
+    min-height: 0px;
+}
+.LoginWarning .WebLabel_content {
+    color: #B72025;
+    line-height: 17px;
+    font-size: 14px;
+}
+
+/* - - - - - - - - - WebInfoBalloon - - - - - - - - - - */
+.WebInfoBalloon{
+    background-color: #F3F3F3;
+    color: #181818;
+    text-decoration: none;
+    padding: 10px;
+    margin-top: 10px;
+    line-height: 1.3em;
+    font-weight: normal; 
+    font-family: 'Lato';
+    font-size: 13px;
+    
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.WebInfoBalloon.WebInfoBalloonHidden{
+    opacity: 0;
+    visibility: hidden;
+}
+.WebInfoBalloon.WebInfoBalloonVisible{
+    transition-delay: 0s;
+}
+
+
+.WebInfoBalloon_Top{
+    margin-top: 0px;
+    margin-bottom: 17px;
+}
+
+.WebInfoBalloon:before{
+    margin-left: -1px;
+    left: 0px;
+    top: -17px;
+}
+
+.WebInfoBalloon_Top:before{
+    border-width: 17px 23px 0 0;
+    top: auto;
+    bottom: -17px;
+}
+
+
+.WebInfoBalloon:after{
+    border-color: #F3F3F3 transparent;
+    border-style: solid;
+    border-width: 0 10px 10px 8px;
+    margin: 0;
+    left: 10px;
+    top: -8px;
+}
+
+.WebInfoBalloon_Top:after{
+    border-width: 15px 20px 0 0;
+    top: auto;    
+    bottom: -15px;    
+}
+
+/* - - - - - - - - - WebErrorTooltip - - - - - - - - - */
+.WebErrorTooltip{
+    background-color: #B72025;
+    color: #FFFFFF;
+    padding: 10px;
+}
+.WebErrorTooltip:after{
+    border-color: #B72025 transparent;
+}
+
+
+/* - - - - - - - - - WebIFrame - - - - - - - - - */
+.WebIFrame .WebIFrm_Box{
+    border: 1px solid #BABABA;
+}
+
+
+/* - - - - - - - - - WebSlider - - - - - - - - - - */
+.WebSlider .WebSlider_Wrapper{
+    outline: none;
+}
+
+
+
+/* Bar */
+.WebSlider .WebSlider_Horizontal .WebSlider_BarWrapper{
+    height: 20px;
+    padding-top: 6px;
+}
+
+.WebSlider .WebSlider_Vertical .WebSlider_BarWrapper{
+    width: 20px;
+    padding-left: 6px;
+}
+
+.WebSlider .WebSlider_Vertical{
+    
+}
+
+.WebSlider .WebSlider_Bar .WebSlider_InnerBar{
+    background-color: #D9D9D9;
+}
+.WebSlider.Web_Disabled .WebSlider_Bar .WebSlider_InnerBar{
+    background-color: #D9D9D9;
+}
+.WebSlider .WebSlider_Horizontal .WebSlider_Bar{
+    height: 3px;
+    padding: 0px 8px;
+}
+.WebSlider .WebSlider_Vertical .WebSlider_Bar{
+    width: 3px;
+    padding: 8px 0px;
+}
+.WebSlider .WebSlider_ShowRange, .WebSlider .WebSlider_ShowRange:before{
+    background: #4DA8E8;
+}
+
+/* .WebSlider .WebSlider_Horizontal.WebSlider_NoRange .WebSlider_ShowRange:before{
+    content: '';
+    position: absolute;
+    margin-left: -5px;
+    top: 0px;
+    height: 3px;
+    width: 5px;
+    left: 0px;
+    }
+    .WebSlider .WebSlider_Vertical.WebSlider_NoRange .WebSlider_ShowRange:before{
+    content: '';
+    position: absolute;
+    margin-top: -5px;
+    left: 0px;
+    height: 5px;
+    width: 3px;
+    }
+*/
+
+/* Slider */
+.WebSlider .WebSlider_Horizontal .WebSlider_SliderWrapper{
+    height: 15px
+}
+.WebSlider .WebSlider_Vertical .WebSlider_SliderWrapper{
+    width: 15px;
+    
+}
+
+.WebSlider  .WebSlider_Slider{
+    background: #0072C6;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+}
+.WebSlider .WebSlider_Horizontal .WebSlider_Slider{
+    
+}
+.WebSlider .WebSlider_Vertical .WebSlider_Slider {
+    
+}
+
+.WebSlider.WebCon_Focus .WebSlider_Horizontal .WebSlider_Slider, .WebSlider.Web_Enabled .WebSlider_Horizontal .WebSlider_Slider:hover,
+.WebSlider.WebCon_Focus .WebSlider_Vertical .WebSlider_Slider, .WebSlider.Web_Enabled .WebSlider_Vertical .WebSlider_Slider:hover{
+    background: #005899;
+}
+
+.WebSlider.Web_Disabled .WebSlider_Horizontal .WebSlider_Slider,
+.WebSlider.Web_Disabled .WebSlider_Vertical .WebSlider_Slider{
+    background: #5C5C5C;
+}
+
+
+/* Labels */
+.WebSlider .WebSlider_Horizontal .WebSlider_Labels{
+    left: -1px;
+    top: -20px;
+}
+.WebSlider .WebSlider_Vertical .WebSlider_Labels{
+    left: -14px;
+    top: 0px;
+}
+
+.WebSlider .WebSlider_Horizontal .WebSlider_LabelMarkerWrapper{
+    height: 10px;
+}
+.WebSlider .WebSlider_Horizontal .WebSlider_LabelWrapper{
+    height: 20px;
+}
+.WebSlider .WebSlider_Vertical .WebSlider_LabelMarkerWrapper{
+    width: 10px;
+}
+
+.WebSlider .WebSlider_Horizontal .WebSlider_LabelMarker{
+    border-left: 2px solid #181818;
+    height: 3px;
+}
+
+.WebSlider .WebSlider_Vertical .WebSlider_LabelMarker{
+    border-top: 2px solid #181818;
+    width: 3px;
+}
+.WebSlider.Web_Disabled .WebSlider_Horizontal .WebSlider_LabelMarker{
+    border-left: 1px solid #BABABA;
+}
+.WebSlider.Web_Disabled .WebSlider_Vertical .WebSlider_LabelMarker{
+    border-top: 1px solid #BABABA;
+}
+
+
+.WebSlider .WebSlider_Horizontal .WebSlider_LabelText{
+    
+}
+.WebSlider .WebSlider_Vertical .WebSlider_LabelText{
+    margin-left: 4px;
+}
+.WebSlider.Web_Disabled .WebSlider_LabelText{
+    color: #8E8A87;
+}
+
+/* - - - - - - WebGroup - - - - - - */
+.WebGroup.WebGrp_HasBorder > .WebCon_Inner > div > .WebContainer{
+    border: 1px solid #BABABA;
+    margin: 5px;
+}
+
+.WebGroup.WebGrp_HasBorder > div.WebCon_Inner > div > div.WebContainer > div.WebCon_Sizer > .WebCon_Content {
+    padding: 15px;
+}
+
+.WebGroup.WebGrp_HasCaption > div.WebCon_Inner > div > div.WebContainer > div.WebCon_Sizer > .WebCon_Content {
+    padding-top: 15px;
+}
+.WebGroup.WebGrp_HasCaption  > .WebCon_Inner > div > .WebContainer{
+    margin-top: 12px;
+}
+
+.WebGroup.WebGrp_HasCaption > .WebCon_Inner > div > .WebGrp_Caption {
+    color: #005899;
+    font-family: 'Lato';
+    font-weight: normal;
+    top: -2px;
+    left: 13px;
+    padding: 3px 6px 0px;
+}
+.WebGroup.WebControl > .WebCon_Inner{
+    min-height: 11px;
+}
+
+.WebGroup > div > div > .WebGrp_ExpandBtn{
+    top: 3px;
+    right: 18px;
+    width: 18px;
+    height: 18px;
+    background-color: inherit;
+    border: 1px solid #BABABA;
+    border-radius: 50%;
+    transition: background 0.5s,color 0.5s;
+}
+.WebGroup.Web_Enabled > div > div > .WebGrp_ExpandBtn:hover{
+    background-color: #0072C6;
+    color: #ffffff;
+}
+.WebGroup.Web_Disabled > div > div > .WebGrp_ExpandBtn{
+    color: #BABABA;
+}
+
+.WebGroup.WebGrp_Expanded > div > div > .WebGrp_ExpandBtn:before{
+    content: '-';
+    position: absolute;
+    top: 1px;
+    left: 4px;
+    font-size: 27px;
+    line-height: 16px;
+}
+.WebGroup.WebGrp_Collapsed > div > div >  .WebGrp_ExpandBtn:before{
+    content: '+';
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    font-size: 21px;
+    line-height: 16px;
+}
+
+
+/* - - - - - - WebProgressBar - - - - - - */
+.WebProgressBar.WebControl > .WebCon_Inner{
+    margin: 3px 4px;
+}
+
+.WebProgressBar .WebPB_Wrp{
+    background: #FFFFFF;
+    height: 28px;
+    border: 1px solid #BABABA;
+    padding: 1px 1px 1px 1px;
+    color: #5C5C5C;
+    font-family: 'Lato';
+    font-size: 13px;
+}
+
+.WebProgressBar .WebPB_Progress, .WebFileFrm .WebFile_ProgressBar {
+    box-shadow: 0 1px 0 0 #BABABA inset;
+    background-color: #0072C6;
+}
+.WebProgressBar .WebPB_Percentage, .WebFile_ProgressLabel {
+    padding: 5px 0 0;
+}
+
+
+/* - - - - - - WebDropZone - - - - - - */
+.WebDropZone {
+    border: 4px dashed #005899;
+}
+.WebDropZone:before{
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none repeat scroll 0 0 rgba(0, 114, 198, 0.52);
+}
+
+.WebDropZone > div {
+    color: #181818;
+    font-size: 22px;
+    font-family: 'Lato';
+    font-weight: normal;
+    text-transform: uppercase;
+    text-shadow: 0px 1px 1px #FFFFFF;
+    margin-top: -8px;
+}
+
+/* - - - - - - WebSuggestions - - - - - - */
+.WebSuggestions{
+    border: 1px solid #BABABA;
+    border-top: none;
+    background-color: #FFFFFF;
+    border-radius: 0px;
+    
+    padding: 0px;
+    -webkit-box-shadow:none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-family: 'Lato';
+    font-size: 13px;
+}
+
+.WebSuggestions .WebSug_Suggestion{
+    line-height: 20px;
+}
+.WebSuggestions .WebSug_Suggestion:hover,
+.WebSuggestions .WebSug_Suggestion:focus{
+    background: #F3F3F3;
+    color: #181818;
+}
+.WebSuggestions .WebSug_Suggestion td{
+    padding: 3px 5px;
+}
+.WebSuggestions .WebSug_Suggestion b{
+    font-weight: 600;
+}
+
+.WebSuggestions .WebSug_Selected,
+.WebSuggestions .WebSug_Selected:hover,
+.WebSuggestions .WebSug_Selected:focus{
+    background: none repeat scroll 0 0 #F4A11E;
+    color: #FFFFFF;
+}
+
+/* - - - - - - WebFileUploadForm - - - - - - */
+.WebFileFrm div.WebFile_Btn{
+    width: 24px;
+    height: 26px;
+}
+.WebFileFrm.Web_Disabled div.WebFile_Btn{
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+}
+.WebFileFrm .WebFrm_Wrapper {
+    padding: 5px;
+    height: 28px;
+}
+
+.WebFileFrm .WebFile_Progress {
+    height: 28px;
+}
+
+.WebFileFrm .WebFile_ProgressLabel{
+    color: #5C5C5C;
+    font-family: 'Lato';
+    font-size: 13px;
+    padding: 5px 0px 0px;
+}
+
+.WebFileFrm div.WebFile_Details{
+    padding: 3px 1px 0px 5px;
+    
+}
+.WebFileFrm.Web_Disabled div.WebFile_Content{
+    color: #181818;
+    font-family: 'Lato';
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.WebFileFrm div.WebFile_Content{
+    margin-right: 24px;
+}
+.WebFileFrm .WebFile_Working{
+    width: 100%;
+    height: 100%;
+    background: transparent url('LoadingSmall.gif') no-repeat 2px center;
+}
+
+/* - - - - - - - - - WebFloatingPanel - - - - - - - - -*/
+
+.WebMenu_Mask{
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.WebFlPnl.WebFP_FloatLeft{
+    transition: visibility 0s linear 0.3s, opacity 0s linear 0.3s, width 0.3s ease-in-out;
+}
+.WebFlPnl.WebFP_FloatLeft.WebFP_Hidden{
+    width: 0px;
+}
+.WebFlPnl.WebFP_FloatLeft.WebFP_Visible{
+    transition-delay:0s;
+}
+.WebApp{    /* Put transition on margin left of webapp so that it squeezes */
+    transition: margin-left 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+.WebFlPnl.Web_Enabled{
+    transition: visibility 0s linear 0.3s, opacity 0.3s ease-in-out;
+}
+.WebFlPnl.WebFP_Visible{
+    transition-delay:0s;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowTop, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowTop{
+    padding-top: 15px;
+    margin-top: -6px;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowTop .WebFP_Arrow, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowTop .WebFP_Arrow{
+    display: block;
+    position: absolute;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 15px solid #D9D9D9;
+    margin-left: -12px;
+    top: 0px;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowTop .WebFP_Arrow:after, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowTop .WebFP_Arrow:after{
+    content: '';
+    display: block;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-bottom: 15px solid #FFFFFF;
+    margin-top: 0px;
+    position: absolute;
+    margin-left: -12px;
+    top: 1px;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowBottom, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowBottom{
+    padding-bottom: 15px;
+    margin-bottom: -6px;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowBottom .WebFP_Arrow, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowBottom .WebFP_Arrow{
+    display: block;
+    position: absolute;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 15px solid #D9D9D9;
+    margin-left: -12px;
+    bottom: 0px;
+}
+.WebFlPnl.WithArrow.WebFP_ArrowBottom .WebFP_Arrow:after, .WebFlPnl.WebMenuButton_Arrow.WebFP_ArrowBottom .WebFP_Arrow:after{
+    content: '';
+    position: absolute;
+    display: block;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
+    border-top: 15px solid #FFFFFF;
+    margin-top: 0px;
+    margin-left: -12px;
+    bottom: 1px;
+}
+.WebFlPnl.NoWhitespace > .WebContainer > .WebCon_Sizer > .WebCon_Content{
+    padding: 0px 0px 0px 0px;
+}
+.WebFlPnl.Shadow > .WebContainer{
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.5);
+}
+.WebFlPnl > .WebContainer{
+    background-color: #FFFFFF;
+}
+.WebFlPnl.Dark > .WebContainer{
+    background-color: #5C5C5C;
+}
+
+/* - - - - - WebMenuButton - - - - - */
+
+.WebFlPnl.WebMBPanel{
+    margin-top: -33px;
+}
+
+.WebMenuAnchor{
+    height: 40px;
+}
+
+.WebMenuAnchor .WebCon_Inner > div{
+    text-align: center;
+}
+.WebMenuAnchor a{
+    text-decoration: none;
+}
+.WebMenuButton_Below.WebFlPnl{
+    margin-top: 0px;
+}
+
+/* ===============================================
+    - - - - - - - WebBreadCrumb - - - - - - - - - -
+=============================================== */
+.WebBreadcrumb,
+.WebBreadcrumb > div.WebCon_Inner {
+    margin: 0px 0px 0px 0px; 
+    min-height: 38px;
+}
+
+.WebBreadcrumb .WebCrumbs_Body {
+    
+    overflow: hidden;
+    outline: none;     /* stop Chrome painting a focus rectangle on the div when it is clicked */
+}
+
+.WebBreadcrumb ul.WebCrumbs {
+    border: 1px solid #D9D9D9;
+}
+
+
+/* - - - - WebBreadcrumb (Drop Down style) - - - - -
+    - - - - - - - - - - - - - - - - - - - - - - - - - 
+    basic element structure:
+    
+    <div>Current View Caption</div>
+    <ul>
+    <li>
+    <div class="WebCrumb_Circle"></div>
+    <div class="WebCrumb_Caption">The caption</div>
+    </li>
+    ...
+    </ul>
+*/
+
+/* Style the Caption div */
+
+.WebBreadcrumb .WebCrumbs_DropDown {
+    min-height: 48px;
+}
+.WebBreadcrumb .WebCrumbs_DropDown div.WebCrumb_Caption {
+    padding: 13px 10px 0px 7px;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown div.WebCrumb_Caption {
+    display: inline-block;
+    background-color: inherit;
+    color: #FFFFFF;
+    outline: none;  /* stop Chrome painting a focus rectangle on the div when it is selected */
+}
+
+/* Caption Text Hover */
+.WebBreadcrumb .WebCrumbs_DropDown > div.WebCrumb_DropDownBtn:hover {
+    color: #FFFFFF;
+    -webkit-transition: 400ms linear 0s;
+    -moz-transition: 400ms linear 0s;
+    -o-transition: 400ms linear 0s;
+    transition: 400ms linear 0s;
+}
+
+/* The Caption Arrow */
+
+.WebBreadcrumb .WebCrumbs_DropDown > div.WebCrumb_Caption {
+    padding-right: 15px;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown > div.WebCrumb_DropDownBtn:after{
+    content: ' ';
+    position: absolute;
+    border-top-color: #FFFFFF;
+    top: 23px;
+    right: 0px;
+    width: 0px;
+    height: 0px;
+    border: 4px solid transparent;
+    border-top-color: #FFFFFF;
+    
+}
+
+
+/* Style the drop down list wrapper */
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs {
+    max-width: 246px;
+    background-color: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    margin-top: -30px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    
+    opacity: 0;
+    transition: visibility 0s linear 0.3s, opacity 0.3s ease-in-out;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs.WebCrumbs_Expanded{
+    transition-delay:0s;
+    opacity: 1.0;
+}
+
+
+
+/* Style the Drop Down List Items */
+
+
+.WebBreadcrumb.Web_Enabled .WebCrumbs_DropDown ul.WebCrumbs li {
+    cursor: pointer;
+}
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li {
+    height: 37px;
+    line-height: 13px;
+    /* font-size: 15px;   /*jvh-fontsize 13px */
+    font-weight: 400;
+    padding: 0px 7px;
+    /* text-overflow: ellipsis;
+    width: 100px; */
+}  
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li:hover {
+
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li.WebCurrentCrumb {
+    font-weight: 600;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li.WebCurrentCrumb:hover {
+    background-color: inherit;
+    cursor: default;
+}
+
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li div,
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li:hover div {
+    
+    color: #181818;
+    background-color: transparent;
+}  
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li div.WebCrumb_Caption {
+    margin-left: 15px;
+    margin-top: 1px;
+    padding-top: 9px;
+    display: block;
+    line-height: 15px;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li.WebCurrentCrumb div {
+    color: #0072C6;
+    cursor: default;
+}
+
+/* List Item Circles */
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li div:before {
+    content: ' ';
+    position: absolute;
+    background: transparent;
+    height: 34px;
+    border-left: solid 1px #8E8A87;
+    left: 14px;
+    margin-top: 8px;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li div:after {
+    content: ' ';
+    position: absolute;
+    background: #FFFFFF;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    border: solid 1px #8E8A87;
+    left: 11px;
+    margin-top: 2px;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li.WebCurrentCrumb div:before {
+    border-left: none;
+}
+
+.WebBreadcrumb .WebCrumbs_DropDown ul.WebCrumbs li.WebCurrentCrumb div:after {
+    content: ' ';
+    position: absolute;
+    background: #FFFFFF;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: solid 2px #0072C6;
+    left: 8px;
+    margin-top: 0px;
+}
+
+/* - - - - WebBreadcrumb (Horizontal style)- - - - -
+    - - - - - - - - - - - - - - - - - - - - - - - - - 
+    basic element structure:
+    
+    <ul>
+    <li>
+    <div class="WebCrumb_Arrow>
+    <div class="WebCrumb_Caption">The Caption</div>
+    </div>
+    </li>
+    ...
+    </ul>
+*/
+
+
+.WebBreadcrumb .WebCrumbs_Horiz{
+    height: 38px;
+}
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs {
+    background-color: #F3F3F3;
+    border: none;
+    height: 38px;
+}
+
+/*
+    Basic Box-Sizing and styling is done here.
+*/ 
+
+.WebBreadcrumb.Web_Enabled .WebCrumbs_Horiz ul.WebCrumbs li {
+	cursor: pointer;
+}
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li {
+    display: table-cell;  /* list items flow left to right in a table layout */ 
+    white-space: nowrap;
+    height: 38px;
+    box-sizing: border-box;
+    background-color: #E6E6E6;
+    
+    font-size: 13px;
+    line-height: 16px;
+}  
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li.WebCurrentCrumb {
+    cursor: default;
+    background-color: transparent;
+}
+
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li div {
+    height: 35px;
+}
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li div.WebCrumb_Caption {
+    padding: 12px 10px 0px 10px;
+    height: 26px;
+}
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li div.WebCrumb_Caption:first-child {
+    padding-left: 15px;
+}
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li div {
+    background-color: #E6E6E6;
+    color: #181818;
+    font-size: 14px;
+    position: relative;
+    text-decoration: none;
+    outline: none;  /* stop Chrome painting a focus rectangle on the div when it is clicked */
+}
+
+/*
+    Arrow is formed here: 
+    The arrow head is done by using the border trick to create a triangular shape and we put two on top 
+    of each other creating the visual effect of the border. This is done by inserting pseudo elements.
+*/
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li > div.WebCrumb_Arrow {
+    margin-right: 14px;
+}
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li > div.WebCrumb_Arrow:before{
+    content: '';
+    position: absolute;
+    right: -12px;
+    top: 0px;
+    border-top: 20px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 12px solid #FFFFFF;
+} 
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li > div.WebCrumb_Arrow:after{
+    content: '';
+    position: absolute;
+    right: -11px;
+    top: 1px;
+    border-top: 19px solid transparent;
+    border-bottom: 17px solid transparent;
+    border-left: 11px solid #E6E6E6;
+}
+
+/* 
+    To color the last item different we need to set the background color for the second last li as well. 
+    We use nth-last-child here to select it, because not all browsers support it we use it to select the 
+    last child as well so that on old browsers it will just show the origional color.
+*/
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li:nth-last-child(2),
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li:nth-last-child(1) div {
+    color: #181818;
+    background-color: #F3F3F3;
+    text-shadow: none;
+}
+
+/* Here is where we control hover text effects in the inner webcrumb caption <div> */
+
+.WebBreadcrumb .WebCrumbs_Horiz ul.WebCrumbs li.WebCrumb_Item div.WebCrumb_Caption:hover {
+    color: #181818;
+    -webkit-transition: 500ms linear 0s;
+    -moz-transition: 500ms linear 0s;
+    -o-transition: 500ms linear 0s;
+    transition: 500ms linear 0s;
+}
+
+/* Here is where we control text overflow in the inner webcrumb caption <div> */
+
+.WebBreadcrumb .WebCrumb_Caption {
+    overflow: hidden;
+    white-space: nowrap;   
+    display:inline-block; 
+    text-overflow: ellipsis;
+}
+
+/* - - - - - - WebColorPicker - - - - - - */
+
+.WebColorPicker .WebCP_Main{
+    border: 1px solid #FFFFFF;
+    background-color: #E6E6E6;
+}
+
+.WebColorPicker.Web_Enabled.WebCon_Focus .WebCP_Main{
+    border: 1px solid #D9D9D9;
+}
+
+.WebColorPicker .WebCP_Picker{
+    position: absolute;
+    top:0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+}
+
+.WebColorPicker .WebCP_Pointer{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid RGBA(255, 255, 255, 1);
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.9);
+}
+.WebColorPicker .WebCP_Slide:before{
+    position: absolute;
+    content: '';
+    height: 4px;
+    width: 20px;
+    border-radius: 2px;
+}
+.WebColorPicker .WebCP_Slide{
+    height: 8px;
+    width: 22px;
+    border: 2px solid RGBA(255, 255, 255, 0.7);
+    border-radius: 2px;
+    margin-left: -3px;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.5);
+
+}
+.WebColorPicker .WebCP_ColorBar{
+    height: 50px;
+    line-height: 50px;
+}
+
+.WebColorPicker .WebCP_ShowColorBar .WebCP_Picker{
+    bottom: 52px;
+    
+}
+.WebColorPicker .WebCP_Picker{
+    margin: 8px 8px 8px 8px;
+}
+.WebColorPicker .WebCP_ShowPalette .WebCP_Picker{
+    margin: 0px 8px 8px 8px;
+}
+.WebColorPicker .WebCP_ColorPalette{
+    background-color: transparent;
+    padding: 0px 8px;
+}
+.WebColorPicker .WebCP_Palette{
+    border-spacing: 8px 8px;
+    
+    border-collapse: separate;
+}
+.WebColorPicker .WebCP_PalColor{
+    height: 24px;
+    border-radius: 2px;
+}
+
+/* - - - - - - - - - WebColorForm - - - - - - - - - */
+
+.WebColorForm .WebCF_Box{
+    
+}
+.WebColorForm .WebCF_ShowBox .WebCF_Box{
+    width: 59px;
+    height: 40px;
+    margin-top: -5px;
+    margin-left: -6px;
+    border-right: 1px solid rgba(151,151,151, 0.4);
+}
+.WebColorForm .WebCF_ShowBox .WebFrm_PromptSpacer{
+    margin-left: 62px;
+}
+
+.WebColorPicker.WebColorPicker_Form .WebCP_Main{
+    border: 1px solid #E6E6E6;
+}
+.WebColorPicker.WebColorPicker_Form .WebCon_Inner{
+    margin: 0px 0px;
+}
+
+
+/* FONT FACE ICONS */
+@font-face {
+    font-family: "dataflex-mobile";
+    src:url("fonts/dataflex-mobile.eot");
+    src:url("fonts/dataflex-mobile.eot?#iefix") format("embedded-opentype"),
+    url("fonts/dataflex-mobile.woff") format("woff"),
+    url("fonts/dataflex-mobile.ttf") format("truetype"),
+    url("fonts/dataflex-mobile.svg#dataflex-mobile") format("svg");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Declare the Icon Font to be used for various selectors */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+
+/* dataflex-mobile Font */
+.WebButtonIcon:before,
+.Tile .Tile_Icon:before,
+.RecentList ul > li > div:before,
+
+.WebTreeView .WebTree_Item:before,
+.WebTreeView .WebTree_Entry:before,
+.WebTreeView .WebTree_NoIcon.WebTree_Folder:before,
+.WebTreeView .WebTree_NoIcon.WebTree_Icon:before,
+
+.WebGrid .WebList_Head .WebList_Sorted:before, 
+.WebGrid .WebList_Head .WebList_SortedReverse:before, 
+.WebList .WebList_Head .WebList_Sorted:before, 
+.WebList .WebList_Head .WebList_SortedReverse:before,
+.WebMsgBoxConfirm .WebLabel_content:before,
+.WebMsgBoxInfo .WebLabel_content:before,
+.WebMsgBoxWarning .WebLabel_content:before,
+.WebMsgBoxError .WebLabel_content:before,
+.WebDatePicker .WebDP_Up:before, .WebDatePicker .WebDP_YearMnu .WebDP_Up.WebDP_UpDown:before,
+.WebDatePicker .WebDP_Down:before, .WebDatePicker .WebDP_YearMnu .WebDP_Down.WebDP_DownDown:before,
+.WebDatePicker .WebDP_BtnPrev:before,
+.WebDatePicker .WebDP_BtnNext:before,
+.WebDatePicker .WebDP_BtnMonth:after,
+.WebDatePicker .WebDP_BtnYear:after,
+.WebWindow .WebWin_controls .WebWin_close:before,
+.WebDateForm .WebFrm_Prompt:before,
+.WebFileFrm div.WebFile_Btn:before,
+.WebForm .WebFrm_Prompt:before,
+.WebMenuList li.WebItm_HasSub:before,
+.WebMenuBar ul li ul li.WebItm_HasSub > div:before,
+span.WebItm_Icon:before,
+.WebTlb_SubItems span.WebItm_Icon:before,
+.WebButton.WebMenuButton button:before,
+.WebButton button:before,
+.WebMenuList .WebML_Back:before ,
+.WebList_SwipeBtn:before,
+.WebList_SwipeBtn:before
+{
+    font-family: "dataflex-mobile" !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;  
+    display: inline-block;
+}
+.WebList_SwipeBtn:before{
+    display: block;
+}
+
+/* - - - - - - - - - - - - - - - - - */
+/* General Icon Font Style Selectors */
+/* - - - - - - - - - - - - - - - - - */
+
+/* Menu Items, Menu Buttons, buttons, column buttons, tiles */
+
+.WebMenuItem > div > span.WebItm_Icon:before{
+    /* Toolbar Items */
+    position: absolute;
+    padding: 5px 0 0 5px;
+    color: #0072C6;
+    font-size: 19px;
+}
+
+.WebToolBar .WebTlb_SubItems span.WebItm_Icon:before {
+    /* 3 vertical dots used for Action Dropdown */
+    content: "\00e014";
+    font-size: 18px;
+}
+.WebButton.WebBack_Icon button:before {
+    /* Title bar Back Button */
+    content: "\00e001"; 
+    color: #FFFFFF;
+    padding-top: 5px;
+}
+
+/* The following Font Icon classes can be used with the following controls:
+    - WebButton
+    - WebColumnButton
+    - WebMenuItem
+- Tile (WebHTMLBox) */
+
+.WebIcon_Print:before,
+.WebIcon_Print button:before,
+button.WebIcon_Print:before,
+.WebIcon_Print > div > span.WebItm_Icon:before {
+    /* Printer Icon */
+    content: "S";
+}
+
+.WebIcon_Add:before,
+.WebIcon_Add button:before,
+button.WebIcon_Add:before,
+.WebIcon_Add > div > span.WebItm_Icon:before {
+    /* Pencil on page icon */
+    content: "A";
+}
+
+
+.WebIcon_Info:before,
+.WebIcon_Info button:before,
+button.WebIcon_Info:before,
+.WebIcon_Info > div > span.WebItm_Icon:before {
+    /* Info icon */
+    content: "M";
+}
+
+.WebIcon_Refresh:before,
+.WebIcon_Refresh button:before,
+button.WebIcon_Refresh:before,
+.WebIcon_Refresh > div > span.WebItm_Icon:before {
+    /* Info icon */
+    content: "\e034";
+    font-weight: 600 !important;
+}
+
+.WebIcon_Help:before,
+.WebIcon_Help button:before,
+button.WebIcon_Help:before,
+.WebIcon_Help > div > span.WebItm_Icon:before {
+    /* Help icon */
+    content: "\e01d";
+}
+
+.WebIcon_Hamburger:before,
+.WebIcon_Hamburger button:before,
+button.WebIcon_Hamburger:before,
+.WebIcon_Hamburger > div > span.WebItm_Icon:before {
+    content: "\00e006";
+    font-size: 20px;
+}
+
+.WebIcon_Save:before,
+.WebIcon_Save button:before,
+button.WebIcon_Save:before,
+.WebIcon_Save > div > span.WebItm_Icon:before,
+.WebSaveMenuItem:before,
+.WebSaveMenuItem button:before,
+button.WebSaveMenuItem:before,
+.WebSaveMenuItem > div > span.WebItm_Icon:before {
+    /* Simple Tick (done) Icon */
+    content: "&"; 
+}
+.WebToolBar:not(.WebActionBar) .WebSaveMenuItem > div > span.WebItm_Icon:before {
+    font-size: 21px;
+    padding: 5px 0px 0px 5px;
+    font-weight: bold !important;
+}
+
+.WebIcon_Delete:before,
+.WebIcon_Delete button:before,
+button.WebIcon_Delete:before,
+.WebIcon_Delete > div > span.WebItm_Icon:before {
+    /* Trashcan Icon */
+    content: "x";
+}
+
+.WebDeleteMenuItem:before,
+.WebDeleteMenuItem button:before,
+button.WebDeleteMenuItem:before,
+.WebDeleteMenuItem > div > span.WebItm_Icon:before {
+    /* Trashcan Icon */
+    content: "?"; 
+}
+
+.WebIcon_Prompt:before,
+.WebIcon_Prompt button:before,
+button.WebIcon_Prompt:before,
+.WebIcon_Prompt > div > span.WebItm_Icon:before,
+.WebPromptMenuItem:before,
+.WebPromptMenuItem button:before,
+button.WebPromptMenuItem:before,
+.WebPromptMenuItem > div > span.WebItm_Icon:before {
+    /* Back Leaning Magnifying Glass Action Icon */
+    content: "\00e005";
+}
+.WebToolBar:not(.WebActionBar) .WebPromptMenuItem > div > span.WebItm_Icon:before {
+    font-size: 20px;
+    padding: 5px 0 0 5px;
+    font-weight: bold !important;
+}
+
+.WebIcon_Clear:before,
+.WebIcon_Clear button:before,
+button.WebIcon_Clear:before,
+.WebIcon_Clear > div > span.WebItm_Icon:before,
+.WebClearMenuItem:before,
+.WebClearMenuItem button:before,
+button.WebClearMenuItem:before,
+.WebClearMenuItem > div > span.WebItm_Icon:before {
+    /* New Document Action Icon */
+    content: "B"; 
+}
+.WebToolBar:not(.WebActionBar) .WebClearMenuItem > div > span.WebItm_Icon:before {
+    content: "^";
+}
+
+.WebIcon_ClearAll:before,
+.WebIcon_ClearAll button:before,
+button.WebIcon_ClearAll:before,
+.WebIcon_ClearAll > div > span.WebItm_Icon:before,
+.WebClearAllMenuItem:before,
+.WebClearAllMenuItem button:before,
+button.WebClearAllMenuItem:before,
+.WebClearAllMenuItem > div > span.WebItm_Icon:before {
+    /* "X" icon */
+    content: ":"; 
+}
+.WebToolBar:not(.WebActionBar) .WebClearAllMenuItem > div > span.WebItm_Icon:before {
+    content: "/";
+    padding: 6px 0px 0px 6px;
+    font-size: 18px;
+}
+
+.WebIcon_Last:before,
+.WebIcon_Last button:before,
+button.WebIcon_Last:before,
+.WebIcon_Last > div > span.WebItm_Icon:before,
+.WebLastMenuItem:before,
+.WebLastMenuItem button:before,
+button.WebLastMenuItem:before,
+.WebLastMenuItem > div > span.WebItm_Icon:before {
+    /* Find Last Icon */
+    content: "|"; 
+}
+.WebToolBar:not(.WebActionBar) .WebLastMenuItem > div > span.WebItm_Icon:before {
+    font-size: 22px;
+    padding: 4px 0px 0px 5px;
+}
+
+.WebIcon_Next:before,
+.WebIcon_Next button:before,
+button.WebIcon_Next:before,
+.WebIcon_Next > div > span.WebItm_Icon:before,
+.WebNextMenuItem:before,
+.WebNextMenuItem button:before,
+button.WebNextMenuItem:before,
+.WebNextMenuItem > div > span.WebItm_Icon:before {
+    /* Find Next Icon */
+    content: "}"; 
+}
+.WebToolBar:not(.WebActionBar) .WebNextMenuItem > div > span.WebItm_Icon:before {
+    font-size: 22px;
+    padding: 4px 0px 0px 6px;
+}
+
+.WebIcon_Find:before,
+.WebIcon_Find button:before,
+button.WebIcon_Find:before,
+.WebIcon_Find > div > span.WebItm_Icon:before {
+    /* Find icon */
+    content: "V";
+} 
+
+.WebIcon_FindSalesP:before,
+.WebIcon_FindSalesP button:before,
+button.WebIcon_FindSalesP:before,
+.WebIcon_FindSalesP > div > span.WebItm_Icon:before {
+    /* Find icon */
+    content: "\e01e";
+} 
+
+.WebFindMenuItem:before,
+.WebFindMenuItem button:before,
+button.WebFindMenuItem:before,
+.WebFindMenuItem > div > span.WebItm_Icon:before {
+    /* Find EQ Icon */
+    content: "`";
+}
+.WebToolBar:not(.WebActionBar) .WebFindMenuItem > div > span.WebItm_Icon:before {
+    font-size: 28px;
+    padding: 1px 0px 0px 1px;
+}
+
+.WebIcon_Previous:before,
+.WebIcon_Previous button:before,
+button.WebIcon_Previous:before,
+.WebIcon_Previous > div > span.WebItm_Icon:before,
+.WebPreviousMenuItem:before,
+.WebPreviousMenuItem button:before,
+button.WebPreviousMenuItem:before,
+.WebPreviousMenuItem > div > span.WebItm_Icon:before {
+    /* Find Previous Icon */
+    content: "~"; 
+}
+.WebToolBar:not(.WebActionBar) .WebPreviousMenuItem > div > span.WebItm_Icon:before {
+    font-size: 22px;
+    padding: 4px 0px 0px 1px;
+}
+
+.WebIcon_First:before,
+.WebIcon_First button:before,
+button.WebIcon_First:before,
+.WebIcon_First > div > span.WebItm_Icon:before,
+.WebFirstMenuItem:before,
+.WebFirstMenuItem button:before,
+button.WebFirstMenuItem:before,
+.WebFirstMenuItem > div > span.WebItm_Icon:before {
+    /* Find First Icon */
+    content: "{"; 
+}
+.WebToolBar:not(.WebActionBar) .WebFirstMenuItem > div > span.WebItm_Icon:before {
+    font-size: 22px;
+    padding: 4px 0px 0px 2px;
+}
+
+.WebIcon_Edit:before,
+.WebIcon_Edit button:before,
+button.WebIcon_Edit:before,
+.WebIcon_Edit > div > span.WebItm_Icon:before,
+.WebEditMenuItem:before,
+.WebEditMenuItem button:before,
+button.WebEditMenuItem:before,
+.WebEditMenuItem > div > span.WebItm_Icon:before {
+    /* Pencil on blank page Icon */
+    content: "]"; 
+}
+
+/* --------------------------------------------- */
+
+.WebMenuList li.WebItm_HasSub:before,
+.WebMenuBar ul li ul li.WebItm_HasSub > div:before {
+    /* Menu has sub menu Arrow Icon */
+    content: "-";
+    margin-top: 6px;
+    font-size: 14px;
+    color: #181818;
+}
+.WebMenuList li.WebItm_HasSub:before{
+    float: right;
+}
+.WebMenuBar ul li ul li.WebItm_HasSub>div:before {
+    position: absolute;
+    right: 5px;
+}
+
+.WebMenuList .WebML_Back:before{
+    content: ',';
+    left: 12px;
+    margin-top: 16px;
+    display: block;
+    position: absolute;
+    font-size: 14px;
+    color: #181818;
+}
+
+
+.WebMenuList li.WebItm_HasSub:before {
+    /* Menu has sub menu Arrow Icon */
+    right: 12px;
+    margin-top: 15px;
+    display: block;
+    position: absolute;
+}
+
+/* - - - - - - WebContextMenu - - - - - - */
+
+.WebContextMenu .WebControl > .WebCon_Inner{
+    min-height: unset;
+}
+
+.WebContextMenu .WebMenuList li.WebItm_HasSub:before {
+    margin-top: 9px;
+}
+
+.WebContextMenu .WebMenuList .WebML_Back:before {
+    margin-top: 8px;
+    left: 2px;
+}
+
+.WebContextMenu .WebMenuList .WebML_Item.WebML_Back a {
+    padding: 3px;
+    padding-left: 22px;
+}
+
+.WebContextMenu .WebItm_CheckBox {
+    margin: 0px;
+    margin-top: 4px;
+}
+
+.WebContextMenu .WebMenuList li a {
+    margin-top: 1px;
+}
+
+.WebMenuBar .WebItm_CheckBox {
+    margin-top: 8px;
+    margin-left: 7px;
+}
+
+.WebMenuBar .WebItm_HasCheckbox a {
+    display: inline-block;
+    margin-top: 8px;
+    margin-left: 2px;
+}
+
+.WebContextMenu .WebML_ShowIcons .WebMenuItem > div > span.WebItm_Icon:before {
+    padding: 3px 0px 0px 2px;
+}
+
+/* WebForm Prompt Buttons */
+
+.WebForm .WebFrm_Prompt:before {
+    /* Prompt button - backwards leaning magnifying glass */
+    /*JvH - note there is no forward leaning magnifying glass icon in this font */ 
+    content: "\00e005"; 
+    font-size: 16px;
+    padding: 0;
+    color: #BABABA;
+    position: absolute;
+    top: 5px;
+    left: 1px;
+    font-size: 20px;
+}
+
+.WebFileFrm div.WebFile_Btn:before {
+    /* File upload - paper clip */ 
+    color: #BABABA;
+    content: "$";
+    font-size: 16px;
+    padding: 0;
+    position: absolute;
+    top: 5px;
+    left: 4px;
+}
+
+.WebDateForm .WebFrm_Prompt:before{
+    /* Calendar Icon */
+    content: "%";
+    font-size: 18px;
+    padding: 0;
+    color: #BABABA;
+}
+
+.WebColorForm .WebFrm_Prompt:before{
+    /* Color palette */
+    content: "4";
+    font-size: 20px;
+    padding: 0;
+    color: #BABABA;
+    font-weight: bold;
+}
+
+.WebForm.Web_Enabled .WebFrm_Prompt:hover:before,
+.WebFileFrm.Web_Enabled div.WebFile_Btn:hover:before{
+    color: #0072C6;
+}
+
+/* Modal Dialog Close Button */
+
+.WebWindow .WebWin_controls .WebWin_close {
+    background: none;
+    height: 30px;
+    width: 30px;
+    margin: 5px 0 0 -33px;
+    position: absolute;
+}
+
+.WebWindow .WebWin_controls .WebWin_close:hover:before {
+    
+}
+
+.WebWindow .WebWin_controls .WebWin_close:before {
+    content: ":"; 
+    font-size: 18px;
+    padding: 6px 0 0 6px;
+    color: #FFFFFF;
+}
+
+/* Datepicker Icons */
+
+.WebDatePicker .WebDP_BtnPrev {
+    margin: 0px 20px 0px 0px;
+}
+.WebDatePicker .WebDP_BtnPrev:before {
+    color: #FFFFFF;
+    content: "9";
+    height: 21px;
+    width: 21px;
+    padding: 5px 2px 0px 4px;
+    border: 2px solid #FFFFFF;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.WebDatePicker .WebDP_BtnNext:before {
+    color: #FFFFFF;
+    content: "!";
+    height: 21px;
+    width: 21px;
+    padding: 5px 0px 0px 5px;
+    border: 2px solid #FFFFFF;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+.WebDatePicker .WebDP_BtnMonth,
+.WebDatePicker .WebDP_BtnYear {
+    margin: 0;
+}
+.WebDatePicker .WebDP_BtnYear:after,
+.WebDatePicker .WebDP_BtnMonth:after {
+    border: 2px solid #FFFFFF;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    color: #FFFFFF;
+    content: "8";
+    display: inline-block;
+    line-height: 1;
+    margin: 0 0 0 6px;
+    padding: 6px 1px 0px 5px;
+    height: 21px;
+    width: 21px;
+}
+.WebDatePicker.Web_Enabled .WebDP_BtnPrev:hover:before,
+.WebDatePicker.Web_Enabled .WebDP_BtnNext:hover:before,
+.WebDatePicker.Web_Enabled .WebDP_BtnMonth:hover:after,
+.WebDatePicker.Web_Enabled .WebDP_BtnYear:hover:after{
+    color: #0072C6;
+    background:  #FFFFFF;
+}
+
+.WebDP_BtnPrev:before,
+.WebDP_BtnNext:before,
+.WebDP_BtnMonth:after,
+.WebDP_BtnYear:after{
+    transition-duration: color 0.5s, background 0.5s;
+}
+.WebDP_BtnMonth span,
+.WebDP_BtnYear span {
+    display: inline-block;
+    margin: 9px 0 0 8px;
+    vertical-align: top;
+}
+
+.WebDatePicker.Web_Enabled .WebDP_Up:hover:before, .WebDatePicker.Web_Enabled .WebDP_YearMnu .WebDP_Up.WebDP_UpDown:hover:before,
+.WebDatePicker.Web_Enabled .WebDP_Down:hover:before, .WebDatePicker.Web_Enabled .WebDP_YearMnu .WebDP_Down.WebDP_DownDown:hover:before {
+    color: #005899;
+}
+
+.WebDatePicker .WebDP_Up:before,
+.WebDatePicker .WebDP_Down:before {
+    font-size: 17px;
+    padding: 0 0 0 5px;
+    margin: 0px 0 0 4px;
+    color: #5C5C5C;
+}
+.WebDatePicker .WebDP_Up:before{
+    content: "#";
+}
+.WebDatePicker .WebDP_Down:before {
+    content: "8";
+}
+
+.WebDatePicker .WebDP_YearMnu .WebDP_Up.WebDP_UpDown:hover:before,
+.WebDatePicker .WebDP_YearMnu .WebDP_Down.WebDP_DownDown:hover:before {
+    font-size: 17px;
+    color: #FFFFFF;
+    text-shadow: 0px 1px 0 #5C5C5C;
+}
+
+/* Treeview Icons */
+
+.WebTreeView .WebTree_NoIcon.WebTree_Folder:before,
+.WebTreeView .WebTree_NoIcon.WebTree_Folder:before,
+.WebTreeView .WebTree_NoIcon.WebTree_Icon:before {
+    font-size: 16px;
+    color: #F4A11E;
+    position: absolute;
+    left: 1px;
+    top: 3px;
+}
+.WebTreeView .WebTree_NoIcon.WebTree_Folder:before{
+    content: "\00e018";
+}
+.WebTreeView .WebTree_Collapsed .WebTree_StartSub.WebTree_Item:before,
+.WebTreeView .WebTree_Collapsed .WebTree_EndSub.WebTree_Item:before,
+.WebTreeView .WebTree_Collapsed .WebTree_EntrySub.WebTree_Item:before,
+.WebTreeView .WebTree_Collapsed .WebTree_StartEndSub.WebTree_Item:before{
+    content: "!";
+    padding: 3px 0px 0px 3px;
+}
+
+.WebTreeView .WebTree_Expanded .WebTree_StartSub.WebTree_Item:before,
+.WebTreeView .WebTree_Expanded .WebTree_EndSub.WebTree_Item:before,
+.WebTreeView .WebTree_Expanded .WebTree_EntrySub.WebTree_Item:before,
+.WebTreeView .WebTree_Expanded .WebTree_StartEndSub.WebTree_Item:before {
+    content: '"';
+    padding: 3px 0px 0px 3px;
+}
+
+.WebTreeView .WebTree_Expanded .WebTree_NoIcon.WebTree_Folder:before{
+    content: "J";
+}
+
+.WebTreeView .WebTree_NoIcon.WebTree_Icon:before {
+    content: "B";
+    color: #181818;
+    font-size: 16px;
+    margin: 0px 0px 0px 0px;
+}
+.WebTreeView .WebTree_Selected .WebTree_NoIcon.WebTree_Icon:before{
+    color: #005899;
+    content: "^";
+}
+
+
+/* Grid & List Column Sorting Icons */
+.WebList .WebList_Head .WebList_Sorted:before,
+.WebGrid .WebList_Head .WebList_Sorted:before,
+.WebList .WebList_Head .WebList_SortedReverse:before,
+.WebGrid .WebList_Head .WebList_SortedReverse:before  {
+    float: right;
+    font-size: 13px;
+    padding: 13px 4px 0 0;
+    color: #5C5C5C;
+    text-shadow: 0px 1px 0 #FFFFFF;
+}
+.WebList .WebList_Head .WebList_Sorted:before,
+.WebGrid .WebList_Head .WebList_Sorted:before {
+    content: "8";
+}
+.WebList .WebList_Head .WebList_SortedReverse:before,
+.WebGrid .WebList_Head .WebList_SortedReverse:before {
+    content: "#";
+}
+
+
+/* Style Settings for Font Icon Buttons */
+
+.WebList .WebList_Body .WebList_Row .WebButtonIcon,
+.WebList .WebList_Body .WebList_Row .WebButtonIcon:hover {
+    background: transparent;
+    border: none;
+}
+
+.WebButtonIcon:before {
+    color: #BABABA;
+    font-size: 18px;
+}
+
+
+.WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected .WebButtonIcon:hover:before,
+.WebList_Body .WebList_Row .WebButtonIcon:hover:before {
+    color: #F4A11E; 
+}
+
+.WebList_Body.WebList_ShowSelected .WebList_Row.WebList_Selected .WebButtonIcon:before {
+    color: #0072C6;
+}
+
+.WebList .WebList_Moving, .WebGrid .WebList_Moving {
+    background-color: rgb(234,240,246);
+}
+
+.WebButton button:before {
+    margin-right: 8px;
+    margin-left: 8px;
+    vertical-align: top;
+}
+
+
+/* - - - - - - - - - WebAccordionContainer - - - - - - - - */
+
+.WebAccordion > .WebCon_Inner{
+    border: solid #D9D9D9;
+    border-width: 0px 1px 1px 1px;
+}
+
+.WebAccordion .WebAcCard{
+    overflow: hidden;
+    height: 0px;
+}
+.WebAccordion.Web_Enabled.WebAc_Rendered .WebAcCard{
+    transition: height 0.7s, visibility 0s linear 0.8s;
+}
+.WebAccordion .WebTab_Btn{
+	padding: 10px 10px 10px 14px;
+    background-color: #F3F3F3;
+    border-top: 0.5px solid #D9D9D9;
+    color: #5C5C5C;
+    border-left: 2px solid #F3F3F3;
+    outline: none;
+}
+.WebAccordion .WebTab_Btn.Web_Enabled:hover,
+.WebAccordion .WebTab_Btn.Web_Enabled.WebTab_Focus{
+    background-color: #E6E6E6;
+}
+
+.WebAccordion .WebTab_Btn.Web_Enabled.WebTab_Current{
+    border-left: 2px solid #F4A11E;
+    color: #181818;
+}
+
+.WebAccordion .WebTab_Btn.WebTab_Disabled{
+    color: #BABABA;
+}
+
+.WebAccordion.Web_Enabled .WebAcCard.WebAcCard_Visible{
+    transition-delay: 0s;
+}
+
+
+/* - - - - - - - - WebListExpandPanel - - - - - - - - - */
+.WebListExpPnl{
+    border-bottom: 1px solid #E6E6E6;
+}
+.WebListExpPnl.Dark{
+    background-color: #5C5C5C;
+}
+.WebListExpPnl.WebCon_Loading:before{
+    background: #FFFFFF url('LoadingBig.gif') no-repeat center center;
+}
+
+/* - - - - - - - - - - - - - - -
+    Manually applied CSS Classes 
+- - - - - - - - - - - - - - - */
+
+/* - - - - - - Mobile - - - - - - - */
+
+/* Header Panel (Titlebar) */
+.HeaderPanel {
+    margin: 0px 0px 0px 0px;
+}
+.HeaderPanel .WebContainer{
+    background-color: #0072C6;
+}
+.HeaderPanel .WebContainer .WebCon_Content {
+    padding: 0px 0px;
+}
+.HeaderPanel.WebPanel .WebContainer .WebControl.WebButton > div.WebCon_Inner{
+    margin: 4px 5px 0px 4px;
+}
+ 
+.HeaderPanel.WebPanel .WebContainer .WebControl.WebMenuButton button:hover, 
+.HeaderPanel.WebPanel .WebContainer .WebControl.WebMenuButton button:focus,
+.HeaderPanel.WebPanel .WebButton.Web_Enabled button:hover, 
+.HeaderPanel.WebPanel .WebButton.Web_Enabled button:focus{
+    color:#FFFFFF;
+    transition: color 0.5s;
+}
+.HeaderPanel.WebPanel .WebContainer .WebButton.WebMenuButton button:before{
+    /* Title bar's hamburger menu (three stripes) */
+    content: "\00e006"; 
+    font-size: 24px;
+    padding: 5px 0 0 0;
+    vertical-align: baseline;
+    margin: 0px 0px 0px 0px;
+}
+
+
+/* Regular Buttons in the header */
+
+.HeaderPanel.WebPanel .WebContainer .WebControl.WebButton button {
+    /* Trim back the button margin (it does not always fit */
+    margin: 0px;
+    padding: 0;
+    line-height: 23px;
+}
+
+/* Action toolbar in the header */
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar span.WebItm_Icon:before{
+    color: #FFFFFF;
+}
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolbar ul.WebBarRoot li.WebMenuItem {
+    height: 38px;
+}
+
+
+.HeaderPanel.WebPanel .WebToolBar .WebMenuItem:hover span.WebItm_Icon,
+.HeaderPanel.WebPanel .WebToolBar .WebMenuItem:focus span.WebItm_Icon{
+    background: transparent;
+}
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar ul li ul {
+    margin-top: -30px;
+    margin-left: -12px;
+}
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar ul.WebBarRoot li.WebMenuItem ul li {
+    height: 37px;
+}
+
+.HeaderPanel.WebPanel .WebActionBar.WebToolBar ul.WebBarRoot li.WebMenuItem ul li {
+    /* Make the font size the same as the breadcrumb dropdown list */
+    font-size: 14px;   /*jvh-fontsize inherit */
+}
+
+.HeaderPanel.WebPanel .WebActionBar .WebMenuItem > div > span.WebItm_Icon:before {
+    /* Actionbar Icons */
+    padding: 7px 0 0 0px;
+}
+
+.HeaderPanel.WebPanel .WebActionBar .WebMenuItem.WebSaveMenuItem > div > span.WebItm_Icon:before {
+    /* Circled Tick (done) Icon */
+    content: "&"; 
+}
+
+/* HeaderTab style for tab containers (only on mobile) */
+.df-ModeMobile .HeaderTab.WebTabContainer > .WebCon_Inner{
+    margin: 0;
+}
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head{
+    background: #0072C6;
+    margin: 0;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head:after,
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head:before{
+    display: table-cell;
+    content: ' ';
+    width: 15px;
+}
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head .WebTab_Btn span label{
+    color: #FFFFFF;
+}
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head .WebTab_Btn {
+    display: table-cell;
+    float: none;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.df-ModeMobile .HeaderTab.WebTabContainer > div > div > .WebTbc_Head > div:last-child{
+    display: none;  /* The div clear:both ruines the table layout so it needs to be hidden (try not use again in the future) */
+}
+
+.HeaderTab.WebTabContainer > div > div > .WebTbc_Head  {
+    background: #F3F3F3;
+    margin: 30px 0px 0px 0px;
+    padding: 0;
+}
+.HeaderTab.WebTabContainer > div > div > .WebTbc_Head .WebTab_Btn span label{
+    color: #181818;
+}
+
+
+/* Mobile styled selection lists */
+.MobileList .WebList_Body .WebList_Row td{
+    border-left: none;
+    padding: 0px 4px;
+    font-size: 14px;
+    height: 14px;
+    line-height: 16px;
+}
+.MobileList .WebList_Body .WebList_Row td.Web_Disabled  {
+  color: #8E8A87;
+}
+
+.MobileList table.WebList_Row{
+    padding: 10px 5px;
+}
+
+.MobileList.WebList .WebList_Body .WebList_Row td.RowCaption, .MobileList.WebGrid .WebList_Body .WebList_Row td.RowCaption{
+    font-size: 18px;
+    line-height: 19px;
+    font-weight: 500;
+    padding-bottom: 5px;
+}
+.MobileList.WebList .WebList_Body .WebList_Row td.RowDetail, .MobileList.WebGrid .WebList_Body .WebList_Row td.RowDetail{
+    color: #8E8A87;
+}
+
+/* Column Image Round Style */
+.ColImgRound span{
+    border-radius: 50%;
+    background-color: #F3F3F3;
+}
+
+/* Image Round Style */
+.ImgRound img{
+    border-radius: 50%;
+}
+
+/* Login View */
+.LoginBackground.WebApp{
+    background: #F2F2F4; /* Fallback on older browsers */
+    background: linear-gradient(#F2F2F4 21%,#EDECEA 100%); /* W3C */
+}
+.LoginBackground .WebContainer, .LoginView.WebContainer{
+    background: transparent;
+}
+.LoginView .WebForm input {
+    height: 40px;
+}
+
+.LoginView div.WebCon_TopLabel.WebCon_FloatEnabled > label.WebCon_Unfloat {
+    font-size: 16px;
+    transform: translate(5px, 35px);
+}
+
+/* Label Classes  */
+/* - - - - - - -  */
+
+/* LabelTitle */
+.LabelTitle.WebLabel .WebLabel_content{
+    color: #181818;
+    font-size: 20px;
+    padding: 10px 0px 0px;
+}
+
+/* LabelDetail */
+.LabelDetail.WebLabel .WebLabel_content{
+    color: #8E8A87;
+    font-size: 14px;
+    padding: 0px 0px 0px;
+    line-height: normal;
+}
+.LabelCaption.WebControl > .WebCon_Inner {
+    min-height: 0px;
+}
+
+/* LabelCaption */
+.df-ModeMobile .LabelCaption.WebLabel {
+    background: #0072C6;
+    color: #FFFFFF;
+}
+.df-ModeMobile .LabelCaption.WebControl > .WebCon_Inner {
+    margin: 0px 15px 5px 15px;
+}
+.df-ModeMobile .LabelCaption.WebLabel .WebLabel_content {
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    padding: 0;
+}
+
+.df-ModeTablet .LabelCaption.WebLabel .WebLabel_content {
+    font-size: 18px;
+    padding: 5px 0px 0px 10px;
+}
+
+/* Dark submenu (TODO: Reconsider having this) */
+.DarkMenu .WebMenuList li.WebML_Item.Web_Enabled:hover,
+.DarkMenu .WebMenuList li.WebML_Item.WebML_Back:hover{
+    background-color: #181818;
+}
+.DarkMenu .WebMenuList li.WebML_Item.Web_Enabled:hover a,
+.DarkMenu .WebMenuList li.WebML_Item.WebML_Back:hover a{
+    color: #FFFFFF;
+    font-weight: 600;
+}
+.DarkMenu .WebMenuList .WebML_Mnu ul{
+    padding: 3px;
+}
+.DarkMenu .WebMenuList li{
+    border-bottom: 0px;
+    height: 30px;
+}
+.DarkMenu .WebMenuList li a {
+    color: #FFFFFF;
+    padding: 9px 12px 0px;
+}
+.DarkMenu.WebFlPnl > div.WebContainer{
+    background-color: #181818;
+}
+
+
+/* - - - - - - - - - - - - - - - - - - - - - */
+/* Special CSS Classes used by the Dashboard */
+/* - - - - - - - - - - - - - - - - - - - - - */
+
+/* Tile Classes  */
+/* - - - - - - - */
+
+/* Basic Structure of a Tile Set
+    - - - - - - -- - - - - - - - - 
+    * The set of tiles must be wrapped in a WebGroup object with psCSSClass = "TilesGroup"
+    * Each tile should be wrapped in an WebHTMLBox (or equivalent), with psCSSClass = "Tile"
+    
+    1. Tile with heading and subheading text, no image
+    
+    <div class="WebCon_Sizer">
+    <div class="Tile_Title">Caption</div>
+    <div class="Tile_Subtitle">Smaller caption</div>
+    </div>
+    
+    2. Tile with image and caption under image
+    
+    <div class="WebCon_Sizer">
+    <div class="Tile_Icon BtnIcon_XXXX"></div>
+    <div class="Tile_TextUnderIcon">Small Caption</div>
+    </div>
+    
+*/
+
+/* TilesGroup */
+/* - Apply to WebGroup control that contains the tiles */
+.TilesGroup > .WebCon_Inner {
+    padding: 12px 10px 12px 10px;
+}
+.df-ModeMobile .TilesGroup.WebGroup > .WebCon_Inner{
+    padding: 0px;
+}
+.TilesGroup .WebControl > .WebCon_Inner{
+    margin: 0; 
+}
+
+/* Tile */
+/* - Apply to the WebHtmlBox control that contains the Tile divs */
+.Tile .WebCon_Sizer {
+    height:126px;
+    background: #0072C6;
+    color:#FFFFFF;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.Tile.LightAlternate .WebCon_Sizer {
+    background: #5C5C5C;
+}
+
+.Tile.DarkAlternate .WebCon_Sizer {
+    background: #181818;
+}
+
+.Tile.Dark .WebCon_Sizer {
+    background: #005899;
+}
+
+.Tile .Tile_Title {
+    display: block;
+    font-size: 20px;
+    text-align: center;
+    position: relative;
+    top: 50px;
+    overflow: hidden;
+}
+
+.Tile .Tile_Subtitle {
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+    top: 54px;
+    color: rgba(255,255,255,0.7);
+    overflow: hidden;
+}
+
+.Tile .Tile_Baseline {
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+    top: 70px;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Tile_Icon */ 
+/* - Combine with BtnIcon_XXX classes */
+.Tile .Tile_Icon {
+    font-size: 60px;
+    text-align: center;
+    position: relative;
+    top: 30px;
+}
+
+.Tile .Tile_TextUnderIcon {
+    font-size: 13px;
+    text-align: center;
+    position: relative;
+    top: 20px;
+    color: rgba(255,255,255,0.9);
+}
+
+
+/* Latest Activity Group  */
+/* - - - - - - - - - - -  */
+
+.LatestActivity.WebGroup > .WebCon_Inner {
+    padding: 0px 10px;
+}
+.df-ModeMobile .LatestActivity.WebGroup > .WebCon_Inner {
+    padding: 0px 0px;
+}
+
+
+.LatestActivity .WebHtmlBox > div.WebCon_Inner {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.LatestActivity ul {
+    display: Block;
+    overflow: hidden;
+}
+
+.LatestActivity ul > li {
+    line-height: 14px;
+    cursor: pointer;
+    padding-bottom: 20px;
+    color: #181818;
+}  
+
+.LatestActivity ul > li:hover,
+.LatestActivity ul > li:hover > div.MinorText,
+.LatestActivity ul > li:hover > div.FirstLine:after,
+.LatestActivity ul > li:hover > div.FirstLine.FirstLine {
+    border-color: #0072C6; 
+    color: #0072C6;
+}
+
+.LatestActivity ul > li > div {
+    overflow: hidden;
+    white-space: nowrap;
+    /* margin-bottom: 2px; */
+    margin-left: 22px;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.LatestActivity ul > li > div.FirstLine.FirstLine {
+    font-size: 14px;
+    color: #8E8A87;
+}
+.LatestActivity ul > li > div.MainText{
+    font-weight: 500;
+}
+
+.LatestActivity ul > li > div.MinorText {
+    /* Light grey smaller text */
+    font-size: 14px;
+    color: #8E8A87;
+}
+
+.LatestActivity ul > li > div.FirstLine:before {
+    /* vertical left border */
+    content: ' ';
+    position: absolute;
+    background: transparent;
+    height: 80px;
+    border-left: solid 1px #8E8A87;
+    left: 12px;
+    margin-top: 5px;
+}
+
+.LatestActivity ul > li:last-child > div.FirstLine:before {
+    border: none;
+}
+
+.LatestActivity ul > li > div.FirstLine:after {
+    /* circle symbol */
+    content: ' ';
+    position: absolute;
+    background: #FFFFFF;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: solid 1px #8E8A87;
+    left: 7px;
+    margin-top: 3px;
+}
+
+/* Recent List Group  */
+/* - - - - - - - - -  */
+
+.RecentList.WebGroup > .WebCon_Inner {
+    padding: 0px 10px;
+}
+.df-ModeMobile .RecentList.WebGroup > .WebCon_Inner {
+    padding: 0px 0px;
+}
+
+.RecentList .WebHtmlBox > div.WebCon_Inner {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.RecentList ul {
+    display: Block;
+    overflow: hidden;
+    background-color: #F3F3F3;
+    border: 1px solid #E6E6E6;
+}
+
+.RecentList ul > li {
+    cursor: pointer;
+    /* padding-bottom: 10px; */
+    padding-top: 15px;
+    color: #181818;
+    font-size: 15px;
+}  
+
+.RecentList ul > li:last-child {
+    padding-bottom: 15px;
+}
+
+.RecentList ul > li:hover,
+.RecentList ul > li:hover > div:before {
+    border-color: #0072C6; 
+    color: #0072C6;
+}
+
+.RecentList ul > li > div {
+    overflow: hidden;
+    white-space: nowrap;
+    margin-left: 10px;
+}
+
+.RecentList ul > li > div:before {
+    /* Arrow Icon */
+    content: "-";
+    float: left;
+    font-size: 14px;
+    padding-top: 3px;
+    padding-right: 8px;
+    color: #8E8A87;
+}
+
+.WebTagsForm .WebTgf_Tag {
+    background-color: #BABABA;
+}
+
+.WebTagsForm .WebTgf_Focus {
+    background-color: #F4A11E !important;
+}
+
+.df-ModeTablet .WebTagsForm .WebFrm_Prompt:before {
+    top: -28px;
+ }
+ 
+ .WebTagsForm .WebFrm_Prompt:before {
+    top: -29px;
+    content: "8";
+    font-size: 32px;
+    left: -5px;
+ }
+
+ .WebTagsForm .WebFrm_Prompt {
+    max-height: 0;
+ }
+
+.WebTagsForm .WebTgf_CloseTag {
+    color: #B72025;
+}
+
+.Sugg_ControlSuggestion {
+    color: #5C5C5C;
+    background-color: #E6E6E6;
+}
+
+.WebTagsForm .WebDynFrm {
+    padding: 3px 0 3px 4px !important;
+}
+
+/* text selection */
+.WebTagsForm .WebDynFrm::selection { 
+    color: #FFFFFF;
+    background: #0072C6;
+}

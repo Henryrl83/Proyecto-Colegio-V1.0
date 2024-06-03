@@ -1,0 +1,150 @@
+﻿Define cLetter for "TRWAGMYFPDXBNJZSQVHLCKE"
+Define cNumber for "0123456789"
+
+//-------------------------------------------
+Function ValidacionDNI String sDNI Returns Boolean
+    //Convertir en mayúsculas todo lo contenido en la cadena sDNI
+    Move (Uppercase(sDNI)) to sDNI
+    
+    //crea la variable boleana para usarla en la funciones internas de esta función principal
+    Boolean bRet
+   
+    //------------ comprobación de entrada VACÍA
+    If (sDNI="") Begin
+        Send Info_Box "Tienes que introducir algo" "ERROR"
+        Function_Return False
+    End
+
+    //-----------------comprobación de LONGITUD de la cadena
+    Get DNILen sDNI to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "La longitud no es correcta, TIENE QUE TENER 9 DIGITOS" "ERROR"
+        Function_Return False
+    End
+   
+    //-----------------comprobacion de que el último digito es una letra
+    Get DNILastChar sDNI to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "El último digito tiene que ser una LETRA válida" "ERROR"
+        Function_Return False
+    End
+    
+    //------------------comprobación 8 primeros sean digitos
+    Get SinCaracteres sDNI to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "Si es un DNI los 8 primeros dígitos tienen que ser números\nSi es un NIE la primera letra debe ser X, Y,o Z" "ERROR"
+        Function_Return False
+    End
+    
+    //------------------ comprobación de letra correspondiente
+    Get CalcularLetraDNI sDNI to bRet
+    
+        If (not(bRet)) Begin
+        Send Info_Box "El NIF/NIE no es válido" "ERROR"
+        Function_Return False
+        End
+        
+    //--------------------
+     
+    Function_Return True
+End_Function
+
+//-----------------------------------------------longitud del dni introducido
+Function DNILen String sDNI Returns Boolean
+    Integer iLen
+    //-------------
+    Move (Length(sDNI)) to iLen
+    
+    If (iLen <> 9) Begin
+        Function_Return False
+    End
+    //--------------
+    Function_Return True    
+End_Function
+
+
+//---------------------------------------------------última digito letra valida
+Function DNILastChar String sDNI Returns Boolean
+    Integer iCount
+    String sChar sCharCadena
+    
+    Move (Right(sDNI,1)) to sChar
+    For iCount from 1 to (Length(cLetter))
+        Move (Mid(cLetter,1,iCount)) to sCharCadena
+        If (sChar=sCharCadena) Begin
+            Function_Return True            
+        End
+    Loop
+    Function_Return False    
+End_Function
+
+
+//-------------------------------------------------------comprueba si hay letras entre los 8 primeros dígitos
+Function SinCaracteres String sDNI Returns Boolean
+    Integer iCount iCount2
+    String sValue sDig sComprobado
+    Boolean bRet
+
+    Move (Left(sDNI,8)) to sValue    
+    // Convertir X, Y, Z a 0, 1, 2
+        
+    If (Left(sValue, 1) = "X") Begin
+        Move (Replace("X",sValue, "0")) to sValue
+    End
+    If (Left(sValue, 1) = "Y") Begin
+        Move (Replace("Y", sValue, "1")) to sValue
+    End
+    If (Left(sValue, 1) = "Z") Begin
+        Move (Replace("Z", sValue, "2")) to sValue
+    End
+    //------------------contador para ver si hay caracteres en la cadena numerica
+    For iCount from 1 to (Length(sValue))
+        Move False to bRet
+        Move (Mid(sValue, 1, iCount)) to sDig
+        For iCount2 from 1 to (Length(cNumber))
+            Move (Mid(cNumber, 1, iCount2)) to sComprobado
+            If (sDig=sComprobado) Begin
+                Move True to bRet
+            End
+        Loop
+        If (not(bRet)) Begin
+            Function_Return False        
+        End
+    Loop
+    
+    Function_Return True    
+End_Function
+
+
+//-------------------------------------------------------calcula letra DNI
+Function CalcularLetraDNI String sDNI Returns Boolean
+    Integer iDNI iResto
+    String sLetter sChar
+    
+    // Convertir X, Y, Z a 0, 1, 2        
+    If (Left(sDNI, 1) = "X") Begin
+        Move (Replace("X",sDNI, "0")) to sDNI
+    End
+    If (Left(sDNI, 1) = "Y") Begin
+        Move (Replace("Y", sDNI, "1")) to sDNI
+    End
+    If (Left(sDNI, 1) = "Z") Begin
+        Move (Replace("Z", sDNI, "2")) to sDNI
+    End
+
+    //-----------------------------------------asignar la letra al resto de la división
+    Move (Right(sDNI, 1)) to sChar 
+    Move (Left(sDNI,8)) to iDNI
+    Move (Mod(iDNI, 23)) to iResto
+    Move (Mid(cLetter, 1, (iResto + 1))) to sLetter
+    
+    // Asignar la letra correspondiente
+     If (sChar = sLetter) Begin
+        Function_Return True
+    End
+  
+    Function_Return False
+End_Function

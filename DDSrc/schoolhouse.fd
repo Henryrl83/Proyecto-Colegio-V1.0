@@ -1,0 +1,12 @@
+#REPLACE FILE1 schoolhouse
+#REPLACE schoolhouse.File_Number |CI1
+#REPLACE schoolhouse.ID |FN1,1
+#REPLACE schoolhouse.Name |FS1,2
+#REPLACE schoolhouse.County |FS1,3
+#REPLACE schoolhouse.City |FS1,4
+#REPLACE schoolhouse.Address |FS1,5
+#REPLACE schoolhouse.ZipCode |FS1,6
+#REPLACE schoolhouse.Email |FS1,7
+#REPLACE schoolhouse.Notes |FS1,8
+#REPLACE schoolhouse.ModifiedTime |FM1,9
+#REPLACE schoolhouse.CreatedTime |FM1,10

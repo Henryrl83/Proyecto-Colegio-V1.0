@@ -1,0 +1,205 @@
+﻿// C:\DataFlex Projects\ColegioAppWeb\AppSrc\SelectStudent.wo
+// SelectStudent
+//
+
+Use cWebView.pkg
+Use cWebList.pkg
+Use cWebMenuGroup.pkg
+Use cWebMenuItem.pkg
+Use cWebColumnButton.pkg
+Use cWebColumn.pkg
+Use Student.wo
+
+Use cschoolhouseDataDictionary.dd
+Use cstudentDataDictionary.dd
+
+Object oSelectStudent is a cWebView
+    Set psCaption to "ALUMNOS"
+    Set peWebViewStyle to wvsDrilldown
+    Set peViewType to vtSelect
+    Set piColumnCount to 12
+    Set pbShowCaption to True
+    Set piMaxWidth to 1024
+
+    Object oschoolhouse_DD is a cschoolhouseDataDictionary
+    End_Object 
+
+    Object ostudent_DD is a cstudentDataDictionary
+        Set DDO_Server To oschoolhouse_DD
+    End_Object 
+
+    Set Main_DD To ostudent_DD
+    Set Server  To ostudent_DD
+
+
+    Object oList is a cWebList
+        Set piColumnSpan to 12
+        Set psCSSClass to "MobileList"
+        Set pbServerOnRowClick to True
+        Set pbFillHeight to True
+        Set pbShowHeader to False
+        Set piSortColumn to 0
+
+        /*Object ostudentID is a cWebColumn
+            Entry_Item student.ID
+            Set psCaption to "student.ID"
+            Set piWidth to 124
+        End_Object*/
+
+        Object oDetailButton is a cWebColumnButton
+            Set psCaption to "btn"
+            Set piWidth to 45
+            Set pbFixedWidth to True
+            Set pbResizable to False
+            Set piListRowSpan to 8
+            Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
+            Set peAlign to alignRight
+            Set pbShowCaption to False
+
+            WebRegisterPath ntNavigateForward oStudent
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                Move True to NavigateData.bReadOnly
+            End_Procedure
+
+        End_Object 
+
+        Object ostudentName is a cWebColumn
+            Entry_Item student.Name
+            Set psCaption to "student.Name"
+            Set piWidth to 192
+        End_Object 
+
+        Object ostudentLastName is a cWebColumn
+            Entry_Item student.LastName
+            Set psCaption to "student.LastName"
+            Set piWidth to 282
+        End_Object 
+
+        Object ostudentDNI is a cWebColumn
+            Entry_Item student.DNI
+            Set psCaption to "student.DNI"
+            Set piWidth to 205
+        End_Object 
+
+        Object ostudentEmail is a cWebColumn
+            Entry_Item student.Email
+            Set psCaption to "student.Email"
+            Set piWidth to 319
+        End_Object 
+
+        /*Object oschoolhouseID is a cWebColumn
+            Entry_Item schoolhouse.ID
+            Set psCaption to "schoolhouse.ID"
+            Set piWidth to 124
+            Set pbNewLine to True
+        End_Object*/ 
+
+        Object oschoolhouseName is a cWebColumn
+            Entry_Item schoolhouse.Name
+            Set psCaption to "schoolhouse.Name"
+            Set piWidth to 2243
+            Set pbNewLine to True
+        End_Object 
+
+        Object oschoolhouseEmail is a cWebColumn
+            Entry_Item schoolhouse.Email
+            Set psCaption to "schoolhouse.Email"
+            Set piWidth to 2182
+        End_Object 
+
+        WebRegisterPath ntNavigateForward oStudent
+
+        Procedure OnRowClick String sRowId
+            tWebNavigateData NavigateData
+            Get GetNavigateData to NavigateData
+
+            Case Begin
+                Case (NavigateData.eNavigateType = nfFromParent)
+                    Send NavigateForward of oStudent Self
+                    Case Break
+
+                Case (NavigateData.eNavigateType = nfFromChild)
+                    Send NavigateClose Self
+                    Case Break
+
+                Case (NavigateData.eNavigateType = nfFromMain)
+                    Send NavigateClose Self
+                    Case Break
+
+                Case Else // must be nfUndefined
+                    Send NavigateForward of oStudent Self
+
+            Case End
+        End_Procedure
+
+        Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+            Move True to NavigateData.bReadOnly
+        End_Procedure
+
+    End_Object 
+
+    Object oActionGroup is a cWebMenuGroup
+
+        Object oSearch is a cWebMenuItem
+            Set psCSSClass to "WebPromptMenuItem"
+            Set psCaption to "Buscar"
+
+            Procedure OnClick
+                Send Search of oList
+            End_Procedure
+
+        End_Object 
+
+        Object oNewButton is a cWebMenuItem
+            Set psCSSClass to "WebClearMenuItem"
+            Set psCaption to "Nuevo"
+
+            WebRegisterPath ntNavigateForward oStudent
+
+            Procedure OnClick
+                Send NavigatePath
+            End_Procedure
+
+            Procedure OnGetNavigateForwardData tWebNavigateData ByRef NavigateData Handle hoToView
+                Move True to NavigateData.bNewRecord
+            End_Procedure
+
+        End_Object 
+    End_Object 
+
+    Procedure OnNavigateForward tWebNavigateData NavigateData Integer hoInvokingView Integer hoInvokingObject
+        WebSet pbRender of oNewButton to True
+        WebSet pbRender of oDetailButton to True
+
+        Case Begin
+            Case (NavigateData.eNavigateType = nfFromParent)
+                // If from parent, this is a constrained drill down
+                // If Row select does main-zoom we don't need this
+                WebSet pbRender of oDetailButton to False
+                Case Break
+
+            Case (NavigateData.eNavigateType = nfFromChild)
+                // If from child, this is a probably a parent lookup from a Zoom
+                Case Break
+
+            Case (NavigateData.eNavigateType = nfFromMain)
+                // If from main, this is a probably a main-file lookup from a Zoom
+                WebSet pbRender of oDetailButton to False
+                Case Break
+
+            Case Else // must be nfUndefined
+                // This may be the start of a drilldown query or this may be used for some kind of custom query.
+                // If Row select does main-zoom we don't need this
+                WebSet pbRender of oDetailButton to False
+
+        Case End
+
+    End_Procedure
+
+
+End_Object 

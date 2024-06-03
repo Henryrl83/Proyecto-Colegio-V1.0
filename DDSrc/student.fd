@@ -1,0 +1,15 @@
+#REPLACE FILE2 student
+#REPLACE student.File_Number |CI2
+#REPLACE student.ID |FN2,1
+#REPLACE student.Name |FS2,2
+#REPLACE student.LastName |FS2,3
+#REPLACE student.DNI |FS2,4
+#REPLACE student.Email |FS2,5
+#REPLACE student.County |FS2,6
+#REPLACE student.City |FS2,7
+#REPLACE student.Address |FS2,8
+#REPLACE student.Birthday |FD2,9
+#REPLACE student.SchoolHouseID |FN2,10
+#REPLACE student.Notes |FS2,11
+#REPLACE student.ModifiedTime |FM2,12
+#REPLACE student.CreatedTime |FM2,13

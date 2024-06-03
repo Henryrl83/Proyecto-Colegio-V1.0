@@ -1,0 +1,484 @@
+@charset "UTF-8";
+
+@font-face {
+  font-family: "dataflex-mobile";
+  src:url("dataflex-mobile.eot");
+  src:url("dataflex-mobile.eot?#iefix") format("embedded-opentype"),
+    url("dataflex-mobile.woff") format("woff"),
+    url("dataflex-mobile.ttf") format("truetype"),
+    url("dataflex-mobile.svg#dataflex-mobile") format("svg");
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+[data-icon]:before {
+  font-family: "dataflex-mobile" !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+  font-family: "dataflex-mobile" !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-df-add-outlined:before {
+  content: "\61";
+}
+.icon-df-arrowsmalldown-outlined:before {
+  content: "\62";
+}
+.icon-df-arrowsmallleft-outlined:before {
+  content: "\63";
+}
+.icon-df-arrowsmallright-outlined:before {
+  content: "\64";
+}
+.icon-df-arrowsmallrightskewed-outlined:before {
+  content: "\65";
+}
+.icon-df-arrowsmallup-outlined:before {
+  content: "\66";
+}
+.icon-df-attachment-outlined:before {
+  content: "\67";
+}
+.icon-df-calendar-outlined:before {
+  content: "\68";
+}
+.icon-df-check-outlined:before {
+  content: "\69";
+}
+.icon-df-chevrondown-outlined:before {
+  content: "\6a";
+}
+.icon-df-chevronfatdown-outlined:before {
+  content: "\6b";
+}
+.icon-df-chevronfatleft-outlined:before {
+  content: "\6c";
+}
+.icon-df-chevronfatright-outlined:before {
+  content: "\6d";
+}
+.icon-df-chevronfatup-outlined:before {
+  content: "\6e";
+}
+.icon-df-chevronleft-outlined:before {
+  content: "\6f";
+}
+.icon-df-chevronright-outlined:before {
+  content: "\70";
+}
+.icon-df-chevronup-outlined:before {
+  content: "\71";
+}
+.icon-df-clear-outlined:before {
+  content: "\72";
+}
+.icon-df-close-outlined:before {
+  content: "\73";
+}
+.icon-df-completed-outlined:before {
+  content: "\74";
+}
+.icon-df-create-outlined:before {
+  content: "\75";
+}
+.icon-df-customers-outlined:before {
+  content: "\76";
+}
+.icon-df-dashboard-outlined:before {
+  content: "\77";
+}
+.icon-df-delete-outlined:before {
+  content: "\78";
+}
+.icon-df-demo-outlined:before {
+  content: "\79";
+}
+.icon-df-document-document:before {
+  content: "\7a";
+}
+.icon-df-edit-outlined:before {
+  content: "\41";
+}
+.icon-df-file-outlined:before {
+  content: "\42";
+}
+.icon-df-files-outlined:before {
+  content: "\43";
+}
+.icon-df-find-outlined:before {
+  content: "\44";
+}
+.icon-df-findfirst-outlined:before {
+  content: "\45";
+}
+.icon-df-findlast-outlined:before {
+  content: "\46";
+}
+.icon-df-findnext-outlined:before {
+  content: "\47";
+}
+.icon-df-findprevious-outlined:before {
+  content: "\48";
+}
+.icon-df-folderclosed-outlined:before {
+  content: "\49";
+}
+.icon-df-folderopen-outlined:before {
+  content: "\4a";
+}
+.icon-df-goback-outlined:before {
+  content: "\4b";
+}
+.icon-df-goforward-outlined:before {
+  content: "\4c";
+}
+.icon-df-info-outlined:before {
+  content: "\4d";
+}
+.icon-df-list-outlined:before {
+  content: "\4e";
+}
+.icon-df-menu-outlined:before {
+  content: "\50";
+}
+.icon-df-minus-outlined:before {
+  content: "\51";
+}
+.icon-df-orders-outlined:before {
+  content: "\52";
+}
+.icon-df-print-outlined:before {
+  content: "\53";
+}
+.icon-df-products-outlined:before {
+  content: "\54";
+}
+.icon-df-recordadd-outlined:before {
+  content: "\55";
+}
+.icon-df-recordlookup-outlined:before {
+  content: "\56";
+}
+.icon-df-recordremove-outlined:before {
+  content: "\57";
+}
+.icon-df-remove-outlined:before {
+  content: "\58";
+}
+.icon-df-report-outlined:before {
+  content: "\59";
+}
+.icon-df-salesperson-outlined:before {
+  content: "\5a";
+}
+.icon-df-save-outlined:before {
+  content: "\30";
+}
+.icon-df-settings-outlined:before {
+  content: "\31";
+}
+.icon-df-submenuhorizontal-outlined:before {
+  content: "\32";
+}
+.icon-df-submenuvertical-outlined:before {
+  content: "\33";
+}
+.icon-df-theme-outlined:before {
+  content: "\34";
+}
+.icon-df-upload-outlined:before {
+  content: "\35";
+}
+.icon-df-user-outlined:before {
+  content: "\36";
+}
+.icon-df-add-filled:before {
+  content: "\37";
+}
+.icon-df-arrowsmalldown-filled:before {
+  content: "\38";
+}
+.icon-df-arrowsmallleft-filled:before {
+  content: "\39";
+}
+.icon-df-arrowsmallright-filled:before {
+  content: "\21";
+}
+.icon-df-arrowsmallrightskewed-filled:before {
+  content: "\22";
+}
+.icon-df-arrowsmallup-filled:before {
+  content: "\23";
+}
+.icon-df-attachment-filled:before {
+  content: "\24";
+}
+.icon-df-check-filled:before {
+  content: "\26";
+}
+.icon-df-chevrondown-filled:before {
+  content: "\27";
+}
+.icon-df-chevronfatdown-filled:before {
+  content: "\28";
+}
+.icon-df-chevronfatleft-filled:before {
+  content: "\29";
+}
+.icon-df-chevronfatright-filled:before {
+  content: "\2a";
+}
+.icon-df-chevronfatup-filled:before {
+  content: "\2b";
+}
+.icon-df-chevronleft-filled:before {
+  content: "\2c";
+}
+.icon-df-chevronright-filled:before {
+  content: "\2d";
+}
+.icon-df-chevronup-filled:before {
+  content: "\2e";
+}
+.icon-df-clear-filled:before {
+  content: "\2f";
+}
+.icon-df-close-filled:before {
+  content: "\3a";
+}
+.icon-df-completed-filled:before {
+  content: "\3b";
+}
+.icon-df-create-filled:before {
+  content: "\3c";
+}
+.icon-df-customers-filled:before {
+  content: "\3d";
+}
+.icon-df-dashboard-filled:before {
+  content: "\3e";
+}
+.icon-df-delete-filled:before {
+  content: "\3f";
+}
+.icon-df-demo-filled:before {
+  content: "\40";
+}
+.icon-df-document-filled:before {
+  content: "\5b";
+}
+.icon-df-edit-filled:before {
+  content: "\5d";
+}
+.icon-df-file-filled:before {
+  content: "\5e";
+}
+.icon-df-files-filled:before {
+  content: "\5f";
+}
+.icon-df-find-filled:before {
+  content: "\60";
+}
+.icon-df-findfirst-filled:before {
+  content: "\7b";
+}
+.icon-df-findlast-filled:before {
+  content: "\7c";
+}
+.icon-df-findnext-filled:before {
+  content: "\7d";
+}
+.icon-df-findprevious-filled:before {
+  content: "\7e";
+}
+.icon-df-folderclosed-filled:before {
+  content: "\e018";
+}
+.icon-df-folderopen-filled:before {
+  content: "\e000";
+}
+.icon-df-goback-filled:before {
+  content: "\e001";
+}
+.icon-df-goforward-filled:before {
+  content: "\e002";
+}
+.icon-df-info-filled:before {
+  content: "\e003";
+}
+.icon-df-list-filled:before {
+  content: "\e004";
+}
+.icon-df-menu-filled:before {
+  content: "\e006";
+}
+.icon-df-minus-filled:before {
+  content: "\e007";
+}
+.icon-df-orders-filled:before {
+  content: "\e008";
+}
+.icon-df-print-filled:before {
+  content: "\e009";
+}
+.icon-df-products-filled:before {
+  content: "\e00a";
+}
+.icon-df-recordadd-filled:before {
+  content: "\e00b";
+}
+.icon-df-recordlookup-filled:before {
+  content: "\e00c";
+}
+.icon-df-recordremove-filled:before {
+  content: "\e00d";
+}
+.icon-df-remove-filled:before {
+  content: "\e00e";
+}
+.icon-df-report-filled:before {
+  content: "\e00f";
+}
+.icon-df-salesperson-filled:before {
+  content: "\e010";
+}
+.icon-df-save-filled:before {
+  content: "\e011";
+}
+.icon-df-settings-filled:before {
+  content: "\e012";
+}
+.icon-df-submenuhorizontal-filled:before {
+  content: "\e013";
+}
+.icon-df-submenuvertical-filled:before {
+  content: "\e014";
+}
+.icon-df-theme-filled:before {
+  content: "\e015";
+}
+.icon-df-upload-filled:before {
+  content: "\e016";
+}
+.icon-df-user-filled:before {
+  content: "\e017";
+}
+.icon-df-lookup-v2-outlined:before {
+  content: "\4f";
+}
+.icon-df-lookup-v2-filled:before {
+  content: "\e005";
+}
+.icon-df-calendar-v2-filled:before {
+  content: "\25";
+}
+.icon-df-uncompleted-outlined:before {
+  content: "\5c";
+}
+.icon-df-unsaved-outlined:before {
+  content: "\e019";
+}
+.icon-df-uncompleted-filled:before {
+  content: "\e01a";
+}
+.icon-df-unsaved-filled:before {
+  content: "\e01b";
+}
+.icon-df-email-outlined:before {
+  content: "\e01c";
+}
+.icon-df-help-outlined:before {
+  content: "\e01d";
+}
+.icon-df-sales-person-outlined:before {
+  content: "\e01e";
+}
+.icon-df-email-filled:before {
+  content: "\e01f";
+}
+.icon-df-help-filled:before {
+  content: "\e020";
+}
+.icon-df-sales-person-filled:before {
+  content: "\e021";
+}
+.icon-df-check2-filled:before {
+  content: "\e022";
+}
+.icon-df-check2-outlined:before {
+  content: "\e023";
+}
+.icon-df-exit:before {
+  content: "\e024";
+}
+.icon-df-download-outlined:before {
+  content: "\e027";
+}
+.icon-df-align-center:before {
+  content: "\e028";
+}
+.icon-df-align-left:before {
+  content: "\e029";
+}
+.icon-df-align-right:before {
+  content: "\e02a";
+}
+.icon-df-bold:before {
+  content: "\e02b";
+}
+.icon-df-file-excel:before {
+  content: "\e02c";
+}
+.icon-df-header-active:before {
+  content: "\e02d";
+}
+.icon-df-header-unactive:before {
+  content: "\e02e";
+}
+.icon-df-regular:before {
+  content: "\e02f";
+}
+.icon-df-save:before {
+  content: "\e030";
+}
+.icon-df-save-all:before {
+  content: "\e031";
+}
+.icon-df-thin:before {
+  content: "\e032";
+}
+.icon-df-undo:before {
+  content: "\e033";
+}
+.icon-df-refresh:before {
+  content: "\e034";
+}
+.icon-df-save-floppy:before {
+  content: "\e026";
+}
+.icon-df-save-as-floppy:before {
+  content: "\e025";
+}
+.icon-df-save-as:before {
+  content: "\e035";
+}

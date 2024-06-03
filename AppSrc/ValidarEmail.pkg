@@ -1,0 +1,358 @@
+﻿Use cJsonHttpTransfer.pkg
+
+Define cValidos for "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789._-"
+
+
+Function ValidarEmail String sEmail Returns Boolean
+    Boolean bRet
+    Move (Uppercase(sEmail)) to sEmail
+    Move (Trim(sEmail)) to sEmail
+//-----------------------------------------------------------------------------------------------    
+    
+//-------------------------------------detecta cadena vacia    
+    If (sEmail="")Begin
+        Send Info_Box "Escribe algo miarma" "ERROR"
+        Function_Return False
+    End
+    //--------------
+    
+    
+//-------------------------------------valiada total de caracteres < 256
+    If (Length(sEmail)>=256)Begin
+        Send Info_Box "La extensión total no debe superar los 256 caracteres" "ERROR"
+        Function_Return False
+    End
+    //-------------
+
+
+//------------------------------------NO comienza ni termina con punto
+    If (Left(sEmail,1)="." or Right(sEmail,1)=".")Begin
+        Send Info_Box "Un Email no puede empezar ni terminar en punto '.'" "Error"
+        Function_Return False
+    End
+    //------------
+    
+//------------------------------------Verificar puntos CONSECUTIVOS
+    If (Pos("..", sEmail) > 0) Begin
+        Send Info_Box "No puede haber nunca dos o más puntos '.' seguidos" "ERROR"
+        Function_Return False
+    End
+    //---------
+
+//------------------------------------Verificar si el email contiene "@" correctamente
+    Get ValidarArroba sEmail to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "El email debe contener uno y solo un @" "ERROR"
+        Function_Return False
+    End
+    //----------
+    
+//-------------------------------------Verificar si la parte LOCAL tiene entre 1 y 64 caracteres    
+    Get LongitudParteLocal sEmail to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "La longitud antes del @ no es válida\nTiene que tener entre 1 y 64 caracteres" "ERROR"
+        Function_Return False
+    End
+    //---------
+    
+//-------------------------------------Verificar si la parte DOMINIO tiene entre 4 y 255 caracteres
+    Get LongitudParteDominio sEmail to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "La longitud DESPUES del @ no es válida\ntiene que tener entre 4 y 255 caracteres\nAcabado en punto y la extensión" "ERROR"
+        Function_Return False
+    End
+    //---------
+    
+//-------------------------------------Verificar primer digito de cada parte Alfanumerico
+    Get PrimerAlfanumerico sEmail to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "El PRIMER CARACTER de la parte LOCAL y de la parte despues del @\ntiene que ser LETRA o NÚMERO" "ERROR"
+        Function_Return False
+    End
+
+//------------------------------------verificar que todos los digitos sean válidos
+    Get DigitosValidos sEmail to bRet
+    
+    If (not(bRet))Begin
+        Send Info_Box "Los unicos simbolos válidos son: .   _  - " "ERROR"
+        Function_Return False
+    End
+    //----------
+    
+//----------------------------------verificar la longitud de la extensión
+    Get Extension sEmail to bRet
+    
+    If (not(bRet)) Begin
+        Send Info_Box "la extension debe estar entre 2 y 4 caracteres" "ERROR"
+        Function_Return False
+    End
+    //---------
+    
+    
+//---------------------------------verificar el Email desde la API (NEUTRINO)
+    Get ValidacionAPI sEmail to bRet
+
+    Function_Return bRet
+
+//---------------------------------------------------------------------------------------------------
+    Function_Return True
+End_Function
+
+//----------------------------------Función para verificar si el email contiene al menos y solo un "@".
+Function ValidarArroba String sEmail Returns Boolean
+    Integer iCount iArrobaCount
+    Boolean bRet
+    
+    // Inicializar el contador de "@" a cero
+    Move 0 to iArrobaCount
+    
+    // Contar el número de "@" en el email
+    For iCount from 1 to (Length(sEmail))
+        If (Mid(sEmail, 1, iCount) = "@") Begin
+            // Incrementar el contador de "@" si se encuentra uno
+            Increment iArrobaCount
+        End
+    Loop
+    
+    // Verificar si hay exactamente un "@" en el email
+    If (iArrobaCount = 1) Begin
+        // Si hay exactamente un "@" devuelve verdadero
+        Move True to bRet
+    End
+    Else Begin
+        // Si hay mas de un "@" devolver falso
+        Move False to bRet
+    End
+    
+    // Retornar el resultado de la validación, si solo hay un @ devuelve verdadero.
+    Function_Return bRet
+End_Function
+
+//----------------------------------Función para verificar la longitud de la parte local del email.
+Function LongitudParteLocal String sEmail Returns Boolean
+    Integer iPos
+    String sParteLocal
+    Boolean bRet
+
+    // Encontrar la posición del "@" en el correo electrónico
+    Move (Pos("@", sEmail)) to iPos
+    
+    // Extraer la parte local del correo electrónico
+    Move (Left(sEmail, iPos - 1)) to sParteLocal
+    
+    // Verificar si la longitud de la parte local es válida
+    If (Length(sParteLocal) >= 1 and Length(sParteLocal) <= 64) Begin
+        // Si la longitud es correcta, devolver verdadero
+        Move True to bRet
+    End
+    Else Begin
+        // Si la longitud no es válida, devolver falso
+        Move False to bRet
+    End
+    
+    Function_Return bRet
+End_Function
+
+//----------------------------------Función para verificar la longitud de la parte de DOMINIO del email.
+Function LongitudParteDominio String sEmail Returns Boolean
+    Integer iPos iPunto
+    String sParteDominio
+    Boolean bRet
+
+    // Encontrar la posición del "@" en el correo electrónico
+    Move (Pos("@", sEmail)) to iPos
+    
+    // Extraer la parte de dominio del correo electrónico
+    Move (Mid(sEmail, 255, iPos + 1)) to sParteDominio
+    Move (RightPos(".", sParteDominio)) to iPunto
+    
+    // verificar si antes del el ultimo punto hay mas de 4 caracteres
+    If (iPunto < 5) Begin
+        Move False to bRet
+        Function_Return bRet
+    End
+    
+    // Verificar si la longitud de la parte de dominio es válida
+    If (Length(sParteDominio) >= 4 and Length(sParteDominio) <= 255) Begin
+        // Si la longitud es válida, devolver verdadero
+        Move True to bRet
+    End
+    Else Begin
+        // Si la longitud no es válida, devolver falso
+        Move False to bRet
+    End
+    
+    // Retornar el resultado de la validación
+    Function_Return bRet
+End_Function
+
+
+//------------------------------------------------verificar la extension del dominio
+Function Extension String sEmail Returns Boolean
+    Boolean bRet
+    String sParteDominio sExten
+    Integer iPos iPunto iLongExten
+    
+    // Encontrar la posición del "@" en el correo electrónico
+    Move (Pos("@", sEmail)) to iPos
+    // Extraer la parte de dominio del correo electrónico
+    Move (Mid(sEmail, 255, iPos + 1)) to sParteDominio
+    //---------esta sentencia me dice cual el es ultimo punto de la cadena
+    Move (RightPos(".", sParteDominio)) to iPunto
+    
+    // Extraer la parte de la extensión del correo electrónico
+    Move (Mid(sParteDominio, 5, iPunto+1)) to sExten
+    
+    // Calcular la longitud total de la extensión
+    Move (Length(sExten)) to iLongExten
+    
+    // Verificar si la longitud de la parte del dominio del correo electrónico es superior a 2
+    Move True to bRet
+    If (iLongExten < 2 or iLongExten > 4) Begin
+        Move False to bRet
+        Function_Return bRet
+    End
+    
+    Function_Return bRet    
+End_Function
+
+//----------------------------------Función para verificar que la parte local y la parte de dominio comiencen por letra o dígito
+Function PrimerAlfanumerico String sEmail Returns Boolean
+    Boolean bRet
+    Integer iCount iCount2 iPos
+    String sPrimerDL sPrimerDD sChar sChar2
+
+    //iniciamos el boleano como falso
+    Move False to bRet
+        
+    //declaramos el primer digito de cada parte
+    Move (Left(sEmail,1)) to sPrimerDL
+    
+    Move (Pos("@", sEmail)) to iPos
+    Move (Mid(sEmail, 1, iPos + 1)) to sPrimerDD
+    
+    //buscamos que el primer digito de la parte LOCAL coincida con la constante quitando los simbolos 
+    For iCount from 1 to (Length(cValidos)-3)
+        Move (Mid(cValidos, 1, iCount)) to sChar
+            If (sChar = sPrimerDL)Begin
+                Move True to bRet  
+            End
+            If (bRet) Begin
+               
+    //buscamos que el primer digito de la parte DOMINIO coincida con la constante quitando los simbolos
+            Move False to bRet
+        For iCount2 from 1 to (Length(cValidos)-3)
+            Move (Mid(cValidos, 1, iCount2)) to sChar2
+                If (sChar2 = sPrimerDD)Begin
+                    Move True to bRet
+                    Function_Return bRet
+                 End
+         Loop    
+                
+            End      
+    Loop
+        Function_Return bRet
+End_Function
+
+
+//------------------------------------------Función para verificar que el resto de digitos sean válidos
+Function DigitosValidos String sEmail Returns Boolean
+    Boolean bRet
+    Integer iPos iPunto iCount iCount2 iCount3 iCount4
+    String sParteLocal sParteDominio sLocalChar sLocalChar2 sDominChar sDominChar2
+    
+    //----------------encontrar el arroba y dividir en partes
+    Move (Pos("@", sEmail)) to iPos
+    
+    //----------extraemos la parte local
+    Move (Left(sEmail, iPos - 1)) to sParteLocal
+    
+    //---------extraemos la parte dominio
+    Move (Mid(sEmail, 255, iPos + 1)) to sParteDominio
+
+
+    //---------------------------------verificar la parte LOCAL
+    For iCount from 1 to (Length(sParteLocal))
+        Move (Mid(sParteLocal, 1, iCount)) to sLocalChar
+        Move False to bRet
+        For iCount2 from 1 to (Length(cValidos))
+            Move (Mid(cValidos, 1, iCount2)) to sLocalChar2
+            If (sLocalChar = sLocalChar2) Begin
+                Move True to bRet
+            End
+        Loop
+        If (not (bRet)) Begin
+            Function_Return bRet
+        End
+    Loop
+
+
+    //------------------------------verificar la parte DOMINIO
+    For iCount3 from 1 to (Length(sParteDominio))
+        Move (Mid(sParteDominio, 1, iCount3)) to sDominChar
+        Move False to bRet
+        For iCount4 from 1 to (Length(cValidos))
+            Move (Mid(cValidos, 1, iCount4)) to sDominChar2
+            If (sDominChar = sDominChar2) Begin
+                Move True to bRet
+            End
+        Loop
+        If (not (bRet)) Begin
+            Function_Return bRet
+        End
+    Loop
+
+    Function_Return bRet
+End_Function
+
+//----------------------------------------------Función para validar el email desde una api (Neutrino)
+Function ValidacionAPI String sEmail Returns Boolean
+    Handle hoHttp hoJsonRequest hoResponse
+    Boolean bRet bIsnull
+    String sResponse sResponse2
+    
+    //Documentación de referencia: https://www.neutrinoapi.com/api/email-validate/
+    
+    Get Create (RefClass(cJsonHttpTransfer)) to hoHttp
+    Get Create (RefClass(cJsonObject))       to hoJsonRequest
+    
+    Send InitializeJsonType of hoJsonRequest jsonTypeObject
+    
+    Send SetMemberValue of hoJsonRequest "email"        jsonTypeString  sEmail
+    Send SetMemberValue of hoJsonRequest "fix-typos"    jsonTypeBoolean False
+    
+    Get AddHeader of hoHttp "User-ID" "Henryrl83_" to bRet
+    Get AddHeader of hoHttp "API-Key" "bULS6bwuyVRWWKPZjkKPiU5ohIXaU7IQdAZVpr3rReyaotcF" to bRet
+    
+    Get HttpPostJson of hoHttp "neutrinoapi.net" "/email-validate" hoJsonRequest (&bRet) to hoResponse
+    
+    
+    If (bRet and (ResponseStatusCode(hoHttp) = 200)) Begin
+        Send Info_Box (Stringify(hoResponse)) "La respuesta de NEUTRINO"
+        If (HasMember(hoResponse,"valid") and HasMember(hoResponse, "is-disposable")) Begin
+            Get IsMemberOfJsonType of hoResponse "valid" jsonTypeNull to bIsnull
+            Get IsMemberOfJsonType of hoResponse "is-disposable" jsonTypeNull to bIsnull
+            If (bIsnull) Begin
+                Function_Return False
+            End
+            Else Begin
+                Get MemberValue of hoResponse "valid" to sResponse
+                Get MemberValue of hoResponse "is-disposable" to sResponse2
+                If ((sResponse = "1") and (sResponse2 = "0")) Begin
+                    Function_Return True
+                End
+                Else Begin
+                    Send Info_Box "La sintaxis es correcta\nEstá bien escrito\nPero el email no está verificado por NEUTRINO"
+                    Function_Return False
+                End
+            End
+        End
+        Move True to bRet
+    End
+    
+    Function_Return bRet
+End_Function

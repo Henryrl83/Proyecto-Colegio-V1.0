@@ -1,0 +1,76 @@
+[Workspace]
+CurrentProject=WebApp.src
+Location=C:\DataFlex Projects\ColegioAppWeb\IdeSrc\enriq_Studio.dsk
+CreateNew=3
+[TabWindows]
+GroupCount=1
+HorizontalGroups=1
+[TabGroup0]
+GroupSize=40
+SelectedTab=0
+[Window0]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\SelectStudent.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=111
+CursorColumn=28
+TabIndex=3
+TabGroup=0
+[Window1]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\SelectSchoolHouse.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=115
+CursorColumn=0
+TabIndex=4
+TabGroup=0
+[Window2]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\WebApp.src
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=89
+CursorColumn=35
+TabIndex=1
+TabGroup=0
+[Window3]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\SchoolHouse.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=93
+CursorColumn=0
+TabIndex=2
+TabGroup=0
+[Window4]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\Login.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=0
+CursorColumn=0
+TabIndex=5
+TabGroup=0
+[Window5]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\Dashboard.wo
+ViewType=1
+Top=26
+Left=0
+Bottom=663
+Right=1317
+CursorLine=55
+CursorColumn=4
+TabIndex=0
+TabGroup=0

@@ -1,0 +1,68 @@
+﻿Use DataDict.pkg
+
+//importar el archivo donde tenemos la funcion principal de validacion
+Use ValidarEmail.pkg
+
+Open schoolhouse
+Open student
+
+Object oValidationCounty is a DescriptionValidationTable
+    Procedure Fill_List
+        Forward Send Fill_List
+        Send Add_Table_Value "Huelva" "HUELVA"
+        Send Add_Table_Value "Sevilla" "SEVILLA"
+        Send Add_Table_Value "Cádiz" "CÁDIZ"
+        Send Add_Table_Value "Málaga" "MÁLAGA"
+        Send Add_Table_Value "Granada" "GRANADA"
+        Send Add_Table_Value "Córdoba" "CÓRDOBA"
+        Send Add_Table_Value "Almería" "ALMERÍA"
+        Send Add_Table_Value "Jaén" "JAÉN"
+    End_Procedure
+End_Object
+
+//registrar la funciones que luego usaremos para validar email
+Register_Function zValidar_Email Integer iField Returns Boolean
+
+Class cschoolhouseDataDictionary is a DataDictionary
+    
+    Procedure Construct_Object
+        Forward Send Construct_Object
+        Set Main_File to schoolhouse.File_Number
+
+        Set Add_Client_File to student.File_Number
+
+        Set Foreign_Field_Option DD_KEYFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_KEYFIELD DD_FINDREQ to True
+        Set Foreign_Field_Option DD_INDEXFIELD DD_NOPUT to True
+        Set Foreign_Field_Option DD_DEFAULT DD_DISPLAYONLY to True
+
+        Set Field_Option Field schoolhouse.ID DD_DISPLAYONLY to True
+        Set Key_Field_State Field schoolhouse.ID to True
+
+        Set Field_Value_Table Field schoolhouse.County to oValidationCounty
+        Set Field_Class_Name Field schoolhouse.County to "Combo"
+
+        Set Field_Option Field schoolhouse.ModifiedTime DD_DISPLAYONLY to True
+
+        Set Field_Option Field schoolhouse.CreatedTime DD_DISPLAYONLY to True
+
+//una vez verificado que el email es correcto se almacena en el campo correspondiente de la bbdd                
+        Set Field_Validate_msg Field schoolhouse.Email to get_zValidar_Email
+
+    End_Procedure
+
+//llamamos a las funciones definidas en los archivos para validar los email
+
+    //llamar a la funcion para validar el email    
+    Function zValidar_Email Integer iField Returns Boolean
+        Boolean bRet
+        String sEmail
+        
+        Get Field_Current_Value Field schoolhouse.Email to sEmail
+        
+        Get ValidarEmail sEmail to bRet
+        
+        Function_Return (not(bRet))
+    End_Function
+
+End_Class
