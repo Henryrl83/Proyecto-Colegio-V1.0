@@ -55,6 +55,7 @@ Object oSelectStudent is a cWebView
             Set psBtnCssClass to "WebButtonIcon WebIcon_Info"
             Set peAlign to alignRight
             Set pbShowCaption to False
+            Set pbHidden to True
 
             WebRegisterPath ntNavigateForward oStudent
 
