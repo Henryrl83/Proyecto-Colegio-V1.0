@@ -1,0 +1,30 @@
+﻿Use cWebHttpHandler.pkg
+
+//  With the cWebHttpHandler you handle complete HTTP requests.
+Object oCheckStatus is a cWebHttpHandler
+    
+    //  The psPath property determines the path in the URL for which requests will be handled.
+    Set psPath to "CheckMyStatus"
+    //  Use psVerbs to filter based on the HTTP Verbs. 
+    Set psVerbs to "GET"
+
+    Procedure OnHttpGet String sPath String sAcceptType
+        Forward Send OnHttpGet sPath sAcceptType
+        Handle hoJsonResponse
+        UChar[] ucData
+        
+        Get Create (RefClass(cJsonObject)) to hoJsonResponse
+        Send InitializeJsonType of hoJsonResponse jsonTypeObject
+        
+        Send SetMemberValue of hoJsonResponse "Status" jsonTypeString "Activo"
+        //Send SetMemberValue of hoJsonResponse "Fecha y hora Actual" jsonTypeString "Current_DateTime"
+        
+        Send AddHttpResponseHeader of hoJsonResponse "Content-Type" "application/json"
+        
+        Get StringifyUtf8 of hoJsonResponse to ucData
+        
+        Send Destroy of hoJsonResponse
+        Send OutputUChar ucData
+        
+    End_Procedure    
+End_Object

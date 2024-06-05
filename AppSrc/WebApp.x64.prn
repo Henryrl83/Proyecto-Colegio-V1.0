@@ -1,5 +1,5 @@
 Compiling Program: C:\DataFlex Projects\ColegioAppWeb\AppSrc\WebApp.src
-Memory Available: 18058129408
+Memory Available: 16006377472
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 24.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -3071,21 +3071,53 @@ Including file: SelectStudent.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\S
 38174>>>
 38174>>>
 38174>>>End_Object 
-38175>    Set phoDefaultView to oDashboard
-38176>
-38176>End_Object
-38177>
-38177>Send StartWebApp of oWebApp
-38178>
+38175>    Use CheckStatus.wo
+Including file: CheckStatus.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\CheckStatus.wo)
+38175>>>Use cWebHttpHandler.pkg
+38175>>>
+38175>>>//  With the cWebHttpHandler you handle complete HTTP requests.
+38175>>>Object oCheckStatus is a cWebHttpHandler
+38177>>>    
+38177>>>    //  The psPath property determines the path in the URL for which requests will be handled.
+38177>>>    Set psPath to "CheckMyStatus"
+38178>>>    //  Use psVerbs to filter based on the HTTP Verbs. 
+38178>>>    Set psVerbs to "GET"
+38179>>>
+38179>>>    Procedure OnHttpGet String sPath String sAcceptType
+38182>>>        Forward Send OnHttpGet sPath sAcceptType
+38184>>>        Handle hoJsonResponse
+38184>>>        UChar[] ucData
+38185>>>        
+38185>>>        Get Create (RefClass(cJsonObject)) to hoJsonResponse
+38186>>>        Send InitializeJsonType of hoJsonResponse jsonTypeObject
+38187>>>        
+38187>>>        Send SetMemberValue of hoJsonResponse "Status" jsonTypeString "Activo"
+38188>>>        Send SetMemberValue of hoJsonResponse "Fecha y hora Actual" jsonTypeString "Current_DateTime"
+38189>>>        
+38189>>>        Send AddHttpResponseHeader of hoJsonResponse "Content-Type" "application/json"
+38190>>>        
+38190>>>        Get StringifyUtf8 of hoJsonResponse to ucData
+38191>>>        
+38191>>>        Send Destroy of hoJsonResponse
+38192>>>        Send OutputUChar ucData
+38193>>>        
+38193>>>    End_Procedure    
+38194>>>End_Object
+38195>    Set phoDefaultView to oDashboard
+38196>
+38196>End_Object
+38197>
+38197>Send StartWebApp of oWebApp
+38198>
 Summary
-Memory Available: 18047016960
+Memory Available: 15988445184
 Total Warnings : 0
 Total Errors   : 0
-Total Symbols  : 25386
+Total Symbols  : 25390
 Total Resources: 0
-Total Commands : 38177
+Total Commands : 38197
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 470167
-Message area   : 254946
-Total Blocks   : 16979
+Static Data    : 470431
+Message area   : 255201
+Total Blocks   : 16987
