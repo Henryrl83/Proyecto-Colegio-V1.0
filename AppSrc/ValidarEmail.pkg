@@ -3,7 +3,7 @@
 Define cValidos for "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ0123456789._-"
 
 
-Function ValidarEmail String sEmail Returns Boolean
+Function ValidarEmail String sEmail String ByRef sMsg Returns Boolean
     Boolean bRet
     Move (Uppercase(sEmail)) to sEmail
     Move (Trim(sEmail)) to sEmail
@@ -11,7 +11,7 @@ Function ValidarEmail String sEmail Returns Boolean
     
 //-------------------------------------detecta cadena vacia    
     If (sEmail="")Begin
-        Send Info_Box "Escribe algo miarma" "ERROR"
+        Move "Escribe algo miarma" to sMsg
         Function_Return False
     End
     //--------------
@@ -19,7 +19,7 @@ Function ValidarEmail String sEmail Returns Boolean
     
 //-------------------------------------valiada total de caracteres < 256
     If (Length(sEmail)>=256)Begin
-        Send Info_Box "La extensión total no debe superar los 256 caracteres" "ERROR"
+        Move "La extensión total no debe superar los 256 caracteres" to sMsg
         Function_Return False
     End
     //-------------
@@ -27,74 +27,74 @@ Function ValidarEmail String sEmail Returns Boolean
 
 //------------------------------------NO comienza ni termina con punto
     If (Left(sEmail,1)="." or Right(sEmail,1)=".")Begin
-        Send Info_Box "Un Email no puede empezar ni terminar en punto '.'" "Error"
+        Move "Un Email no puede empezar ni terminar en punto '.'" to sMsg
         Function_Return False
     End
     //------------
     
 //------------------------------------Verificar puntos CONSECUTIVOS
     If (Pos("..", sEmail) > 0) Begin
-        Send Info_Box "No puede haber nunca dos o más puntos '.' seguidos" "ERROR"
+        Move "No puede haber nunca dos o más puntos '.' seguidos" to sMsg
         Function_Return False
     End
     //---------
 
 //------------------------------------Verificar si el email contiene "@" correctamente
-    Get ValidarArroba sEmail to bRet
+    Get ValidarArroba sEmail (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "El email debe contener uno y solo un @" "ERROR"
+        Move "El email debe contener uno y solo un @" to sMsg
         Function_Return False
     End
     //----------
     
 //-------------------------------------Verificar si la parte LOCAL tiene entre 1 y 64 caracteres    
-    Get LongitudParteLocal sEmail to bRet
+    Get LongitudParteLocal sEmail (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "La longitud antes del @ no es válida\nTiene que tener entre 1 y 64 caracteres" "ERROR"
+        Move "La longitud antes del @ no es válida. Tiene que tener entre 1 y 64 caracteres" to sMsg
         Function_Return False
     End
     //---------
     
 //-------------------------------------Verificar si la parte DOMINIO tiene entre 4 y 255 caracteres
-    Get LongitudParteDominio sEmail to bRet
+    Get LongitudParteDominio sEmail (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "La longitud DESPUES del @ no es válida\ntiene que tener entre 4 y 255 caracteres\nAcabado en punto y la extensión" "ERROR"
+        Move "La longitud DESPUES del @ no es válida tiene que tener entre 4 y 255 caracteres acabado en punto y la extensión" to sMsg
         Function_Return False
     End
     //---------
     
 //-------------------------------------Verificar primer digito de cada parte Alfanumerico
-    Get PrimerAlfanumerico sEmail to bRet
+    Get PrimerAlfanumerico sEmail (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "El PRIMER CARACTER de la parte LOCAL y de la parte despues del @\ntiene que ser LETRA o NÚMERO" "ERROR"
+        Move "El PRIMER CARACTER de la parte LOCAL y de la parte despues del @ tiene que ser LETRA o NÚMERO" to sMsg
         Function_Return False
     End
 
 //------------------------------------verificar que todos los digitos sean válidos
-    Get DigitosValidos sEmail to bRet
+    Get DigitosValidos sEmail (&sMsg) to bRet
     
     If (not(bRet))Begin
-        Send Info_Box "Los unicos simbolos válidos son: .   _  - " "ERROR"
+        Move "Los unicos simbolos válidos son: .   _  - " to sMsg
         Function_Return False
     End
     //----------
     
 //----------------------------------verificar la longitud de la extensión
-    Get Extension sEmail to bRet
+    Get Extension sEmail (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "la extension debe estar entre 2 y 4 caracteres" "ERROR"
+        Move "la extension debe estar entre 2 y 4 caracteres" to sMsg
         Function_Return False
     End
     //---------
     
     
 //---------------------------------verificar el Email desde la API (NEUTRINO)
-    Get ValidacionAPI sEmail to bRet
+    Get ValidacionAPI sEmail (&sMsg) to bRet
 
     Function_Return bRet
 
@@ -103,7 +103,7 @@ Function ValidarEmail String sEmail Returns Boolean
 End_Function
 
 //----------------------------------Función para verificar si el email contiene al menos y solo un "@".
-Function ValidarArroba String sEmail Returns Boolean
+Function ValidarArroba String sEmail String ByRef sMsg Returns Boolean
     Integer iCount iArrobaCount
     Boolean bRet
     
@@ -133,7 +133,7 @@ Function ValidarArroba String sEmail Returns Boolean
 End_Function
 
 //----------------------------------Función para verificar la longitud de la parte local del email.
-Function LongitudParteLocal String sEmail Returns Boolean
+Function LongitudParteLocal String sEmail String ByRef sMsg Returns Boolean
     Integer iPos
     String sParteLocal
     Boolean bRet
@@ -158,7 +158,7 @@ Function LongitudParteLocal String sEmail Returns Boolean
 End_Function
 
 //----------------------------------Función para verificar la longitud de la parte de DOMINIO del email.
-Function LongitudParteDominio String sEmail Returns Boolean
+Function LongitudParteDominio String sEmail String ByRef sMsg Returns Boolean
     Integer iPos iPunto
     String sParteDominio
     Boolean bRet
@@ -192,7 +192,7 @@ End_Function
 
 
 //------------------------------------------------verificar la extension del dominio
-Function Extension String sEmail Returns Boolean
+Function Extension String sEmail String ByRef sMsg Returns Boolean
     Boolean bRet
     String sParteDominio sExten
     Integer iPos iPunto iLongExten
@@ -221,7 +221,7 @@ Function Extension String sEmail Returns Boolean
 End_Function
 
 //----------------------------------Función para verificar que la parte local y la parte de dominio comiencen por letra o dígito
-Function PrimerAlfanumerico String sEmail Returns Boolean
+Function PrimerAlfanumerico String sEmail String ByRef sMsg Returns Boolean
     Boolean bRet
     Integer iCount iCount2 iPos
     String sPrimerDL sPrimerDD sChar sChar2
@@ -260,7 +260,7 @@ End_Function
 
 
 //------------------------------------------Función para verificar que el resto de digitos sean válidos
-Function DigitosValidos String sEmail Returns Boolean
+Function DigitosValidos String sEmail String ByRef sMsg Returns Boolean
     Boolean bRet
     Integer iPos iPunto iCount iCount2 iCount3 iCount4
     String sParteLocal sParteDominio sLocalChar sLocalChar2 sDominChar sDominChar2
@@ -310,7 +310,7 @@ Function DigitosValidos String sEmail Returns Boolean
 End_Function
 
 //----------------------------------------------Función para validar el email desde una api (Neutrino)
-Function ValidacionAPI String sEmail Returns Boolean
+Function ValidacionAPI String sEmail String ByRef sMsg Returns Boolean
     Handle hoHttp hoJsonRequest hoResponse
     Boolean bRet bIsnull
     String sResponse sResponse2
@@ -332,7 +332,7 @@ Function ValidacionAPI String sEmail Returns Boolean
     
     
     If (bRet and (ResponseStatusCode(hoHttp) = 200)) Begin
-        Send Info_Box (Stringify(hoResponse)) "La respuesta de NEUTRINO"
+        //Send Info_Box (Stringify(hoResponse)) "La respuesta de NEUTRINO"
         If (HasMember(hoResponse,"valid") and HasMember(hoResponse, "is-disposable")) Begin
             Get IsMemberOfJsonType of hoResponse "valid" jsonTypeNull to bIsnull
             Get IsMemberOfJsonType of hoResponse "is-disposable" jsonTypeNull to bIsnull
@@ -346,7 +346,7 @@ Function ValidacionAPI String sEmail Returns Boolean
                     Function_Return True
                 End
                 Else Begin
-                    Send Info_Box "La sintaxis es correcta\nEstá bien escrito\nPero el email no está verificado por NEUTRINO"
+                    Move "La sintaxis es correcta. Está bien escrito. Pero el email no está verificado por NEUTRINO" to sMsg
                     Function_Return False
                 End
             End

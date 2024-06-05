@@ -2,7 +2,7 @@
 Define cNumber for "0123456789"
 
 //-------------------------------------------
-Function ValidacionDNI String sDNI Returns Boolean
+Function ValidacionDNI String sDNI String ByRef sMsg Returns Boolean
     //Convertir en mayúsculas todo lo contenido en la cadena sDNI
     Move (Uppercase(sDNI)) to sDNI
     
@@ -11,39 +11,39 @@ Function ValidacionDNI String sDNI Returns Boolean
    
     //------------ comprobación de entrada VACÍA
     If (sDNI="") Begin
-        Send Info_Box "Tienes que introducir algo" "ERROR"
+        Move "Tienes que introducir algo" to sMsg
         Function_Return False
     End
 
     //-----------------comprobación de LONGITUD de la cadena
-    Get DNILen sDNI to bRet
+    Get DNILen sDNI (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "La longitud no es correcta, TIENE QUE TENER 9 DIGITOS" "ERROR"
+        Move "La longitud no es correcta, TIENE QUE TENER 9 DIGITOS" to sMsg
         Function_Return False
     End
    
     //-----------------comprobacion de que el último digito es una letra
-    Get DNILastChar sDNI to bRet
+    Get DNILastChar sDNI (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "El último digito tiene que ser una LETRA válida" "ERROR"
+        Move "El último digito tiene que ser una LETRA válida" to sMsg
         Function_Return False
     End
     
     //------------------comprobación 8 primeros sean digitos
-    Get SinCaracteres sDNI to bRet
+    Get SinCaracteres sDNI (&sMsg) to bRet
     
     If (not(bRet)) Begin
-        Send Info_Box "Si es un DNI los 8 primeros dígitos tienen que ser números\nSi es un NIE la primera letra debe ser X, Y,o Z" "ERROR"
+        Move "Si es un DNI los 8 primeros dígitos tienen que ser números. Si es un NIE la primera letra debe ser X, Y,o Z" to sMsg
         Function_Return False
     End
     
     //------------------ comprobación de letra correspondiente
-    Get CalcularLetraDNI sDNI to bRet
+    Get CalcularLetraDNI sDNI (&sMsg) to bRet
     
         If (not(bRet)) Begin
-        Send Info_Box "El NIF/NIE no es válido" "ERROR"
+        Move "El NIF/NIE no es válido" to sMsg
         Function_Return False
         End
         
@@ -53,7 +53,7 @@ Function ValidacionDNI String sDNI Returns Boolean
 End_Function
 
 //-----------------------------------------------longitud del dni introducido
-Function DNILen String sDNI Returns Boolean
+Function DNILen String sDNI String ByRef sMsg Returns Boolean
     Integer iLen
     //-------------
     Move (Length(sDNI)) to iLen
@@ -67,7 +67,7 @@ End_Function
 
 
 //---------------------------------------------------última digito letra valida
-Function DNILastChar String sDNI Returns Boolean
+Function DNILastChar String sDNI String ByRef sMsg Returns Boolean
     Integer iCount
     String sChar sCharCadena
     
@@ -83,7 +83,7 @@ End_Function
 
 
 //-------------------------------------------------------comprueba si hay letras entre los 8 primeros dígitos
-Function SinCaracteres String sDNI Returns Boolean
+Function SinCaracteres String sDNI String ByRef sMsg Returns Boolean
     Integer iCount iCount2
     String sValue sDig sComprobado
     Boolean bRet
@@ -120,7 +120,7 @@ End_Function
 
 
 //-------------------------------------------------------calcula letra DNI
-Function CalcularLetraDNI String sDNI Returns Boolean
+Function CalcularLetraDNI String sDNI String ByRef sMsg Returns Boolean
     Integer iDNI iResto
     String sLetter sChar
     

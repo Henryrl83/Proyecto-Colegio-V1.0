@@ -59,10 +59,13 @@ Class cstudentDataDictionary is a DataDictionary
     //llamar a la funcion para validar el email
     Function zValidar_Email Integer iField Returns Boolean
         Boolean bRet
-        String sEmail
+        String sEmail sMsg
         
         Get Field_Current_Value Field student.Email to sEmail
-        Get ValidarEmail sEmail to bRet
+        Get ValidarEmail sEmail (&sMsg) to bRet
+        If (not(bRet)) Begin
+            Send Data_set_error iField DFERR_OPERATOR sMsg
+        End
         
         Function_Return (not(bRet))
         End_Function
@@ -70,10 +73,13 @@ Class cstudentDataDictionary is a DataDictionary
     //llamar a la funcion para validar el dni    
     Function zValidar_Dni Integer iField Returns Boolean
         Boolean bRet
-        String sDni
+        String sDni sMsg
         
         Get Field_Current_Value Field student.DNI to sDni
-        Get ValidacionDNI sDni to bRet
+        Get ValidacionDNI sDni (&sMsg) to bRet
+        If (not(bRet)) Begin
+            Send Data_set_error iField DFERR_OPERATOR sMsg
+        End
         
         Function_Return (not(bRet))
     End_Function
