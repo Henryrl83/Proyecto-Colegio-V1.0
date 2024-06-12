@@ -36,7 +36,6 @@ Object oDashboard is a cWebView
     
     Object oWebMainPanel is a cWebPanel
         Set piColumnCount to alignCenter
-        Set psBackgroundColor to "lightblue"
         //Set psHtml to '<div><img src="C:\DataFlex Projects\ColegioAppWeb\Bitmaps\colegio.bmp"></div>'
         
         // - - - - - - - - - - - - - - -
@@ -52,7 +51,6 @@ Object oDashboard is a cWebView
             Set piColumnCount to 12
             
             Set psCSSClass to "TilesGroup"
-            Set psBackgroundColor to "lightblue"
     
             /*Object oWelcomeTile is a cWebHtmlBox
                 Set piColumnSpan to 6

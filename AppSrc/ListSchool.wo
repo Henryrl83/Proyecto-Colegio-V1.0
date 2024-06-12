@@ -1,0 +1,284 @@
+﻿Use cWebHttpHandler.pkg
+Use cJsonObject.pkg
+Use cschoolhouseDataDictionary.dd
+
+
+//url para consulta GET: http://localhost/ColegioAppWeb/SchoolHouseList
+//url para consulta POST: http://localhost/ColegioAppWeb/SchoolHouseList/new
+
+//  With the cWebHttpHandler you handle complete HTTP requests.
+Object oListSchool is a cWebHttpHandler
+    Object oSchoolHouse_DD is a cschoolhouseDataDictionary    
+    End_Object
+    
+    Set Main_DD to oSchoolHouse_DD
+    
+    //  The psPath property determines the path in the URL for which requests will be handled.
+    Set psPath to "SchoolHouseList"
+    //  Use psVerbs to filter based on the HTTP Verbs. 
+    Set psVerbs to "GET, POST"
+
+    Procedure OnHttpGet String sPath String sAcceptType
+        String[] aPath
+        
+        Get StrSplitToArray sPath "/" to aPath
+        
+        If (SizeOfArray(aPath) < 1) Begin
+            Send SchoolHouseList 
+            Procedure_Return
+        End
+        
+        //------------------------Redirige a una operación específica según la ruta
+        //  Redirect to a specific operation based on the path
+        If ((aPath[0]) = "") Begin
+            If (SizeOfArray(aPath) = 2 and aPath[1] > 0) Begin
+                Send ScoolHouse aPath[1]
+            End
+            Else Begin
+                Send SchoolHouseList
+            End
+        End
+        Else Begin
+            Send SetResponseStatus 404 "Unknown resource" 
+        End
+    End_Procedure
+    
+//------------------------------------------Procedimiento para listar todos los colegios
+    Procedure SchoolHouseList
+        Handle hoJson hoSchoolHouse
+        
+        Get Create (RefClass(cJsonObject)) to hoJson
+        Send InitializeJsonType of hoJson jsonTypeArray
+        
+        Get Create (RefClass(cJsonObject)) to hoSchoolHouse
+        
+        Send Find of oSchoolHouse_DD FIRST_RECORD 1
+        While (Found)
+            Send InitializeJsonType of hoSchoolHouse jsonTypeObject
+            
+            Send SetMemberValue of hoSchoolHouse "Number" jsonTypeInteger schoolhouse.ID
+            Send SetMemberValue of hoSchoolHouse "Name" jsonTypeString (Trim(schoolhouse.Name))
+            Send SetMemberValue of hoSchoolHouse "City" jsonTypeString (Trim(schoolhouse.City))
+            
+            Send AddMember of hoJson hoSchoolHouse
+            
+            Send Find of oSchoolHouse_DD NEXT_RECORD 1
+        Loop
+        
+        Send OutputJson hoJson
+        
+        Send Destroy of hoSchoolHouse
+        Send Destroy of hoJson
+    End_Procedure
+    
+//-----------------------------------------Procedimiento para enviar los detalles de un solo colegio    
+    Procedure ScoolHouse String sKey
+        Handle hoJson
+        
+        Send Clear of oSchoolHouse_DD
+        Move sKey to schoolhouse.ID
+        Send Find of oSchoolHouse_DD EQ 1
+        
+        If (Found) Begin
+            Get Create (RefClass(cJsonObject)) to hoJson
+            Send InitializeJsonType of hoJson jsonTypeObject
+            
+            Send SetMemberValue of hoJson "Number" jsonTypeInteger schoolhouse.ID
+            Send SetMemberValue of hoJson "Name" jsonTypeString (Trim(schoolhouse.Name))
+            Send SetMemberValue of hoJson "Address" jsonTypeString (Trim(schoolhouse.Address))
+            Send SetMemberValue of hoJson "County" jsonTypeString (Trim(schoolhouse.County))
+            Send SetMemberValue of hoJson "City" jsonTypeString (Trim(schoolhouse.City))
+            Send SetMemberValue of hoJson "ZipCode" jsonTypeString (Trim(schoolhouse.ZipCode))
+            Send SetMemberValue of hoJson "Email" jsonTypeString (Trim(schoolhouse.Email))
+            Send SetMemberValue of hoJson "Notes" jsonTypeString (Trim(schoolhouse.Notes))
+            Send SetMemberValue of hoJson "CreatedTime" jsonTypeString schoolhouse.CreatedTime
+            Send SetMemberValue of hoJson "ModifiedTime" jsonTypeString schoolhouse.ModifiedTime
+            
+            Send OutputJson hoJson
+            Send Destroy of hoJson
+        End
+        Else Begin
+            Send SetResponseStatus 404 "Resource not found"
+        End
+    End_Procedure
+    
+    
+
+    Procedure OnHttpPost String sPath String sContentType String sAcceptType DWord iSize
+        Forward Send OnHttpPost sPath sContentType sAcceptType iSize
+        
+        String[] aPath
+        
+        //-----------------Divide el camino en partes
+        //  Split the path into parts
+        Get StrSplitToArray sPath "/" to aPath
+        If (SizeOfArray(aPath) < 2) Begin
+            Send SetResponseStatus 404 "Invalid resource" 
+            Procedure_Return
+        End
+        
+        //-----------------------Redirige a una operación específica según la ruta
+        //  Redirect to a specific operation based on the path
+        If (Lowercase(aPath[1]) = "new") Begin
+            If (SizeOfArray(aPath) > 2 and aPath[2] <> "") Begin
+                Send SetResponseStatus 400 "Only use POST for creating new resources"
+            End
+            Else Begin
+                Send SaveSchoolHouse True ""
+            End
+        End
+        Else Begin
+            Send SetResponseStatus 404 "Unknown resource"
+        End        
+    End_Procedure
+    
+//--------------------------------------------------Procedimiento para GUARDAR un nuevo objeto COLEGIO    
+    Procedure SaveSchoolHouse Boolean bCreate String sKey
+        Handle hoJson
+        Boolean bSuccess bVal bErr
+        String sVal
+        
+        //-----------------------Encuentra el registro correcto
+        //  Find the right record
+        If (bCreate) Begin
+            Send Clear of oSchoolHouse_DD
+        End
+        Else Begin
+            Send Clear of oSchoolHouse_DD
+            Move sKey to schoolhouse.ID
+            Send Find of oSchoolHouse_DD EQ 1
+            
+            If (not(Found)) Begin
+                Send SetResponseStatus 404 "Resource not found"
+                Procedure_Return
+            End
+        End
+        
+        //-----------------------Lee los datos de la solicitud
+        //  Read the request data
+        Get RequestDataJson (&hoJson) to bSuccess
+        
+        If (bSuccess) Begin
+            Send ErrorQueueStart
+            
+            //  Almacena los valores en la variable sVal que se guardarán en la BBDD
+            If (HasMember(hoJson, "Name")) Begin
+                Get MemberValue of hoJson "Name" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.Name)) to sVal
+            End
+            
+            If (HasMember(hoJson, "Address")) Begin
+                Get MemberValue of hoJson "Address" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.Address)) to sVal
+            End
+            
+            If (HasMember(hoJson, "City")) Begin
+                Get MemberValue of hoJson "City" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.City)) to sVal
+            End
+            
+            If (HasMember(hoJson, "County")) Begin
+                Get MemberValue of hoJson "County" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.County)) to sVal
+            End
+            
+            If (HasMember(hoJson, "ZipCode")) Begin
+                Get MemberValue of hoJson "ZipCode" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.ZipCode)) to sVal
+            End
+            
+            If (HasMember(hoJson, "Email")) Begin
+                Get MemberValue of hoJson "Email" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.Email)) to sVal
+            End
+            
+            If (HasMember(hoJson, "Notes")) Begin
+                Get MemberValue of hoJson "Notes" to sVal
+                Set Field_Changed_Value of oSchoolHouse_DD (RefTable(schoolhouse.Notes)) to sVal
+            End
+            
+            //------------------Realiza el guardado de los datos
+            //  Perform the save
+            If (ErrorCount(Self) = 0) Begin
+                Get Request_Validate of oSchoolHouse_DD to bErr
+                If (not(bErr)) Begin
+                   Send Request_Save of oSchoolHouse_DD     
+                   
+                   If (not(Err)) Begin
+                        Send ScoolHouse schoolhouse.ID
+                   End
+                End
+            End            
+            
+            Send ErrorQueueEnd
+            Send ErrorReportJson
+        End
+        
+        If (hoJson > 0) Begin
+            Send Destroy of hoJson
+        End
+    End_Procedure
+
+//-------------Función auxiliar que genera una respuesta basada en un objeto JSON
+    //  Helper function that generates a response based on a JSON object.
+    Procedure OutputJson Handle hoJson
+        UChar[] ucData
+        
+        Send AddHttpResponseHeader "Content-Type" "application/json"
+        Get StringifyUtf8 of hoJson to ucData
+        Send OutputUChar ucData
+    End_Procedure
+
+
+//---------------------Función auxiliar que lee una solicitud completa en un objeto JSON.
+//  Helper function that reads an entire request into a JSON object.
+    Function RequestDataJson Handle ByRef hoJson Returns Boolean
+        UChar[] ucData
+        Boolean bSuccess
+        String sErr
+        
+        Get Create (RefClass(cJsonObject)) to hoJson
+        
+        Get RequestDataUChar -1 to ucData
+        Get ParseUtf8 of hoJson ucData to bSuccess
+        
+        If (not(bSuccess)) Begin
+            Get psParseError of hoJson to sErr
+            Send SetResponseStatus 400 sErr
+        End
+        
+        Function_Return bSuccess
+    End_Function
+    
+    
+//-----------------------Función auxiliar que informa todos los errores en la cola de errores en formato JSON
+//  Helper function that reports all errors on the error queue in JSON format.
+    Procedure ErrorReportJson
+        Integer iErr iErrC
+        Handle hoJson hoErrors   
+        String sMessage
+        
+        Get ErrorCount to iErrC
+        If (iErrC > 0) Begin
+            Send SetResponseStatus 400 "Errors occurred"
+            
+            Get Create (RefClass(cJsonObject)) to hoJson
+            Send InitializeJsonType of hoJson jsonTypeObject
+            
+            Get Create (RefClass(cJsonObject)) to hoErrors
+            Send InitializeJsonType of hoErrors jsonTypeArray
+            
+            For iErr from 0 to (iErrC - 1)
+                Get ErrorMessage iErr to sMessage
+                Send AddMemberValue of hoErrors jsonTypeString  sMessage
+            Loop
+            
+            Send SetMember of hoJson "aErrors" hoErrors
+            
+            Send OutputJson hoJson
+            
+            Send Destroy of hoErrors
+            Send Destroy of hoJson
+        End
+    End_Procedure
+End_Object

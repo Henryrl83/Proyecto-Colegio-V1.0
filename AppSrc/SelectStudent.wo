@@ -72,25 +72,25 @@ Object oSelectStudent is a cWebView
         Object ostudentName is a cWebColumn
             Entry_Item student.Name
             Set psCaption to "student.Name"
-            Set piWidth to 192
+            Set piWidth to 256
         End_Object 
 
         Object ostudentLastName is a cWebColumn
             Entry_Item student.LastName
             Set psCaption to "student.LastName"
-            Set piWidth to 282
+            Set piWidth to 275
         End_Object 
 
         Object ostudentDNI is a cWebColumn
             Entry_Item student.DNI
             Set psCaption to "student.DNI"
-            Set piWidth to 205
+            Set piWidth to 137
         End_Object 
 
         Object ostudentEmail is a cWebColumn
             Entry_Item student.Email
             Set psCaption to "student.Email"
-            Set piWidth to 319
+            Set piWidth to 330
         End_Object 
 
         /*Object oschoolhouseID is a cWebColumn

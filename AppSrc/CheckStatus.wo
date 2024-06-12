@@ -13,11 +13,18 @@ Object oCheckStatus is a cWebHttpHandler
         Handle hoJsonResponse
         UChar[] ucData
         
+        //Guardamos la fecha y hora actual en la variable definida como tipo DateTime mediante la función correspondiente
+        DateTime dtCurrentDateTime
+        Move (CurrentDateTime()) to dtCurrentDateTime
+        
+        //creamos la respuesta a la consulta GET y se almacena en la variable definida como tipo Objeto HANDLE + la iniciamos
         Get Create (RefClass(cJsonObject)) to hoJsonResponse
         Send InitializeJsonType of hoJsonResponse jsonTypeObject
         
-        Send SetMemberValue of hoJsonResponse "Status" jsonTypeString "Activo"
-        //Send SetMemberValue of hoJsonResponse "Fecha y hora Actual" jsonTypeString "Current_DateTime"
+        //en la respuesta enviamos los valores que queramos
+        Send SetMemberValue of hoJsonResponse "Name" jsonTypeString "App Colegio y Alumnos"
+        Send SetMemberValue of hoJsonResponse "Status" jsonTypeString "LISTO"
+        Send SetMemberValue of hoJsonResponse "Fecha y hora Actual" jsonTypeString dtCurrentDateTime
         
         Send AddHttpResponseHeader of hoJsonResponse "Content-Type" "application/json"
         

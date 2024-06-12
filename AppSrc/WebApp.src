@@ -161,6 +161,8 @@ Object oWebApp is a cWebApp
     Use Student.wo
     Use SelectStudent.wo
     Use CheckStatus.wo
+    Use ListSchool.wo
+    Use ListStudent.wo
     Set phoDefaultView to oDashboard
 
 End_Object

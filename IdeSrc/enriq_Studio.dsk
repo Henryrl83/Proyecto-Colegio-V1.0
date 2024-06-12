@@ -7,48 +7,37 @@ GroupCount=1
 HorizontalGroups=1
 [TabGroup0]
 GroupSize=40
-SelectedTab=0
+SelectedTab=2
 [Window0]
-Filename=C:\DataFlex Projects\ColegioAppWeb\DDSrc\cstudentDataDictionary.dd
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\CheckStatus.wo
 ViewType=1
 Top=26
 Left=0
 Bottom=663
-Right=1287
-CursorLine=79
-CursorColumn=8
-TabIndex=2
+Right=1242
+CursorLine=9
+CursorColumn=0
+TabIndex=0
 TabGroup=0
 [Window1]
-Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\ValidarDNI.pkg
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\ListSchool.wo
 ViewType=1
 Top=26
 Left=0
 Bottom=663
-Right=1287
-CursorLine=37
-CursorColumn=74
-TabIndex=3
-TabGroup=0
-[Window2]
-Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\ValidarEmail.pkg
-ViewType=1
-Top=26
-Left=0
-Bottom=663
-Right=1287
-CursorLine=348
-CursorColumn=70
+Right=1242
+CursorLine=134
+CursorColumn=102
 TabIndex=1
 TabGroup=0
-[Window3]
-Filename=C:\DataFlex Projects\ColegioAppWeb\DDSrc\cschoolhouseDataDictionary.dd
+[Window2]
+Filename=C:\DataFlex Projects\ColegioAppWeb\AppSrc\ListStudent.wo
 ViewType=1
 Top=26
 Left=0
 Bottom=663
-Right=1287
-CursorLine=70
-CursorColumn=9
-TabIndex=0
+Right=1242
+CursorLine=11
+CursorColumn=14
+TabIndex=2
 TabGroup=0
