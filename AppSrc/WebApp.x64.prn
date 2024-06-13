@@ -1,5 +1,5 @@
 Compiling Program: C:\DataFlex Projects\ColegioAppWeb\AppSrc\WebApp.src
-Memory Available: 17468833792
+Memory Available: 19152949248
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 24.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -3429,7 +3429,7 @@ Including file: ListSchool.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\List
 38398>    Use ListStudent.wo
 Including file: ListStudent.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\ListStudent.wo)
 38398>>>Use cWebHttpHandler.pkg
-38398>>>//Use cJsonObject.pkg
+38398>>>Use cJsonObject.pkg
 38398>>>Use cstudentDataDictionary.dd
 38398>>>Use cschoolhouseDataDictionary.dd
 38398>>>
@@ -3446,7 +3446,7 @@ Including file: ListStudent.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\Lis
 38405>>>        Set DDO_Server to oschoolhouse_DD
 38406>>>    End_Object
 38407>>>
-38407>>>    Set Main_DD to oStudent_DD
+38407>>>    Set Main_DD to ostudent_DD
 38408>>>    
 38408>>>    //  The psPath property determines the path in the URL for which requests will be handled.
 38408>>>    Set psPath to "Student"
@@ -3675,125 +3675,127 @@ Including file: ListStudent.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\Lis
 38554>>>            
 38554>>>            If (HasMember(hoJson, "SchoolHouseID")) Begin
 38556>>>                Get MemberValue of hoJson "SchoolHouseID" to sVal
-38557>>>                Set Field_Changed_Value of oStudent_DD (RefTable(student.SchoolHouseID)) to sVal
-38558>>>            End
-38558>>>>
-38558>>>            
-38558>>>            If (HasMember(hoJson, "Notes")) Begin
-38560>>>                Get MemberValue of hoJson "Notes" to sVal
-38561>>>                Set Field_Changed_Value of oStudent_DD (RefTable(student.Notes)) to sVal
-38562>>>            End
-38562>>>>
-38562>>>            
-38562>>>            //------------------Realiza el guardado de los datos
-38562>>>            //  Perform the save
-38562>>>            If (ErrorCount(Self) = 0) Begin
-38564>>>                Get Request_Validate of oStudent_DD to bErr
-38565>>>                If (not(bErr)) Begin
-38567>>>                   Send Request_Save of oStudent_DD     
-38568>>>                   
-38568>>>                   If (not(Err)) Begin
-38570>>>                        Send Student student.ID
-38571>>>                   End
-38571>>>>
-38571>>>                End
-38571>>>>
-38571>>>            End            
-38571>>>>
-38571>>>            
-38571>>>            Send ErrorQueueEnd
-38572>>>            Send ErrorReportJson
-38573>>>        End
+38557>>>                    Send Clear of oschoolhouse_DD
+38558>>>                    Move sVal to schoolhouse.ID
+38559>>>                    Send Find of oschoolhouse_DD EQ 1
+38560>>>            End
+38560>>>>
+38560>>>            
+38560>>>            If (HasMember(hoJson, "Notes")) Begin
+38562>>>                Get MemberValue of hoJson "Notes" to sVal
+38563>>>                Set Field_Changed_Value of oStudent_DD (RefTable(student.Notes)) to sVal
+38564>>>            End
+38564>>>>
+38564>>>            
+38564>>>            //------------------Realiza el guardado de los datos
+38564>>>            //  Perform the save
+38564>>>            If (ErrorCount(Self) = 0) Begin
+38566>>>                Get Request_Validate of ostudent_DD to bErr
+38567>>>                If (not(bErr)) Begin
+38569>>>                   Send Request_Save of ostudent_DD     
+38570>>>                   
+38570>>>                   If (not(Err)) Begin
+38572>>>                        Send Student student.ID
+38573>>>                   End
 38573>>>>
-38573>>>        
-38573>>>        If (hoJson > 0) Begin
-38575>>>            Send Destroy of hoJson
-38576>>>        End
-38576>>>>
-38576>>>    End_Procedure
-38577>>>
-38577>>>//-------------Función auxiliar que genera una respuesta basada en un objeto JSON
-38577>>>    //  Helper function that generates a response based on a JSON object.
-38577>>>    Procedure OutputJson Handle hoJson
-38580>>>        UChar[] ucData
-38581>>>        
-38581>>>        Send AddHttpResponseHeader "Content-Type" "application/json"
-38582>>>        Get StringifyUtf8 of hoJson to ucData
-38583>>>        Send OutputUChar ucData
-38584>>>    End_Procedure
-38585>>>
-38585>>>
-38585>>>//---------------------Función auxiliar que lee una solicitud completa en un objeto JSON.
-38585>>>//  Helper function that reads an entire request into a JSON object.
-38585>>>    Function RequestDataJson Handle ByRef hoJson Returns Boolean
-38588>>>        UChar[] ucData
-38589>>>        Boolean bSuccess
-38589>>>        String sErr
-38589>>>        
-38589>>>        Get Create (RefClass(cJsonObject)) to hoJson
-38590>>>        
-38590>>>        Get RequestDataUChar -1 to ucData
-38591>>>        Get ParseUtf8 of hoJson ucData to bSuccess
+38573>>>                End
+38573>>>>
+38573>>>            End            
+38573>>>>
+38573>>>            
+38573>>>            Send ErrorQueueEnd
+38574>>>            Send ErrorReportJson
+38575>>>        End
+38575>>>>
+38575>>>        
+38575>>>        If (hoJson > 0) Begin
+38577>>>            Send Destroy of hoJson
+38578>>>        End
+38578>>>>
+38578>>>    End_Procedure
+38579>>>
+38579>>>//-------------Función auxiliar que genera una respuesta basada en un objeto JSON
+38579>>>    //  Helper function that generates a response based on a JSON object.
+38579>>>    Procedure OutputJson Handle hoJson
+38582>>>        UChar[] ucData
+38583>>>        
+38583>>>        Send AddHttpResponseHeader "Content-Type" "application/json"
+38584>>>        Get StringifyUtf8 of hoJson to ucData
+38585>>>        Send OutputUChar ucData
+38586>>>    End_Procedure
+38587>>>
+38587>>>
+38587>>>//---------------------Función auxiliar que lee una solicitud completa en un objeto JSON.
+38587>>>//  Helper function that reads an entire request into a JSON object.
+38587>>>    Function RequestDataJson Handle ByRef hoJson Returns Boolean
+38590>>>        UChar[] ucData
+38591>>>        Boolean bSuccess
+38591>>>        String sErr
+38591>>>        
+38591>>>        Get Create (RefClass(cJsonObject)) to hoJson
 38592>>>        
-38592>>>        If (not(bSuccess)) Begin
-38594>>>            Get psParseError of hoJson to sErr
-38595>>>            Send SetResponseStatus 400 sErr
-38596>>>        End
-38596>>>>
-38596>>>        
-38596>>>        Function_Return bSuccess
-38597>>>    End_Function
-38598>>>    
-38598>>>    
-38598>>>//-----------------------Función auxiliar que informa todos los errores en la cola de errores en formato JSON
-38598>>>//  Helper function that reports all errors on the error queue in JSON format.
-38598>>>    Procedure ErrorReportJson
-38601>>>        Integer iErr iErrC
-38601>>>        Handle hoJson hoErrors   
-38601>>>        String sMessage
-38601>>>        
-38601>>>        Get ErrorCount to iErrC
-38602>>>        If (iErrC > 0) Begin
-38604>>>            Send SetResponseStatus 400 "Errors occurred"
-38605>>>            
-38605>>>            Get Create (RefClass(cJsonObject)) to hoJson
-38606>>>            Send InitializeJsonType of hoJson jsonTypeObject
+38592>>>        Get RequestDataUChar -1 to ucData
+38593>>>        Get ParseUtf8 of hoJson ucData to bSuccess
+38594>>>        
+38594>>>        If (not(bSuccess)) Begin
+38596>>>            Get psParseError of hoJson to sErr
+38597>>>            Send SetResponseStatus 400 sErr
+38598>>>        End
+38598>>>>
+38598>>>        
+38598>>>        Function_Return bSuccess
+38599>>>    End_Function
+38600>>>    
+38600>>>    
+38600>>>//-----------------------Función auxiliar que informa todos los errores en la cola de errores en formato JSON
+38600>>>//  Helper function that reports all errors on the error queue in JSON format.
+38600>>>    Procedure ErrorReportJson
+38603>>>        Integer iErr iErrC
+38603>>>        Handle hoJson hoErrors   
+38603>>>        String sMessage
+38603>>>        
+38603>>>        Get ErrorCount to iErrC
+38604>>>        If (iErrC > 0) Begin
+38606>>>            Send SetResponseStatus 400 "Errors occurred"
 38607>>>            
-38607>>>            Get Create (RefClass(cJsonObject)) to hoErrors
-38608>>>            Send InitializeJsonType of hoErrors jsonTypeArray
+38607>>>            Get Create (RefClass(cJsonObject)) to hoJson
+38608>>>            Send InitializeJsonType of hoJson jsonTypeObject
 38609>>>            
-38609>>>            For iErr from 0 to (iErrC - 1)
-38615>>>>
-38615>>>                Get ErrorMessage iErr to sMessage
-38616>>>                Send AddMemberValue of hoErrors jsonTypeString  sMessage
-38617>>>            Loop
-38618>>>>
-38618>>>            
-38618>>>            Send SetMember of hoJson "aErrors" hoErrors
-38619>>>            
-38619>>>            Send OutputJson hoJson
+38609>>>            Get Create (RefClass(cJsonObject)) to hoErrors
+38610>>>            Send InitializeJsonType of hoErrors jsonTypeArray
+38611>>>            
+38611>>>            For iErr from 0 to (iErrC - 1)
+38617>>>>
+38617>>>                Get ErrorMessage iErr to sMessage
+38618>>>                Send AddMemberValue of hoErrors jsonTypeString  sMessage
+38619>>>            Loop
+38620>>>>
 38620>>>            
-38620>>>            Send Destroy of hoErrors
-38621>>>            Send Destroy of hoJson
-38622>>>        End
-38622>>>>
-38622>>>    End_Procedure
-38623>>>End_Object
-38624>    Set phoDefaultView to oDashboard
-38625>
-38625>End_Object
-38626>
-38626>Send StartWebApp of oWebApp
+38620>>>            Send SetMember of hoJson "aErrors" hoErrors
+38621>>>            
+38621>>>            Send OutputJson hoJson
+38622>>>            
+38622>>>            Send Destroy of hoErrors
+38623>>>            Send Destroy of hoJson
+38624>>>        End
+38624>>>>
+38624>>>    End_Procedure
+38625>>>End_Object
+38626>    Set phoDefaultView to oDashboard
 38627>
+38627>End_Object
+38628>
+38628>Send StartWebApp of oWebApp
+38629>
 Summary
-Memory Available: 17453477888
+Memory Available: 19140509696
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25571
 Total Resources: 0
-Total Commands : 38626
+Total Commands : 38628
 Total Windows  : 0
 Total Pages    : 0
-Static Data    : 476649
-Message area   : 259118
-Total Blocks   : 17155
+Static Data    : 476665
+Message area   : 259125
+Total Blocks   : 17156

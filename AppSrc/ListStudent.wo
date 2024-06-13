@@ -1,5 +1,5 @@
 ﻿Use cWebHttpHandler.pkg
-//Use cJsonObject.pkg
+Use cJsonObject.pkg
 Use cstudentDataDictionary.dd
 Use cschoolhouseDataDictionary.dd
 
@@ -16,7 +16,7 @@ Object oListStudent is a cWebHttpHandler
         Set DDO_Server to oschoolhouse_DD
     End_Object
 
-    Set Main_DD to oStudent_DD
+    Set Main_DD to ostudent_DD
     
     //  The psPath property determines the path in the URL for which requests will be handled.
     Set psPath to "Student"
@@ -232,7 +232,9 @@ Object oListStudent is a cWebHttpHandler
             
             If (HasMember(hoJson, "SchoolHouseID")) Begin
                 Get MemberValue of hoJson "SchoolHouseID" to sVal
-                Set Field_Changed_Value of oStudent_DD (RefTable(student.SchoolHouseID)) to sVal
+                    Send Clear of oschoolhouse_DD
+                    Move sVal to schoolhouse.ID
+                    Send Find of oschoolhouse_DD EQ 1
             End
             
             If (HasMember(hoJson, "Notes")) Begin
@@ -243,9 +245,9 @@ Object oListStudent is a cWebHttpHandler
             //------------------Realiza el guardado de los datos
             //  Perform the save
             If (ErrorCount(Self) = 0) Begin
-                Get Request_Validate of oStudent_DD to bErr
+                Get Request_Validate of ostudent_DD to bErr
                 If (not(bErr)) Begin
-                   Send Request_Save of oStudent_DD     
+                   Send Request_Save of ostudent_DD     
                    
                    If (not(Err)) Begin
                         Send Student student.ID
