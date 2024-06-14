@@ -1,5 +1,5 @@
 Compiling Program: C:\DataFlex Projects\ColegioAppWeb\AppSrc\WebApp.src
-Memory Available: 19152949248
+Memory Available: 17990168576
 1>Use AllWebAppClasses.pkg
 Using pre-compiled package ALLWEBAPPCLASSES.PKG
 Including file: AllWebAppClasses.x64.pkd    (C:\Program Files\DataFlex 24.0\Pkg\AllWebAppClasses.x64.pkd)
@@ -3788,7 +3788,7 @@ Including file: ListStudent.wo    (C:\DataFlex Projects\ColegioAppWeb\AppSrc\Lis
 38628>Send StartWebApp of oWebApp
 38629>
 Summary
-Memory Available: 19140509696
+Memory Available: 17979133952
 Total Warnings : 0
 Total Errors   : 0
 Total Symbols  : 25571
